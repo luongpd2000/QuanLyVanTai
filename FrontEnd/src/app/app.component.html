@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" routerLink="project-manager" routerLinkActive="active">Project Manager</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
+      <li class="nav-item sidebar-item" >
+        <a class="nav-link" routerLink="tai-xe" routerLinkActive="active">Quản lý tài xế</a>
+      </li>
+      <li class="nav-item sidebar-item">
+        <a class="nav-link" routerLink="xe-khach" routerLinkActive="active">Quản lý xe khách</a>
+      </li>
+      <li class="nav-item sidebar-item">
+        <a class="nav-link">Quản lý tuyến xe</a>
+      </li>
+      <li class="nav-item sidebar-item">
+        <a class="nav-link">Quản lý chuyến xe</a>
+      </li>
+
+      <li class="nav-item sidebar-item">
+        <a class="nav-link">My Todo</a>
+      </li>
+    </ul>
+    <div class="btn-group" style="margin-left: auto;">
+
+      <button type="button" class="btn btn-primary">Account</button>
+      <button type="button" class="btn btn-primary" >Logout</button>
+  </div>
+  </div>
+</nav>
+
+
+<main class="content-wrapper">
+  <div class="container-fluid">
+  <router-outlet></router-outlet>
+  </div>
+</main>
+
+
+
+
+<footer class="footer" >
+  <div class="container-fluid">
+      <div class="text-center">
+          <span>Product of Team 12</span>
+      </div>
+  </div>
+</footer>
+
+
+
+<script>
+    $(document).ready(function() {
+$('.nav-link-collapse').on('click', function() {
+  $('.nav-link-collapse').not(this).removeClass('nav-link-show');
+  $(this).toggleClass('nav-link-show');
+});
+});
+</script>
