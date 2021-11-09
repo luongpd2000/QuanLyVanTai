@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TaiXeComponent } from './module/tai-xe/tai-xe.component';
 import { XeKhachComponent } from './module/xe-khach/xe-khach.component';
 import { ModuleModule } from './module/module.module';
+import { MaterialModule } from './share/material.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModuleModule } from './module/module.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModuleModule
+    ModuleModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
