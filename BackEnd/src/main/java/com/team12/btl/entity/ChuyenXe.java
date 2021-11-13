@@ -2,10 +2,7 @@ package com.team12.btl.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -17,34 +14,42 @@ public class ChuyenXe implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "soKhach", nullable = false)
+    @Column(name = "so_khach", nullable = false)
     private Integer soKhach;
 
-    @Column(name = "giaVe", nullable = false)
+    @Column(name = "gia_ve", nullable = false)
     private Float giaVe;
 
-    @Column(name = "batDau", nullable = false)
+    @Column(name = "bat_dau", nullable = false)
     private Timestamp batDau;
 
-    @Column(name = "ketThuc", nullable = false)
+    @Column(name = "ket_thuc", nullable = false)
     private Timestamp ketThuc;
 
-    @Column(name = "heSoLuong", nullable = false)
+    @Column(name = "he_so_luong", nullable = false)
     private Float heSoLuong;
 
-    @Column(name = "xeKhachId", nullable = false)
-    private Integer xeKhachId;
+    @Column(name = "is_active", nullable = false)
+    private boolean is_active;
 
-    @Column(name = "tuyenXeId", nullable = false)
-    private Integer tuyenXeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "xe_khach_id",referencedColumnName = "id", nullable = false)
+    private XeKhach xeKhach;
 
-    @Column(name = "laiXeId", nullable = false)
-    private Integer laiXeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tuyen_xe_id",referencedColumnName = "id", nullable = false)
+    private TuyenXe tuyenXe;
 
-    @Column(name = "phuXeId", nullable = false)
-    private Integer phuXeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "lai_xe_id",referencedColumnName = "id", nullable = false)
+    private TaiXe laiXe;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "phu_xe_id",referencedColumnName = "id", nullable = false)
+    private TaiXe phuXe;
 
 }

@@ -2,10 +2,7 @@ package com.team12.btl.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -16,19 +13,27 @@ public class TuyenXe implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "diemDau", nullable = false)
+    @Column(name = "diem_dau", nullable = false)
     private String diemDau;
 
-    @Column(name = "diemCuoi", nullable = false)
+    @Column(name = "diem_cuoi", nullable = false)
     private String diemCuoi;
 
-    @Column(name = "doDai", nullable = false)
+    @Column(name = "do_dai", nullable = false)
     private Float doDai;
 
-    @Column(name = "doPhucTapId", nullable = false)
-    private Integer doPhucTapId;
+    @Column(name = "is_active", nullable = false)
+    private boolean is_active;
+
+//    @Column(name = "doPhucTapId", nullable = false)
+//    private Integer doPhucTapId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "do_phuc_tap_id",referencedColumnName = "id", nullable = false)
+    private DoPhucTap doPhucTap;
 
 }

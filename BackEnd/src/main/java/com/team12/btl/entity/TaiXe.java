@@ -2,10 +2,7 @@ package com.team12.btl.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -17,6 +14,7 @@ public class TaiXe implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -26,19 +24,21 @@ public class TaiXe implements Serializable {
     @Column(name = "cmt", nullable = false)
     private String cmt;
 
-    @Column(name = "maSoBangLai", nullable = false)
+    @Column(name = "ma_so_bang_lai", nullable = false)
     private String maSoBangLai;
 
-    @Column(name = "loaiBangLai", nullable = false)
+    @Column(name = "loai_bang_lai", nullable = false)
     private String loaiBangLai;
 
-    @Column(name = "diaChi", nullable = false)
+    @Column(name = "dia_chi", nullable = false)
     private String diaChi;
 
-    @Column(name = "ngaySinh", nullable = false)
+    @Column(name = "ngay_sinh", nullable = false)
     private Date ngaySinh;
 
-    @Column(name = "thamNien", nullable = false)
+    @Column(name = "tham_nien", nullable = false)
     private Integer thamNien;
 
+    @Column(name = "is_active", nullable = false)
+    private boolean is_active;
 }
