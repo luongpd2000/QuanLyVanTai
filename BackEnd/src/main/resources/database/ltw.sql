@@ -3,15 +3,15 @@
 
  Source Server         : pdluong
  Source Server Type    : MySQL
- Source Server Version : 100604
+ Source Server Version : 80019
  Source Host           : localhost:3306
  Source Schema         : ltw
 
  Target Server Type    : MySQL
- Target Server Version : 100604
+ Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 09/11/2021 10:50:42
+ Date: 13/11/2021 15:31:14
 */
 
 SET NAMES utf8mb4;
@@ -22,104 +22,99 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `tblchuyenxe`;
 CREATE TABLE `tblchuyenxe`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `soKhach` int NOT NULL,
-  `giaVe` float(255, 0) NOT NULL,
-  `batDau` datetime(0) NOT NULL,
-  `ketThuc` datetime(0) NOT NULL,
-  `heSoLuong` float(255, 0) NOT NULL,
-  `xeKhachId` int NOT NULL,
-  `tuyenXeId` int NOT NULL,
-  `laiXeId` int NOT NULL,
-  `phuXeId` int NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `so_khach` int(0) NOT NULL,
+  `gia_ve` float(255, 0) NOT NULL,
+  `bat_dau` datetime(0) NOT NULL,
+  `ket_thuc` datetime(0) NOT NULL,
+  `he_so_luong` float(255, 0) NOT NULL,
+  `xe_khach_id` int(0) NOT NULL,
+  `tuyen_xe_id` int(0) NOT NULL,
+  `lai_xe_id` int(0) NOT NULL,
+  `phu_xe_id` int(0) NOT NULL,
+  `is_active` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_lx`(`laiXeId`) USING BTREE,
-  INDEX `fk_px`(`phuXeId`) USING BTREE,
-  INDEX `fk_xk`(`xeKhachId`) USING BTREE,
-  INDEX `fk_tx`(`tuyenXeId`) USING BTREE,
-  CONSTRAINT `fk_lx` FOREIGN KEY (`laiXeId`) REFERENCES `tbltaixe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_px` FOREIGN KEY (`phuXeId`) REFERENCES `tbltaixe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_tx` FOREIGN KEY (`tuyenXeId`) REFERENCES `tbltuyenxe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_xk` FOREIGN KEY (`xeKhachId`) REFERENCES `tblxekhach` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of tblchuyenxe
--- ----------------------------
+  INDEX `fk_lx`(`lai_xe_id`) USING BTREE,
+  INDEX `fk_px`(`phu_xe_id`) USING BTREE,
+  INDEX `fk_xk`(`xe_khach_id`) USING BTREE,
+  INDEX `fk_tx`(`tuyen_xe_id`) USING BTREE,
+  CONSTRAINT `fk_lx` FOREIGN KEY (`lai_xe_id`) REFERENCES `tbltaixe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_px` FOREIGN KEY (`phu_xe_id`) REFERENCES `tbltaixe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_tx` FOREIGN KEY (`tuyen_xe_id`) REFERENCES `tbltuyenxe` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_xk` FOREIGN KEY (`xe_khach_id`) REFERENCES `tblxekhach` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tbldophuctap
 -- ----------------------------
 DROP TABLE IF EXISTS `tbldophuctap`;
 CREATE TABLE `tbldophuctap`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `doPhucTap` int NOT NULL,
-  `heSoLuong` float(255, 0) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `do_phuc_tap` int(0) NOT NULL,
+  `he_so_luong` float(255, 0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbldophuctap
 -- ----------------------------
+INSERT INTO `tbldophuctap` VALUES (1, 1, 3);
+INSERT INTO `tbldophuctap` VALUES (2, 2, 4);
+INSERT INTO `tbldophuctap` VALUES (3, 3, 5);
 
 -- ----------------------------
 -- Table structure for tbltaixe
 -- ----------------------------
 DROP TABLE IF EXISTS `tbltaixe`;
 CREATE TABLE `tbltaixe`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `ten` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `cmt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `maSoBangLai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `loaiBangLai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `diaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `ngaySinh` date NOT NULL,
-  `thamNien` int NOT NULL,
+  `ma_so_bang_lai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `loai_bang_lai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `dia_chi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `ngay_sinh` date NOT NULL,
+  `tham_nien` int(0) NOT NULL,
+  `is_active` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbltaixe
 -- ----------------------------
-INSERT INTO `tbltaixe` VALUES (1, 'test', '83746873', '743857463', 'A1', 'Hà nội', '1993-09-23', 4);
+INSERT INTO `tbltaixe` VALUES (1, 'test', '83746873', '743857463', 'A1', 'Ha Noi', '1993-09-23', 4, b'0');
 
 -- ----------------------------
 -- Table structure for tbltuyenxe
 -- ----------------------------
 DROP TABLE IF EXISTS `tbltuyenxe`;
 CREATE TABLE `tbltuyenxe`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `diemDau` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `diemCuoi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `doDai` float(255, 0) NOT NULL,
-  `doPhucTapId` int NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `diem_dau` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `diem_cuoi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `do_dai` float(255, 0) NOT NULL,
+  `do_phuc_tap_id` int(0) NOT NULL,
+  `is_active` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_dpt`(`doPhucTapId`) USING BTREE,
-  CONSTRAINT `fk_pdt` FOREIGN KEY (`doPhucTapId`) REFERENCES `tbldophuctap` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of tbltuyenxe
--- ----------------------------
+  INDEX `fk_dpt`(`do_phuc_tap_id`) USING BTREE,
+  CONSTRAINT `fk_pdt` FOREIGN KEY (`do_phuc_tap_id`) REFERENCES `tbldophuctap` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tblxekhach
 -- ----------------------------
 DROP TABLE IF EXISTS `tblxekhach`;
 CREATE TABLE `tblxekhach`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `bienSo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `mauXe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `hangSanXuat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `bien_so` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `mau_xe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `hang_san_xuat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `soGhe` int NOT NULL,
-  `soNamSuDung` float NOT NULL,
-  `ngayBaoDuongCuoi` date NOT NULL,
+  `so_ghe` int(0) NOT NULL,
+  `so_nam_su_dung` float NOT NULL,
+  `ngay_bao_duong_cuoi` date NOT NULL,
+  `is_active` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of tblxekhach
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
