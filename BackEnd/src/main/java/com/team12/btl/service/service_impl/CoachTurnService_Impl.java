@@ -1,28 +1,30 @@
 package com.team12.btl.service.service_impl;
 
-import com.team12.btl.entity.XeKhach;
+import com.team12.btl.entity.CoachTurn;
 import com.team12.btl.service.GeneralService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class XeKhachService_Impl implements GeneralService<XeKhach> {
+@Service
+public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
     @Override
-    public List<XeKhach> findAll() {
+    public List<CoachTurn> findAll() {
         return null;
     }
 
     @Override
-    public XeKhach findById(Integer id) {
+    public CoachTurn findById(Integer id) {
         return null;
     }
 
     @Override
-    public XeKhach create(XeKhach xeKhach) {
+    public CoachTurn create(CoachTurn CoachTurn) {
         return null;
     }
 
     @Override
-    public boolean update(XeKhach xeKhach) {
+    public boolean update(CoachTurn CoachTurn) {
         return false;
     }
 

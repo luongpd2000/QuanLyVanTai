@@ -1,7 +1,7 @@
 package com.team12.btl.service.service_impl;
 
-import com.team12.btl.entity.TaiXe;
-import com.team12.btl.repository.TaiXeRepository;
+import com.team12.btl.entity.Driver;
+import com.team12.btl.repository.DriverRepository;
 import com.team12.btl.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,28 +9,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TaiXeService_Impl implements GeneralService<TaiXe> {
+public class DriverService_Impl implements GeneralService<Driver> {
 
     @Autowired
-    TaiXeRepository taiXeRepository;
+    DriverRepository DriverRepository;
 
     @Override
-    public List<TaiXe> findAll() {
-        return taiXeRepository.findAll();
+    public List<Driver> findAll() {
+        return DriverRepository.findAll();
     }
 
     @Override
-    public TaiXe findById(Integer id) {
+    public Driver findById(Integer id) {
         return null;
     }
 
     @Override
-    public TaiXe create(TaiXe taiXe) {
+    public Driver create(Driver Driver) {
         return null;
     }
 
     @Override
-    public boolean update(TaiXe taiXe) {
+    public boolean update(Driver Driver) {
         return false;
     }
 

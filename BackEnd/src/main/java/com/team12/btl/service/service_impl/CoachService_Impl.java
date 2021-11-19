@@ -1,28 +1,30 @@
 package com.team12.btl.service.service_impl;
 
-import com.team12.btl.entity.ChuyenXe;
+import com.team12.btl.entity.Coach;
 import com.team12.btl.service.GeneralService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class ChuyenXeService_Impl implements GeneralService<ChuyenXe> {
+@Service
+public class CoachService_Impl implements GeneralService<Coach> {
     @Override
-    public List<ChuyenXe> findAll() {
+    public List<Coach> findAll() {
         return null;
     }
 
     @Override
-    public ChuyenXe findById(Integer id) {
+    public Coach findById(Integer id) {
         return null;
     }
 
     @Override
-    public ChuyenXe create(ChuyenXe chuyenXe) {
+    public Coach create(Coach Coach) {
         return null;
     }
 
     @Override
-    public boolean update(ChuyenXe chuyenXe) {
+    public boolean update(Coach Coach) {
         return false;
     }
 
