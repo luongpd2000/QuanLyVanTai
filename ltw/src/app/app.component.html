@@ -1,0 +1,28 @@
+<div class='dashboard'>
+  <div class="dashboard-nav">
+      <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i
+                  class="fas fa-anchor"></i> <span>BRAND</span></a></header>
+      <nav class="dashboard-nav-list">
+          <a routerLink="driver" routerLinkActive="active" class="dashboard-nav-item"><i class="fas fa-home"></i>Quản lý tài xế </a>
+          <a routerLink="coach" routerLinkActive="active" class="dashboard-nav-item"><i class="fas fa-tachometer-alt"></i>Quản lý xe khách</a>
+          <a routerLink="route" routerLinkActive="active" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Quản lý tuyến xe </a>
+
+          <a routerLink="coach-turn" routerLinkActive="active" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Quản lý chuyến xe </a>
+          <a href="#"class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
+          <div class="nav-item-divider"></div>
+          <!-- <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a> -->
+      </nav>
+  </div>
+  <div class='dashboard-app'>
+      <header class='dashboard-toolbar'>
+          <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+          <div class="btn-group" style="margin-left: auto;">
+              <button type="button" class="btn btn-primary mr-3">Account</button>
+              <button type="button" class="btn btn-primary">Logout</button>
+          </div>
+      </header>
+      <div class='dashboard-content'>
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

@@ -40,10 +40,7 @@ public class RouteService_Impl implements GeneralService<Route> {
 
     @Override
     public boolean delete(Integer id) {
-        Route route = routeRepository.getById(id);
-        if(!route.equals(null)){
-
-        }
-        return false;
+        routeRepository.deleteById(id);
+        return true;
     }
 }

@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/route/")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RouteController {
     @Autowired
     RouteService_Impl routeService;
@@ -29,5 +30,8 @@ public class RouteController {
         return ResponseEntity.ok(routeService.create(route));
     }
 
-    
+    @DeleteMapping("/deleteById/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+        return ResponseEntity.ok(routeService.delete(id));
+    }
 }
