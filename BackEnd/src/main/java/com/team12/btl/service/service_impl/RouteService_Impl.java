@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -18,14 +19,13 @@ public class RouteService_Impl implements GeneralService<Route> {
 
     @Override
     public List<Route> findAll() {
-        return routeRepository.findAll();
+        return routeRepository.findByActiveIsTrue();
     }
 
     @Override
     public Route findById(Integer id) {
-        return routeRepository.getById(id);
+        return routeRepository.findByIdAndActiveTrue(id);
     }
-
 
     @Override
     public Route create(Route route) {
@@ -33,14 +33,21 @@ public class RouteService_Impl implements GeneralService<Route> {
     }
 
     @Override
-    public boolean update(Route route) {
-        routeRepository.save(route);
-        return true;
+    public Route update(Route route) {
+        return routeRepository.save(route);
     }
 
     @Override
-    public boolean delete(Integer id) {
-        routeRepository.deleteById(id);
-        return true;
+    public int delete(Integer id) {
+        return routeRepository.deleteRoute(id);
     }
+
+    public List<Route> searchRoute(Map<String, String> map){
+
+        return routeRepository.searchRoute(map.get("pointOfDeparture").toString(),
+                map.get("destination").toString(),map.get("length").toString(),
+                map.get("complexity").toString());
+    }
+
+
 }

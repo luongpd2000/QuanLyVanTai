@@ -24,12 +24,14 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
     }
 
     @Override
-    public boolean update(CoachTurn CoachTurn) {
-        return false;
+    public CoachTurn update(CoachTurn coachTurn) {
+        return null;
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public int delete(Integer id) {
+        return 0;
     }
+
+
 }

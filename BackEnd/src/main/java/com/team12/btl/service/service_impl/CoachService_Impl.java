@@ -24,12 +24,15 @@ public class CoachService_Impl implements GeneralService<Coach> {
     }
 
     @Override
-    public boolean update(Coach Coach) {
-        return false;
+    public Coach update(Coach coach) {
+        return null;
     }
 
+
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public int delete(Integer id) {
+        return 0;
     }
+
+
 }

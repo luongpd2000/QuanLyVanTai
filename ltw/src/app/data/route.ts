@@ -3,5 +3,5 @@ export class Route{
   pointOfDeparture!: String;
   destination!: String;
   length!: number;
-  complexityId!: number;
+  complexity!: any;
 }

@@ -30,12 +30,15 @@ public class DriverService_Impl implements GeneralService<Driver> {
     }
 
     @Override
-    public boolean update(Driver Driver) {
-        return false;
+    public Driver update(Driver driver) {
+        return null;
     }
 
+
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public int delete(Integer id) {
+        return 0;
     }
+
+
 }

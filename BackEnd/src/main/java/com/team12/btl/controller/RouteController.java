@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/route/")
@@ -33,5 +34,15 @@ public class RouteController {
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Integer id) {
         return ResponseEntity.ok(routeService.delete(id));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@Valid @RequestBody Route route) {
+        return ResponseEntity.ok(routeService.update(route));
+    }
+
+    @GetMapping("/searchRoute")
+    public ResponseEntity<?> searchRoute(@RequestParam Map<String, String> param) {
+        return ResponseEntity.ok(routeService.searchRoute(param));
     }
 }

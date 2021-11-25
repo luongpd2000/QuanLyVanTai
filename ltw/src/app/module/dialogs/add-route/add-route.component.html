@@ -1,0 +1,103 @@
+<!-- <div class="container">
+  <h3 mat-dialog-title>Add new Issue</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Title" name="title" required></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="State" name="state" maxlength="10" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Url" name="url">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Created at" name="created_at">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>first Name *</mat-label>
+        <input matInput type="text" name="firstName" formControlName="firstName">
+        <mat-error *ngIf="
+        formControl.controls['firstName']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!formControl.valid" (click)="confirmAdd()">Save</button>
+      <button mat-button tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div> -->
+<div class="container">
+<h1 mat-dialog-title>Edit Person</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formControl">
+    <div class="form">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>first Name *</mat-label>
+        <input matInput type="text"
+        name="firstName" formControlName="firstName">
+        <mat-error *ngIf="
+        formControl.controls['firstName']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5 form">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Age *</mat-label>
+        <input matInput type="number" name="age" formControlName="age" />
+        <mat-error *ngIf="
+        formControl.controls['age']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5 form">
+
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Job *</mat-label>
+        <mat-select name="job" formControlName="job">
+          <mat-option value="Software Developer">Software Developer</mat-option>
+          <mat-option value="Physician">Physician</mat-option>
+          <mat-option value="Dentist">Dentist</mat-option>
+          <mat-option value="Nurse">Nurse</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControl.controls['job']?.errors?.required">field required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary"[disabled]="!formControl.valid" (click)="save()"
+    cdkFocusInitial>Yes</button>
+  <button mat-raised-button mat-dialog-close>No</button>
+
+</div>
+</div>

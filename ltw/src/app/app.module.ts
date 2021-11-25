@@ -11,7 +11,11 @@ import { CoachTurnComponent } from './module/coach-turn/coach-turn.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/share/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfirmDialogComponent } from './module/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './module/dialogs/confirm-dialog/confirm-dialog.component';
+// import { AddRouteComponent } from './module/dialogs/add-route/add-route.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddRouteComponent } from './module/dialogs/add-route/add-route.component';
+import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.component';
 
 @NgModule({
   declarations: [
@@ -20,19 +24,28 @@ import { ConfirmDialogComponent } from './module/confirm-dialog/confirm-dialog.c
     DriverComponent,
     CoachComponent,
     CoachTurnComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AddRouteComponent,
+    EditRouteComponent,
+    // AddRouteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'}
   ],
-  entryComponents: [ConfirmDialogComponent],
+  entryComponents: [
+    ConfirmDialogComponent,
+    AddRouteComponent,
+    EditRouteComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

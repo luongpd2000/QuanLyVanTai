@@ -11,8 +11,8 @@ public interface GeneralService<T>  {
 
     T create(T t);
 
-    boolean update(T t);
+    T update(T t);
 
-    boolean delete(Integer id);
+    int delete(Integer id);
 
 }

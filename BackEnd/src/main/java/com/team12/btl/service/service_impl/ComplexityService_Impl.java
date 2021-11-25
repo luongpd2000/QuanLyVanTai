@@ -30,12 +30,14 @@ public class ComplexityService_Impl implements GeneralService<Complexity>{
     }
 
     @Override
-    public boolean update(Complexity Complexity) {
-        return false;
+    public Complexity update(Complexity complexity) {
+        return null;
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public int delete(Integer id) {
+        return 0;
     }
+
+
 }
