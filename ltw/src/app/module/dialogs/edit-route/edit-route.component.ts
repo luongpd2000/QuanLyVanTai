@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Route } from 'src/app/data/route';
 
@@ -9,6 +9,7 @@ import { Route } from 'src/app/data/route';
   styleUrls: ['./edit-route.component.scss'],
 })
 export class EditRouteComponent implements OnInit {
+  formControl!: FormGroup ;
   constructor(
     public dialogRef: MatDialogRef<EditRouteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Route
@@ -16,23 +17,23 @@ export class EditRouteComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.makeForm();
+    // this.formControl.setValue(this.data);
   }
 
-  formControl = new FormControl('', [
-    Validators.required,
-    // Validators.email,
-  ]);
-
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
-      : '';
-  }
+makeForm(){
+    this.formControl = new FormGroup({
+      "id":  new FormControl('',Validators.required),
+      "pointOfDeparture":  new FormControl('',Validators.required),
+      "destination": new FormControl('',Validators.required),
+      "length": new FormControl('',Validators.required),
+      "complexity": new FormControl(''),
+  });
+}
 
 
   edit(): void {
+    // console.log(this.formControl.value);
     this.dialogRef.close(Object.assign(new Route(), this.formControl.value));
   }
 }

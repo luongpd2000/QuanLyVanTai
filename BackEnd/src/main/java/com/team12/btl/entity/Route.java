@@ -26,11 +26,12 @@ public class Route implements Serializable {
     @Column(name = "length", nullable = false)
     private Float length;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "complexity_id",referencedColumnName = "complexity", nullable = false)
-    private Complexity complexity;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "complexity_id",referencedColumnName = "complexity", nullable = false)
+    @Column(name = "complexity_id", nullable = false)
+    private Integer complexity;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Boolean active;
 
 }

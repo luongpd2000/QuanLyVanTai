@@ -20,7 +20,7 @@ import { EditRouteComponent } from '../dialogs/edit-route/edit-route.component';
 })
 export class RouteComponent implements OnInit {
   resultComfirm: string = '';
-  formSearch!: FormGroup ;
+  formSearch!: FormGroup;
 
   routeList: Route[] = [];
 
@@ -55,10 +55,10 @@ export class RouteComponent implements OnInit {
 
   makeSearchForm() {
     this.formSearch = new FormGroup({
-      "pointOfDeparture":  new FormControl(''),
-      "destination": new FormControl(''),
-      "length": new FormControl(''),
-      "complexity": new FormControl(''),
+      pointOfDeparture: new FormControl(''),
+      destination: new FormControl(''),
+      length: new FormControl(''),
+      complexity: new FormControl(''),
     });
   }
 
@@ -70,31 +70,28 @@ export class RouteComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Route>(this.routeList);
     });
   }
-  all(){
+  all() {
     this.getAll();
     this.makeSearchForm();
   }
 
-  onSearch(){
+  onSearch() {
     var param = {
-      pointOfDeparture:this.formSearch.value.pointOfDeparture,
-      destination:this.formSearch.value.destination,
-      length:this.formSearch.value.length,
-      complexity:this.formSearch.value.complexity
+      pointOfDeparture: this.formSearch.value.pointOfDeparture,
+      destination: this.formSearch.value.destination,
+      length: this.formSearch.value.length,
+      complexity: this.formSearch.value.complexity,
     };
-
 
     console.log(param);
 
-    this.routeService.searchRoute(param).subscribe(
-      (data) => {
-        console.log(data);
-        this.routeList = data;
-        console.log(this.routeList);
-        this.dataSource = new MatTableDataSource<Route>(this.routeList);
-        this.openSnackBar('Tìm kiếm thành công');
-      }
-    );
+    this.routeService.searchRoute(param).subscribe((data) => {
+      console.log(data);
+      this.routeList = data;
+      console.log(this.routeList);
+      this.dataSource = new MatTableDataSource<Route>(this.routeList);
+      this.openSnackBar('Tìm kiếm thành công');
+    });
   }
   // confirm delete
 
@@ -127,15 +124,44 @@ export class RouteComponent implements OnInit {
   openAddDialog() {
     const dialogRef = this.dialog.open(AddRouteComponent, {});
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.routeService.createRoute(result).subscribe(
+          (data) => {
+            this.openSnackBar('Thêm thành công');
+            this.getAll();
+          },
+          (error) => {
+            this.openSnackBar('Thêm thất bại');
+            // this.getAll();
+          }
+        );
+      }
+    });
   }
 
   openEditDialog(data?: Route) {
+    // console.log(data)
     const dialogRef = this.dialog.open(EditRouteComponent, {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.routeService.update(result).subscribe(
+          (data) => {
+            this.openSnackBar('cập nhật thành công');
+            this.getAll();
+          },
+          (error) => {
+            this.openSnackBar('Cập nhật thất bại');
+            this.getAll();
+          }
+        );
+      }
+    });
   }
 
   openSnackBar(content: any) {

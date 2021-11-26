@@ -10,40 +10,29 @@ import { RouteService } from 'src/app/service/route.service';
   styleUrls: ['./add-route.component.scss'],
 })
 export class AddRouteComponent implements OnInit {
+  formControl!: FormGroup ;
   constructor(
     public dialogRef: MatDialogRef<AddRouteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Route
   ) {}
 
-  ngOnInit(): void {}
-  formControl = new FormGroup({
-    "id":  new FormControl('', Validators.required),
-      "firstName": new FormControl('', Validators.required),
-      "age": new FormControl('', Validators.required),
-      "job": new FormControl('', Validators.required),
+  ngOnInit(): void {
+
+    this.makeForm();
+    // this.formControl.setValue(this.data);
+  }
+
+makeForm(){
+    this.formControl = new FormGroup({
+      "pointOfDeparture":  new FormControl('',Validators.required),
+      "destination": new FormControl('',Validators.required),
+      "length": new FormControl('',Validators.required),
+      "complexity": new FormControl('',Validators.required),
   });
+}
 
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
-      : '';
-  }
-
-  submit() {
-    // emppty stuff
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  public confirmAdd(): void {
-    this.dialogRef.close(Object.assign(new Route(), this.formControl.value));
-  }
-
-  public save(): void {
-    // this.dialogRef.close(Object.assign(new Route(), this.formControl.value));
-  }
+save(): void {
+  // console.log(this.formControl.value);
+  this.dialogRef.close(Object.assign(new Route(), this.formControl.value));
+}
 }

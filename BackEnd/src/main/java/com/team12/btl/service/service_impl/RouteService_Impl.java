@@ -29,11 +29,13 @@ public class RouteService_Impl implements GeneralService<Route> {
 
     @Override
     public Route create(Route route) {
+        route.setActive(true);
         return routeRepository.save(route);
     }
 
     @Override
     public Route update(Route route) {
+        route.setActive(true);
         return routeRepository.save(route);
     }
 
