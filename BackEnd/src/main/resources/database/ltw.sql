@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 19/11/2021 09:02:41
+ Date: 26/11/2021 16:27:21
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `coach`  (
   `last_maintenance_day` date NOT NULL,
   `is_active` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for coach_turn
@@ -93,9 +93,8 @@ CREATE TABLE `driver`  (
   `is_active` bit(1) NOT NULL,
   `fixed_salary_id` int(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_fsalary`(`fixed_salary_id`) USING BTREE,
-  CONSTRAINT `fk_fsalary` FOREIGN KEY (`fixed_salary_id`) REFERENCES `fixed_salary` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
+  INDEX `fk_fsalary`(`fixed_salary_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for fixed_salary
@@ -105,7 +104,8 @@ CREATE TABLE `fixed_salary`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `grade` float NOT NULL,
   `basic_salary` float NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `grade`(`grade`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -122,13 +122,16 @@ CREATE TABLE `route`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_dpt`(`complexity_id`) USING BTREE,
   CONSTRAINT `fk_pdt` FOREIGN KEY (`complexity_id`) REFERENCES `complexity` (`complexity`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of route
 -- ----------------------------
 INSERT INTO `route` VALUES (1, 't1', 't2', 100, 1, b'1');
 INSERT INTO `route` VALUES (2, 't1', 't2', 100, 2, b'1');
+INSERT INTO `route` VALUES (3, 't1', 't2', 1000, 3, b'1');
+INSERT INTO `route` VALUES (4, 't1', 't2', 2333, 2, b'1');
+INSERT INTO `route` VALUES (5, 'test', 'test', 123, 2, b'1');
 
 -- ----------------------------
 -- Table structure for total_salary
