@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/route/")
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class RouteController {
     @Autowired
     RouteService_Impl routeService;

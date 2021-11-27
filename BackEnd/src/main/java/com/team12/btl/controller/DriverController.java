@@ -13,7 +13,7 @@ public class DriverController {
     DriverService_Impl driverService;
 
     @GetMapping("/findAll")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<?> findAll() throws Exception {
         return ResponseEntity.ok(driverService.findAll());
     }
 
