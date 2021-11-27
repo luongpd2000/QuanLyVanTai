@@ -21,8 +21,11 @@ public interface RouteRepository extends JpaRepository<Route, Integer>, JpaSpeci
     int deleteRoute(Integer Id);
 
     @Query(value="SELECT r.* FROM route r where r.is_active = true AND (CONCAT(r.id, '') LIKE %?1%) AND UPPER(r.point_of_departure) like CONCAT('%',UPPER(?2),'%') " +
-            "AND UPPER(r.destination) like CONCAT('%',UPPER(?3),'%') " +
+            "AND UPPER(r.destination) LIKE CONCAT('%',UPPER(?3),'%') " +
             "AND (CONCAT(r.length, '') LIKE %?4%)" +
             "AND (CONCAT(r.complexity_id, '') LIKE %?5%)" , nativeQuery = true)
     List<Route> searchRoute(String id,String pointOfDeparture, String destination, String length, String complexityId);
+
+//    List<Route> findByActiveIsTrueAndIdLikeAndPointOfDepartureLikeAndDestinationLikeAndLengthLikeAndComplexityLike
+//            (String id,String pointOfDeparture, String destination, String length, String complexityId);
 }

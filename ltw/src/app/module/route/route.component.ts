@@ -78,6 +78,7 @@ export class RouteComponent implements OnInit {
 
   onSearch() {
     var param = {
+      id: this.formSearch.value.id,
       pointOfDeparture: this.formSearch.value.pointOfDeparture,
       destination: this.formSearch.value.destination,
       length: this.formSearch.value.length,
