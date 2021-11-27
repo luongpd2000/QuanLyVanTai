@@ -14,7 +14,10 @@ public interface RouteRepository extends JpaRepository<Route, Integer>, JpaSpeci
 
 //    List<Route> findByActiveIsTrue();
     List<Route> findByActiveIsTrue();
+
     Route findByIdAndActiveTrue(Integer id);
+
+    List<Route> findByActiveIsTrueOrderById();
 
     @Modifying
     @Query(value = "UPDATE route SET is_active = 0 WHERE Id = ?1",nativeQuery = true)
