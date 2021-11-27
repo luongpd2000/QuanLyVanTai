@@ -55,6 +55,7 @@ export class RouteComponent implements OnInit {
 
   makeSearchForm() {
     this.formSearch = new FormGroup({
+      id: new FormControl(''),
       pointOfDeparture: new FormControl(''),
       destination: new FormControl(''),
       length: new FormControl(''),

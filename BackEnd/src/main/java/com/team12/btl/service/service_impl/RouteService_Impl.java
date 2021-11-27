@@ -45,9 +45,9 @@ public class RouteService_Impl implements GeneralService<Route> {
 
     public List<Route> searchRoute(Map<String, String> map){
 
-        return routeRepository.searchRoute(map.get("pointOfDeparture").toString(),
-                map.get("destination").toString(),map.get("length").toString(),
-                map.get("complexity").toString());
+        return routeRepository.searchRoute(map.get("id"), map.get("pointOfDeparture"),
+                map.get("destination"), map.get("length"),
+                map.get("complexity"));
     }
 
 

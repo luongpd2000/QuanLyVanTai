@@ -9,6 +9,12 @@
             <div class="col-12 search-group">
               <form [formGroup]="formSearch">
                 <mat-form-field appearance="fill">
+                  <mat-label>ID</mat-label>
+                  <input type="number" matInput formControlName='id'>
+                  <mat-error *ngIf="
+                  formSearch.controls['length']?.errors">Độ dài là kiểu số</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
                   <mat-label>Điểm đầu</mat-label>
                   <input matInput formControlName='pointOfDeparture'>
                 </mat-form-field>
@@ -19,8 +25,8 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Độ dài</mat-label>
                   <input type="number" matInput formControlName='length'>
-                  <!-- <mat-error *ngIf="
-                  formSearch.controls['length']?.invalid">Độ dài là kiểu số</mat-error> -->
+                  <mat-error *ngIf="
+                  formSearch.controls['length']?.errors">Độ dài là kiểu số</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Độ phức tạp</mat-label>
