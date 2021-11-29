@@ -16,6 +16,8 @@ import { ConfirmDialogComponent } from './module/dialogs/confirm-dialog/confirm-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddRouteComponent } from './module/dialogs/add-route/add-route.component';
 import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.component';
+import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.compo
     ConfirmDialogComponent,
     AddRouteComponent,
     EditRouteComponent,
+    LoginComponent,
     // AddRouteComponent
   ],
   imports: [

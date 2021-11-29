@@ -39,6 +39,12 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    @RequestMapping(value = "/checkLogin", method = RequestMethod.GET)
+    public ResponseEntity<?> checkLogin(){
+        return ResponseEntity.ok("ok");
+    }
+
+
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

@@ -101,11 +101,20 @@ h1, .h1 {
   text-align: center;
 }
 
-.dashboard {
+
+dashboard-show {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  min-height: 100vh;
+}
+
+dashboard-hide {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: block;
   min-height: 100vh;
 }
 
@@ -443,4 +452,9 @@ h1, .h1 {
   .dashboard-compact .dashboard-toolbar {
       left: 0;
   }
+}
+
+
+display{
+  display: block;
 }

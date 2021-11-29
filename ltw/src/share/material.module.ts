@@ -72,7 +72,6 @@ import { ReactiveFormsModule } from '@angular/forms';
       MatTableModule,
       MatSortModule,
       MatPaginatorModule
-
   ],
   exports: [
       MatButtonModule,
@@ -91,7 +90,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
-      MatDialogModule
+      MatDialogModule,
+      MatCardModule
   ],
   providers: [
       MatDatepickerModule,
