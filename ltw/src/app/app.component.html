@@ -1,4 +1,4 @@
-<div class='dashboard' ng-class="{'dashboard-hide': check, 'dashboard-show': !check}">
+<div class='dashboard' ng-class="{'dashboard-hide': !check, 'dashboard-show': check}">
 
   <div class="dashboard-nav" *ngIf="check">
     <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i
@@ -19,6 +19,18 @@
     </nav>
   </div>
 
-  <router-outlet></router-outlet>
+  <div class='dashboard-app' ng-class="{'dashboard-app-hide': !check, 'dashboard-app-show': check}">
+    <header class='dashboard-toolbar'*ngIf="check">
+      <a href="#!" class="menu-toggle" >
+        <i class="fas fa-bars" ></i></a>
+      <div class="btn-group" style="margin-left: auto;">
+        <button type="button" class="btn btn-primary mr-3" >Account</button>
+        <button type="button" class="btn btn-primary" (click)="logOut()">Logout</button>
+      </div>
+    </header>
+    <div class='dashboard-content' ng-class="{'dashboard-content-hide': !check, 'dashboard-content-show': check}">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 
 </div>

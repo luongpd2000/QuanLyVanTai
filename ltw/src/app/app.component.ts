@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthenticationService } from './service/authentication.service';
 
@@ -8,9 +9,20 @@ import { AuthenticationService } from './service/authentication.service';
 })
 export class AppComponent {
   title = 'ltw';
-  check: boolean = true;
-  constructor(private authService: AuthenticationService){
+  check: boolean = false;
+  constructor(private authService: AuthenticationService,
+    private location: Location){
+
     this.authService.checkLogin();
     this.check = this.authService.flag;
+    this.getPath();
+  }
+
+  async getPath(){
+    this.authService.path = await this.location.path();
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }

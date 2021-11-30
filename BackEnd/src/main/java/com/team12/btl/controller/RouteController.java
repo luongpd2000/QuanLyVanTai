@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/route/")
+@RequestMapping("/api/v1/route")
 public class RouteController {
     @Autowired
     RouteService_Impl routeService;

@@ -118,7 +118,7 @@ dashboard-hide {
   min-height: 100vh;
 }
 
-.dashboard-app {
+dashboard-app-show {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,6 +135,23 @@ dashboard-hide {
   margin-top: 84px;
 }
 
+dashboard-app-hide {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  margin-top: 0px;
+}
+
 .dashboard-app header .menu-toggle{
   color: #373193 !important;
 }
@@ -143,12 +160,20 @@ dashboard-hide {
   color: #373193 !important;
 }
 
-.dashboard-content {
+dashboard-content-show {
   -webkit-box-flex: 2;
   -webkit-flex-grow: 2;
   -ms-flex-positive: 2;
   flex-grow: 2;
   padding: 25px;
+}
+
+dashboard-content-hide {
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  padding: 0px;
 }
 
 .dashboard-nav {
@@ -403,9 +428,13 @@ dashboard-hide {
 }
 
 @media (min-width: 992px) {
-  .dashboard-app {
+  dashboard-app-show {
       margin-left: 238px;
   }
+
+  dashboard-app-hide {
+    margin-left: 0px;
+}
 
   .dashboard-compact .dashboard-app {
       margin-left: 0;

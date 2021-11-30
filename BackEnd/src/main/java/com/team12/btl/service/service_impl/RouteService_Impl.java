@@ -47,7 +47,7 @@ public class RouteService_Impl implements GeneralService<Route> {
 
         return routeRepository.searchRoute
                         (map.get("id") != null ? map.get("id"):"",
-                        map.get("pointOfDeparture") != null ? map.get("id"):"",
+                        map.get("pointOfDeparture") != null ? map.get("pointOfDeparture"):"",
                         map.get("destination") != null ? map.get("destination"):"",
                         map.get("length") != null ? map.get("length"):"",
                         map.get("complexity") != null ? map.get("complexity"):"");
