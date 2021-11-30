@@ -1,8 +1,8 @@
-<div class='dashboard' ng-class="{'dashboard-hide': !check, 'dashboard-show': check}">
+<div class='dashboard' [ngClass]="{'dashboard-hide': !check, 'dashboard-show': check}">
 
   <div class="dashboard-nav" *ngIf="check">
-    <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i
-          class="fas fa-anchor"></i> <span>BRAND</span></a></header>
+    <header><a href="#" class="menu-toggle"><i class="fas fa-bars"></i></a><a routerLink="home"
+        routerLinkActive="active" class="brand-logo"><i class="fas fa-anchor"></i> <span>BRAND</span></a></header>
     <nav class="dashboard-nav-list">
       <a routerLink="driver" routerLinkActive="active" class="dashboard-nav-item"><i class="fas fa-home"></i>Quản lý tài
         xế </a>
@@ -19,16 +19,16 @@
     </nav>
   </div>
 
-  <div class='dashboard-app' ng-class="{'dashboard-app-hide': !check, 'dashboard-app-show': check}">
-    <header class='dashboard-toolbar'*ngIf="check">
-      <a href="#!" class="menu-toggle" >
-        <i class="fas fa-bars" ></i></a>
+  <div class='dashboard-app' [ngClass]="{'dashboard-app-hide': !check, 'dashboard-app-show': check}">
+    <header class='dashboard-toolbar' *ngIf="check">
+      <a href="#!" class="menu-toggle">
+        <i class="fas fa-bars"></i></a>
       <div class="btn-group" style="margin-left: auto;">
-        <button type="button" class="btn btn-primary mr-3" >Account</button>
+        <button type="button" class="btn btn-primary mr-3">Account</button>
         <button type="button" class="btn btn-primary" (click)="logOut()">Logout</button>
       </div>
     </header>
-    <div class='dashboard-content' ng-class="{'dashboard-content-hide': !check, 'dashboard-content-show': check}">
+    <div class='dashboard-content' [ngClass]="{'dashboard-content-hide': !check, 'dashboard-content-show': check}">
       <router-outlet></router-outlet>
     </div>
   </div>

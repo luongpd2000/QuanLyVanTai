@@ -15,11 +15,12 @@ export class AuthGuard implements CanActivate{
     const flag = await this.authenService.checkLogin();
     console.log(flag);
     if( flag){
+      // this.router.navigate(['/home']);
       return true;
     }
 
     this.router.navigate(['/login']);
-        return false;
+    return false;
   }
 
 }

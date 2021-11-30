@@ -69,6 +69,7 @@ export class RouteComponent implements OnInit {
       this.routeList = data;
       console.log(this.routeList);
       this.dataSource = new MatTableDataSource<Route>(this.routeList);
+      this.dataSource.paginator = this.paginator;
     });
   }
   all() {

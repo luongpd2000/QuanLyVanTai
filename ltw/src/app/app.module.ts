@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {APP_BASE_HREF} from '@angular/common';
+import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import { RouteComponent } from './module/route/route.component';
 import { DriverComponent } from './module/driver/driver.component';
 import { CoachComponent } from './module/coach/coach.component';
@@ -39,7 +39,8 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'}

@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.getJwtToken(account).subscribe(
       data =>{
-      // console.log(data.status);
-      this._cookieService.set("Authorization",data.Authorization)
-      this.router.navigate([this.authService.path==="/login"? "" : this.authService.path]);
+      console.log(data);
+      this._cookieService.set("Authorization",data.token)
+      this.router.navigate(["/home"]);
     }, error =>{
       alert("Login fail: check username and password");
       console.log(error);

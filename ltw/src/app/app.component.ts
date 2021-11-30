@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
 
 @Component({
@@ -7,22 +8,36 @@ import { AuthenticationService } from './service/authentication.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ltw';
-  check: boolean = false;
+  check: boolean = true;
   constructor(private authService: AuthenticationService,
-    private location: Location){
+    private location: Location,
+    private router: Router){
 
-    this.authService.checkLogin();
-    this.check = this.authService.flag;
-    this.getPath();
+      this.checkLogin();
+      console.log("check " + this.check);
+      // this.getPath();
+  }
+  ngOnInit(): void {
   }
 
   async getPath(){
     this.authService.path = await this.location.path();
   }
 
-  logOut(){
-    this.authService.logout();
+  async checkLogin(){
+    await this.authService.checkLogin();
+    this.check = this.authService.flag;
+    // console.log("check " + this.check);
+    // location.reload();
+    // if(this.check===true) {
+    // this.router.navigate([this.authService.path==="/login"? "":this.authService.path]);
+    // }
+  }
+
+  async logOut(){
+    await this.authService.logout();
+    this.check = false;
   }
 }
