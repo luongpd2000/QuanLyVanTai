@@ -70,7 +70,7 @@ export class AuthenticationService {
     this.flag = false;
     // Remove the token from the cookie.
     this._cookieService.delete('Authorization');
-    this.router.navigate(['/login']);
-    // location.reload();
+    // this.router.navigate(['/login']);
+    location.replace('/login');
   }
 }

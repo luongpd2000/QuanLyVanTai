@@ -32,6 +32,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // async checkLogin(){
+  //   await this.authService.checkLogin();
+  // }
+
   login() {
     const u = this.logIn.controls['username'].value;
     const p = this.logIn.controls['password'].value;
@@ -47,7 +51,8 @@ export class LoginComponent implements OnInit {
       data =>{
       console.log(data);
       this._cookieService.set("Authorization",data.token)
-      this.router.navigate(["/home"]);
+      // this.router.navigate(["/route"]);
+      location.replace("/home");
     }, error =>{
       alert("Login fail: check username and password");
       console.log(error);

@@ -10,14 +10,14 @@ import { AuthenticationService } from './service/authentication.service';
 })
 export class AppComponent implements OnInit{
   title = 'ltw';
-  check: boolean = true;
+  check: boolean | undefined ;
   constructor(private authService: AuthenticationService,
     private location: Location,
     private router: Router){
-
+      this.check = this.authService.flag;
       this.checkLogin();
-      console.log("check " + this.check);
-      // this.getPath();
+      // console.log("check " + this.check);
+      this.getPath();
   }
   ngOnInit(): void {
   }
@@ -29,15 +29,16 @@ export class AppComponent implements OnInit{
   async checkLogin(){
     await this.authService.checkLogin();
     this.check = this.authService.flag;
-    // console.log("check " + this.check);
+    console.log("check " + this.check);
     // location.reload();
-    // if(this.check===true) {
-    // this.router.navigate([this.authService.path==="/login"? "":this.authService.path]);
-    // }
+    if(this.check===true) {
+    this.router.navigate([this.authService.path==="/login"? "":this.authService.path]);
+    }
   }
 
   async logOut(){
     await this.authService.logout();
-    this.check = false;
+    this.check = this.authService.flag;
+    // this.check = false;
   }
 }
