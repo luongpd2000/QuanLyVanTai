@@ -1,5 +1,6 @@
 package com.team12.btl.controller;
 
+import com.team12.btl.dto.Status;
 import com.team12.btl.entity.JwtRequest;
 import com.team12.btl.entity.JwtResponse;
 import com.team12.btl.service.service_impl.JwtUserDetailsService;
@@ -41,7 +42,7 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/checkLogin", method = RequestMethod.GET)
     public ResponseEntity<?> checkLogin(){
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok(new Status("loggedIn"));
     }
 
 

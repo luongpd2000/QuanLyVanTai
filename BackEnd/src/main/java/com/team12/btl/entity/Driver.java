@@ -39,7 +39,7 @@ public class Driver implements Serializable {
     @Column(name = "experience", nullable = false)
     private Integer experience;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Boolean active;
 
     @Column(name = "fixed_salary_id", nullable = false)

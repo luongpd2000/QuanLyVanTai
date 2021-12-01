@@ -10,7 +10,7 @@ import { RouteComponent } from './module/route/route.component';
 
 const routes: Routes = [
   {path: '',component: AppComponent, canActivate: [AuthGuard]},
-
+  {path: 'home',component: AppComponent, canActivate: [AuthGuard]},
   {path: 'login',component: LoginComponent},
   {path: 'route' , component: RouteComponent, canActivate: [AuthGuard]},
   {path: 'driver' , component: DriverComponent, canActivate: [AuthGuard]},

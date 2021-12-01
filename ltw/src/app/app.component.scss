@@ -101,14 +101,21 @@ h1, .h1 {
   text-align: center;
 }
 
-
-dashboard-show {
+.dashboard {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
 }
+
+// dashboard-show {
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: -ms-flexbox;
+//   display: flex;
+//   min-height: 100vh;
+// }
 
 dashboard-hide {
   display: -webkit-box;
@@ -135,6 +142,40 @@ dashboard-hide {
   margin-top: 84px;
 }
 
+// dashboard-app-show {
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: -ms-flexbox;
+//   display: flex;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   -webkit-flex-direction: column;
+//   -ms-flex-direction: column;
+//   flex-direction: column;
+//   -webkit-box-flex: 2;
+//   -webkit-flex-grow: 2;
+//   -ms-flex-positive: 2;
+//   flex-grow: 2;
+//   margin-top: 84px;
+// }
+
+dashboard-app-hide {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  margin-top: 0px;
+}
+
 .dashboard-app header .menu-toggle{
   color: #373193 !important;
 }
@@ -149,6 +190,22 @@ dashboard-hide {
   -ms-flex-positive: 2;
   flex-grow: 2;
   padding: 25px;
+}
+
+// dashboard-content-show {
+//   -webkit-box-flex: 2;
+//   -webkit-flex-grow: 2;
+//   -ms-flex-positive: 2;
+//   flex-grow: 2;
+//   padding: 25px;
+// }
+
+dashboard-content-hide {
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  padding: 0px;
 }
 
 .dashboard-nav {
@@ -403,9 +460,18 @@ dashboard-hide {
 }
 
 @media (min-width: 992px) {
+
   .dashboard-app {
-      margin-left: 238px;
-  }
+    margin-left: 238px;
+}
+
+  // dashboard-app-show {
+  //     margin-left: 238px;
+  // }
+
+  dashboard-app-hide {
+    margin-left: 0px;
+}
 
   .dashboard-compact .dashboard-app {
       margin-left: 0;
@@ -452,9 +518,4 @@ dashboard-hide {
   .dashboard-compact .dashboard-toolbar {
       left: 0;
   }
-}
-
-
-display{
-  display: block;
 }

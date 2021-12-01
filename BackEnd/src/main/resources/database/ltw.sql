@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 26/11/2021 16:27:21
+ Date: 30/11/2021 21:58:08
 */
 
 SET NAMES utf8mb4;
@@ -68,7 +68,7 @@ CREATE TABLE `complexity`  (
   `complexity` int(0) NOT NULL AUTO_INCREMENT,
   `grade_salary` float(255, 0) NOT NULL,
   PRIMARY KEY (`complexity`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of complexity
@@ -132,6 +132,7 @@ INSERT INTO `route` VALUES (2, 't1', 't2', 100, 2, b'1');
 INSERT INTO `route` VALUES (3, 't1', 't2', 1000, 3, b'1');
 INSERT INTO `route` VALUES (4, 't1', 't2', 2333, 2, b'1');
 INSERT INTO `route` VALUES (5, 'test', 'test', 123, 2, b'1');
+INSERT INTO `route` VALUES (6, 'test', 'test', 11, 2, b'1');
 
 -- ----------------------------
 -- Table structure for total_salary
@@ -147,5 +148,22 @@ CREATE TABLE `total_salary`  (
   INDEX `fK_drive`(`driver_id`) USING BTREE,
   CONSTRAINT `fK_drive` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'test', '$2a$12$4JaFwFCbu3pMYuFaVzmILudtwQAaDbsnsREHf9fG7Wc4bjCFAsnzG', 'luongbeo1332000@@gmail.com');
 
 SET FOREIGN_KEY_CHECKS = 1;
