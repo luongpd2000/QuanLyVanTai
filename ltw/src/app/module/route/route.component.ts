@@ -72,6 +72,7 @@ export class RouteComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+
   all() {
     this.getAll();
     this.makeSearchForm();
@@ -89,10 +90,11 @@ export class RouteComponent implements OnInit {
     console.log(param);
 
     this.routeService.searchRoute(param).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.routeList = data;
-      console.log(this.routeList);
+      // console.log(this.routeList);
       this.dataSource = new MatTableDataSource<Route>(this.routeList);
+      this.dataSource.paginator = this.paginator;
       this.openSnackBar('Tìm kiếm thành công');
     });
   }
