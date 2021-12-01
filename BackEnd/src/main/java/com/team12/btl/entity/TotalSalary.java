@@ -26,7 +26,7 @@ public class TotalSalary implements Serializable {
     @Column(name = "year", nullable = false)
     private Integer year;
 
-    @Column(name = "driver_id", nullable = false)
+    @Column(name = "driver_id")
     private Integer driverId;
 
 }

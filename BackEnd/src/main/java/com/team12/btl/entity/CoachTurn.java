@@ -30,26 +30,26 @@ public class CoachTurn implements Serializable {
     @Column(name = "end_time", nullable = false)
     private Timestamp endTime;
 
-    @Column(name = "grade_salary", nullable = false)
+    @Column(name = "grade_salary")
     private Float gradeSalary;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "coach_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "coach_id",referencedColumnName = "id")
     private Coach coach;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "route_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "route_id",referencedColumnName = "id")
     private Route route;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "driver_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "driver_id",referencedColumnName = "id")
     private Driver driver;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "driver_asistant_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "driver_asistant_id",referencedColumnName = "id")
     private Driver driverAsistant;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Boolean active;
 
 }
