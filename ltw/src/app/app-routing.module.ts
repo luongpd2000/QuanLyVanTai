@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'route' , component: RouteComponent, canActivate: [AuthGuard]},
   {path: 'driver' , component: DriverComponent, canActivate: [AuthGuard]},
   {path: 'coach' , component: CoachComponent, canActivate: [AuthGuard]},
-  {path: 'coach-turm' , component: CoachTurnComponent, canActivate: [AuthGuard]},
+  {path: 'coach-turn' , component: CoachTurnComponent, canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: '' }
 ];
