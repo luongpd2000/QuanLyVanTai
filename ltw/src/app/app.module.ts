@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddRouteComponent } from './module/dialogs/add-route/add-route.component';
 import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.component';
 import { LoginComponent } from './login/login.component';
+import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.component';
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { LoginComponent } from './login/login.component';
     AddRouteComponent,
     EditRouteComponent,
     LoginComponent,
+    AddDriverComponent,
     // AddRouteComponent
   ],
   imports: [

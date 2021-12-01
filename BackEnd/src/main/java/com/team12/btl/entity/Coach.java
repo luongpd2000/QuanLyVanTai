@@ -36,7 +36,7 @@ public class Coach implements Serializable {
     @Column(name = "last_maintenance_day", nullable = false)
     private Date lastMaintenanceDay;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Boolean active;
 
 }
