@@ -9,11 +9,19 @@ import org.springframework.data.jpa.repository.*;
 import java.util.List;
 
 public interface CoachRepository extends JpaRepository<Coach, Integer>, JpaSpecificationExecutor<Coach> {
+
     List<Coach> findByActiveIsTrue();
+
+
     Coach findByIdAndActiveTrue(Integer id);
+
+
     @Modifying
-    @Query(value = "UPDATE route SET is_active = 0 WHERE Id = ?1",nativeQuery = true)
+    @Query(value = "UPDATE coach SET is_active = 0 WHERE Id = ?1",nativeQuery = true)
     int deleteCoach(Integer Id);
+
+
+
     @Query(value="SELECT c.* FROM coach c where c.is_active = true AND (CONCAT(c.id, '') LIKE %?1%) AND UPPER(c.plate) like CONCAT('%',UPPER(?2),'%') " +
             "AND UPPER(c.model) LIKE CONCAT('%',UPPER(?3),'%') " +
             "AND UPPER(c.manufacturer) LIKE CONCAT('%',UPPER(?4),'%') " +
