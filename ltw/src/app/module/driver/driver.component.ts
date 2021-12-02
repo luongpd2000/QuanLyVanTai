@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-<<<<<<< HEAD
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,12 +12,6 @@ import {
   ConfirmDialogModel,
 } from '../dialogs/confirm-dialog/confirm-dialog.component';
 import { EditDriverComponent } from '../dialogs/edit-driver/edit-driver.component';
-=======
-import { FormGroup } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Route } from 'src/app/data/route';
->>>>>>> 9a2d39a40a8f3a40846738516ff4c000a27bfbba
 
 @Component({
   selector: 'app-driver',
@@ -28,26 +21,6 @@ import { Route } from 'src/app/data/route';
 export class DriverComponent implements OnInit {
   resultComfirm: string = '';
   formSearch!: FormGroup;
-<<<<<<< HEAD
-=======
-
-  displayedColumns: string[] = [
-    'no',
-    'id',
-    'pointOfDeparture',
-    'destination',
-    'length',
-    'complexityId',
-    'action',
-  ];
-  dataSource = new MatTableDataSource<Route>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
->>>>>>> 9a2d39a40a8f3a40846738516ff4c000a27bfbba
 
   driverList: Driver[] = [];
 
