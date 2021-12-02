@@ -20,7 +20,7 @@ public class DriverService_Impl implements GeneralService<Driver> {
 
     @Override
     public List<Driver> findAll() {
-        return driverRepository.findAll();
+        return driverRepository.findByActiveIsTrue();
     }
 
     @Override
