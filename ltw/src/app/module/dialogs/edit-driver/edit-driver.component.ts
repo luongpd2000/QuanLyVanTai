@@ -2,17 +2,16 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Driver } from 'src/app/data/driver';
-import { DriverService } from 'src/app/service/driver.service';
 
 @Component({
-  selector: 'app-add-driver',
-  templateUrl: './add-driver.component.html',
-  styleUrls: ['./add-driver.component.scss'],
+  selector: 'app-edit-driver',
+  templateUrl: './edit-driver.component.html',
+  styleUrls: ['./edit-driver.component.scss'],
 })
-export class AddDriverComponent implements OnInit {
+export class EditDriverComponent implements OnInit {
   formControl!: FormGroup ;
   constructor(
-    public dialogRef: MatDialogRef<AddDriverComponent>,
+    public dialogRef: MatDialogRef<EditDriverComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Driver
   ) {}
 
@@ -24,6 +23,7 @@ export class AddDriverComponent implements OnInit {
 
 makeForm(){
     this.formControl = new FormGroup({
+      "id":  new FormControl('',Validators.required),
       "name":  new FormControl('',Validators.required),
       "idCard": new FormControl('',Validators.required),
       "drivingLicenseCode": new FormControl('',Validators.required),
@@ -31,12 +31,13 @@ makeForm(){
       "address": new FormControl('',Validators.required),
       "birthday": new FormControl('',Validators.required),
       "experience": new FormControl('',Validators.required),
-      "fixedSalary": new FormControl('',Validators.required),
+      "fixedSalary": new FormControl(''),
   });
 }
 
-save(): void {
-  // console.log(this.formControl.value);
-  this.dialogRef.close(Object.assign(new Driver(), this.formControl.value));
-}
+
+  edit(): void {
+    // console.log(this.formControl.value);
+    this.dialogRef.close(Object.assign(new Driver(), this.formControl.value));
+  }
 }

@@ -18,6 +18,7 @@ import { AddRouteComponent } from './module/dialogs/add-route/add-route.componen
 import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.component';
 import { LoginComponent } from './login/login.component';
 import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.component';
+import { EditDriverComponent } from './module/dialogs/edit-driver/edit-driver.component';
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.compo
     EditRouteComponent,
     LoginComponent,
     AddDriverComponent,
+    EditDriverComponent,
     // AddRouteComponent
   ],
   imports: [
@@ -50,7 +52,9 @@ import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.compo
   entryComponents: [
     ConfirmDialogComponent,
     AddRouteComponent,
-    EditRouteComponent
+    EditRouteComponent,
+    AddDriverComponent,
+    EditDriverComponent
   ],
   bootstrap: [AppComponent]
 })

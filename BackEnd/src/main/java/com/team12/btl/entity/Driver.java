@@ -43,6 +43,6 @@ public class Driver implements Serializable {
     private Boolean active;
 
     @Column(name = "fixed_salary_id", nullable = false)
-    private Integer fixedSalaryId;
+    private Integer fixedSalary;
 
 }
