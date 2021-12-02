@@ -1,1 +1,129 @@
-<p>edit-coach-turn works!</p>
+<div class="container">
+  <h1 mat-dialog-title>Edit Coach Turn </h1>
+
+  <div mat-dialog-content>
+    <form [formGroup]="formControl">
+      <!-- <div class="form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput type="text" formControlName="id" readonly>
+        </mat-form-field>
+      </div> -->
+
+      <div class="form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Số hành khách *</mat-label>
+          <input matInput type="text" formControlName="passengerAmount"/>
+          <mat-error *ngIf="
+          formControl.controls['passengerAmount']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Gía vé *</mat-label>
+          <input matInput type="text" formControlName="ticketPrice"/>
+          <mat-error *ngIf="
+          formControl.controls['ticketPrice']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Thời gian bắt đầu *</mat-label>
+          <input matInput type="text" formControlName="startTime"/>
+          <mat-error *ngIf="
+          formControl.controls['startTime']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Thời gian kết thúc *</mat-label>
+          <input matInput type="text" formControlName="endTime"/>
+          <mat-error *ngIf="
+          formControl.controls['endTime']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Hệ số lương *</mat-label>
+          <input matInput type="text" formControlName="gradeSalary"/>
+          <mat-error *ngIf="
+          formControl.controls['gradeSalary']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Xe khách</mat-label>
+          <mat-select formControlName='coachId'>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="
+          formControl.controls['coachId']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Tuyến xe</mat-label>
+          <mat-select formControlName='routeId'>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="
+          formControl.controls['routeId']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Lái xe</mat-label>
+          <mat-select formControlName='driverId'>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="
+          formControl.controls['driverId']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="mt-2 form">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Phụ xe</mat-label>
+          <mat-select formControlName='driverAsistantId'>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+          </mat-select>
+          <mat-error *ngIf="
+          formControl.controls['driverAsistantId']?.errors?.required">field required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="mt-2" mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="!formControl.valid" (click)="edit()"
+            cdkFocusInitial>Yes
+    </button>
+    <button mat-raised-button mat-dialog-close>No</button>
+
+  </div>
+</div>
