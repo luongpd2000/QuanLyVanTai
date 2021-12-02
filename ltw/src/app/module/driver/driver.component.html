@@ -36,10 +36,12 @@
                             <mat-label>Địa chỉ</mat-label>
                             <input matInput formControlName='address'>
                         </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Ngày sinh</mat-label>
-                            <input matInput formControlName='birthday'>
-                        </mat-form-field>
+                        <mat-form-field class="fullWidth" appearance="outline">
+                          <mat-label>Ngày sinh *</mat-label>
+                          <input matInput type="date" formControlName="birthday" />
+                          <mat-error *ngIf="
+                          formSearch.controls['birthday']?.errors?.required">field required</mat-error>
+                      </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Thâm niên</mat-label>
                             <input type="number" matInput formControlName='experience'>

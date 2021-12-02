@@ -57,8 +57,6 @@
                     <mat-label>Ngày sinh *</mat-label>
                     <input matInput type="date" formControlName="birthday" />
                     <mat-error *ngIf="
-          formControl.controls['birthday']?.errors">Định dạng ngày sinh yyyy-mm-dd</mat-error>
-                    <mat-error *ngIf="
           formControl.controls['birthday']?.errors?.required">field required</mat-error>
                 </mat-form-field>
             </div>
