@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,10 +26,10 @@ public class CoachTurn implements Serializable {
     private Float ticketPrice;
 
     @Column(name = "start_time", nullable = false)
-    private Timestamp startTime;
+    private LocalDateTime startTime;
 
     @Column(name = "end_time", nullable = false)
-    private Timestamp endTime;
+    private LocalDateTime endTime;
 
     @Column(name = "grade_salary")
     private Float gradeSalary;

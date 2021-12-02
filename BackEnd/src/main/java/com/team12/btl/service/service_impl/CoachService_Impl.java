@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class CoachService_Impl implements GeneralService<Coach> {
     @Autowired
     CoachRepository coachRepository;

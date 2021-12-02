@@ -27,7 +27,7 @@ makeForm(){
       "pointOfDeparture":  new FormControl('',Validators.required),
       "destination": new FormControl('',Validators.required),
       "length": new FormControl('',Validators.required),
-      "complexity": new FormControl(''),
+      "complexity": new FormControl('',Validators.required),
   });
 }
 
