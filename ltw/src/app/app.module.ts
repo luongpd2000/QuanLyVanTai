@@ -19,13 +19,10 @@ import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.compo
 import { LoginComponent } from './login/login.component';
 import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.component';
 import { EditDriverComponent } from './module/dialogs/edit-driver/edit-driver.component';
-<<<<<<< HEAD
-=======
 import { AddCoachComponent } from './module/dialogs/add-coach/add-coach.component';
 import { EditCoachComponent } from './module/dialogs/edit-coach/edit-coach.component';
 import { AddCoachTurnComponent } from './module/dialogs/add-coach-turn/add-coach-turn.component';
 import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-coach-turn.component';
->>>>>>> 9a2d39a40a8f3a40846738516ff4c000a27bfbba
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -41,13 +38,10 @@ import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-co
     LoginComponent,
     AddDriverComponent,
     EditDriverComponent,
-<<<<<<< HEAD
-=======
     AddCoachComponent,
     EditCoachComponent,
     AddCoachTurnComponent,
     EditCoachTurnComponent,
->>>>>>> 9a2d39a40a8f3a40846738516ff4c000a27bfbba
     // AddRouteComponent
   ],
   imports: [
