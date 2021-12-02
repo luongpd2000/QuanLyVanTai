@@ -29,5 +29,5 @@ public interface DriverRepository extends JpaRepository<Driver, Integer>, JpaSpe
             "AND (CONCAT(d.experience, '') LIKE %?8%)" +
             "AND (CONCAT(d.fixed_salary_id, '') LIKE %?9%)"
             , nativeQuery = true)
-    List<Driver> searchDriver(String id, String name, String idCard, String drivingLicenseCode, String typeOfLicense, String address, String birthday, String experience, String fixedSalaryId);
+    List<Driver> searchDriver(String id, String name, String idCard, String drivingLicenseCode, String typeOfLicense, String address, String birthday, String experience, String fixed_salary_id);
 }
