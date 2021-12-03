@@ -105,6 +105,7 @@ export class DriverComponent implements OnInit {
       this.driverList = data;
       console.log(this.driverList);
       this.dataSource = new MatTableDataSource<Driver>(this.driverList);
+      this.dataSource.paginator = this.paginator;
       this.openSnackBar('Tìm kiếm thành công');
     });
   }
