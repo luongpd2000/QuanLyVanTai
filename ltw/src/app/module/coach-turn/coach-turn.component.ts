@@ -94,7 +94,7 @@ export class CoachTurnComponent implements OnInit {
   makeSearchForm(): void{
     this.formSearch = new FormGroup({
       // id: new FormControl(''),
-      ticketPrice:new FormControl(''),
+      ticketPriceMin:new FormControl(''),
       driverName:new FormControl(''),
       coachPlate:new FormControl(''),
       routeId:new FormControl(''),
@@ -109,7 +109,7 @@ export class CoachTurnComponent implements OnInit {
   onSearch() {
     var param = {
       //id: this.formSearch.value.id,
-      ticketPrice:this.formSearch.value.ticketPrice,
+      ticketPriceMin:this.formSearch.value.ticketPriceMin,
       driverName:this.formSearch.value.driverName,
       coachPlate:this.formSearch.value.coachPlate,
       routeId:this.formSearch.value.routeId,
