@@ -57,5 +57,9 @@ export class DriverService {
     return this.httpClient.put<any>(driverUrl,driver,this.httpOptions);
   }
 
+  getAllFixedSalary(){
+    const fixedSalaryUrl = `${environment.baseUrl}/fixedSalary/findAll`;
+    return this.httpClient.get<Driver[]>(fixedSalaryUrl,this.httpOptions);
+  }
 
 }

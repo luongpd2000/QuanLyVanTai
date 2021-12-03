@@ -23,6 +23,7 @@ export class DriverComponent implements OnInit {
   formSearch!: FormGroup;
 
   driverList: Driver[] = [];
+  fixedSalaryList: any;
 
   displayedColumns: string[] = [
     'no',
@@ -54,6 +55,7 @@ export class DriverComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
+    this.getAllFixedSalary();
     this.makeSearchForm();
   }
 
@@ -79,6 +81,14 @@ export class DriverComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Driver>(this.driverList);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  getAllFixedSalary(){
+    this.driverService.getAllFixedSalary().subscribe(
+      (data)=>{
+        this.fixedSalaryList = data;
+      }
+    )
   }
   all() {
     this.getAll();
@@ -138,7 +148,7 @@ export class DriverComponent implements OnInit {
   }
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddDriverComponent, {});
+    const dialogRef = this.dialog.open(AddDriverComponent, {data: this.fixedSalaryList});
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -160,7 +170,10 @@ export class DriverComponent implements OnInit {
   openEditDialog(data?: Driver) {
     // console.log(data)
     const dialogRef = this.dialog.open(EditDriverComponent, {
-      data: data,
+      data: {
+        driver: data,
+        fixedSalaryList : this.fixedSalaryList
+      }
     });
 
     dialogRef.afterClosed().subscribe((result) => {

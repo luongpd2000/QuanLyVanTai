@@ -13,7 +13,7 @@ export class EditDriverComponent implements OnInit {
   formControl!: FormGroup ;
   constructor(
     public dialogRef: MatDialogRef<EditDriverComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Driver
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {

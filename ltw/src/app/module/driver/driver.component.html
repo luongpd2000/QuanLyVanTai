@@ -52,13 +52,7 @@
                             <mat-label>Bậc lương</mat-label>
                             <mat-select formControlName='fixedSalary'>
                                 <mat-option value="">All</mat-option>
-                                <mat-option value=1>1</mat-option>
-                                <mat-option value=2>2</mat-option>
-                                <mat-option value=3>3</mat-option>
-                                <mat-option value=4>4</mat-option>
-                                <mat-option value=5>5</mat-option>
-                                <mat-option value=6>6</mat-option>
-                                <mat-option value=7>7</mat-option>
+                                <mat-option *ngFor="let e of fixedSalaryList" [value]="e.id">Mã {{e.id}} bậc lương {{e.grade}}</mat-option>
                             </mat-select>
                         </mat-form-field>
 
