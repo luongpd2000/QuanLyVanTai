@@ -3,17 +3,17 @@
 
   <div mat-dialog-content>
     <form [formGroup]="formControl">
-      <div class="form">
-        <mat-form-field class="fullWidth" appearance="outline">
-          <mat-label>ID</mat-label>
-          <input matInput type="text" formControlName="id" />
-        </mat-form-field>
-      </div>
+      <!--      <div class="form">-->
+      <!--        <mat-form-field class="fullWidth" appearance="outline">-->
+      <!--          <mat-label>ID</mat-label>-->
+      <!--          <input matInput type="text" formControlName="id" />-->
+      <!--        </mat-form-field>-->
+      <!--      </div>-->
 
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Số hành khách *</mat-label>
-          <input matInput type="text" formControlName="passengerAmount" />
+          <input matInput type="text" formControlName="passengerAmount"/>
           <mat-error *ngIf="
           formControl.controls['passengerAmount']?.errors?.required">field required
           </mat-error>
@@ -33,7 +33,7 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Thời gian bắt đầu *</mat-label>
-          <input matInput type="text" formControlName="startTime" />
+          <input matInput type="text" formControlName="startTime"/>
           <mat-error *ngIf="
           formControl.controls['startTime']?.errors?.required">field required
           </mat-error>
@@ -53,7 +53,7 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Hệ số lương *</mat-label>
-          <input matInput type="text" formControlName="gradeSalary" />
+          <input matInput type="text" formControlName="gradeSalary"/>
           <mat-error *ngIf="
           formControl.controls['gradeSalary']?.errors?.required">field required
           </mat-error>
@@ -64,7 +64,8 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Xe khách</mat-label>
           <mat-select formControlName='coach'>
-            <mat-option *ngFor="let coach of data.coachData" [value]="coach">{{coach.id+"|Biển: "+coach.plate}}</mat-option>
+            <mat-option *ngFor="let coach of data.coachData"
+                        [value]="coach">{{coach.id + "|Biển: " + coach.plate}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['coach']?.errors?.required">field required
@@ -76,7 +77,8 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Tuyến xe</mat-label>
           <mat-select formControlName='route'>
-            <mat-option *ngFor="let route of data.routeData" [value]="route">{{route.id+"|Độ phức tạp : "+route.complexity}}</mat-option>
+            <mat-option *ngFor="let route of data.routeData"
+                        [value]="route">{{route.id + "|Độ phức tạp : " + route.complexity}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['route']?.errors?.required">field required
@@ -88,10 +90,9 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Lái xe</mat-label>
           <mat-select formControlName='driver'>
-            <!--            <mat-option *ngFor="let driver of data.driverData" [value]="driver">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>-->
-            <mat-option [value]="1">1</mat-option>
-            <mat-option [value]="2">2</mat-option>
-            <mat-option [value]="3">3</mat-option>
+            <mat-option *ngFor="let driver of data.driverData"
+                        [value]="driver">{{driver.id + "|Tên: " + driver.name + "|Thâm niên: " + driver.experience}}</mat-option>
+
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['driver']?.errors?.required">field required
@@ -103,10 +104,8 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Phụ xe</mat-label>
           <mat-select formControlName='driverAsistant'>
-            <!--            <mat-option *ngFor="let driver of data.driverData" [value]="driver">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>-->
-            <mat-option [value]="1">1</mat-option>
-            <mat-option [value]="2">2</mat-option>
-            <mat-option [value]="3">3</mat-option>
+            <mat-option *ngFor="let driver of data.driverData"
+                        [value]="driver">{{driver.id + "|Tên: " + driver.name + "|Thâm niên: " + driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['driverAsistant']?.errors?.required">field required

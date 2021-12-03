@@ -35,12 +35,12 @@ export class CoachTurnService {
   }
   getCoachTurnById(id: number){
     const coachTurnUrl = `${this.baseUrl}/findById/${id}`;
-    return this.httpClient.post<CoachTurn>(coachTurnUrl,this.httpOptions);
+    return this.httpClient.get<CoachTurn>(coachTurnUrl,this.httpOptions);
   }
 
   createCoachTurn(coachTurn: CoachTurn){
     const coachTurnUrl = `${this.baseUrl}/create`;
-    return this.httpClient.get<CoachTurn>(coachTurnUrl,this.httpOptions);
+    return this.httpClient.post<CoachTurn>(coachTurnUrl,coachTurn,this.httpOptions);
   }
 
   searchCoachTurn(param: any){
