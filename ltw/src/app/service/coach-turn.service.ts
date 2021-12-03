@@ -57,6 +57,6 @@ export class CoachTurnService {
 
   update(coachTurn: CoachTurn){
     const coachTurnUrl = `${this.baseUrl}/update`;
-    return this.httpClient.put<CoachTurn>(coachTurnUrl,this.httpOptions);
+    return this.httpClient.put<CoachTurn>(coachTurnUrl,coachTurn,this.httpOptions);
   }
 }

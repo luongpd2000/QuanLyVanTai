@@ -63,9 +63,8 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Xe khách</mat-label>
-          <mat-select formControlName='coach' [(ngModel)]="data.coachTurn.coach">
-
-            <mat-option *ngFor="let coach of data.coachData" [value]="coach">{{coach.id+"|Biển: "+coach.plate}}</mat-option>
+          <mat-select formControlName='coach' [(ngModel)]="data.coachTurn.coach.id">
+            <mat-option *ngFor="let coach of data.coachData" [value]="coach.id">{{coach.id+" |Biển: "+coach.plate}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['coach']?.errors?.required">field required
@@ -76,8 +75,8 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Tuyến xe</mat-label>
-          <mat-select formControlName='route'>
-            <mat-option *ngFor="let route of data.routeData" [value]="route">{{route.id+"|Độ phức tạp : "+route.complexity}}</mat-option>
+          <mat-select formControlName='route' [(ngModel)]="data.coachTurn.route.id">
+            <mat-option *ngFor="let route of data.routeData" [value]="route.id">{{route.id+"|Độ phức tạp : "+route.complexity}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['route']?.errors?.required">field required
@@ -88,8 +87,8 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Lái xe</mat-label>
-          <mat-select formControlName='driver'>
-            <mat-option *ngFor="let driver of data.driverData" [value]="driver">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
+          <mat-select formControlName='driver' [(ngModel)]="data.coachTurn.driver.id">
+            <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['driver']?.errors?.required">field required
@@ -100,8 +99,8 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Phụ xe</mat-label>
-          <mat-select formControlName='driverAsistant'>
-            <mat-option *ngFor="let driver of data.driverData" [value]="driver">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
+          <mat-select formControlName='driverAsistant' [(ngModel)]="data.coachTurn.driverAsistant.id">
+            <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
           formControl.controls['driverAsistant']?.errors?.required">field required
