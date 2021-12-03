@@ -52,7 +52,7 @@ export class CoachTurnService {
 
   deleteCoachTurn(id:number){
     const coachTurnUrl = `${this.baseUrl}/deleteById/${id}`;
-    return this.httpClient.post<any>(coachTurnUrl,this.httpOptions);
+    return this.httpClient.delete<any>(coachTurnUrl,this.httpOptions);
   }
 
   update(coachTurn: CoachTurn){
