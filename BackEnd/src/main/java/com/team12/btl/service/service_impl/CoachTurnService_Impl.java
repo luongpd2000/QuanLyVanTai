@@ -45,10 +45,11 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
 
     public List<CoachTurn> searchCoachTurn(Map<String,String> map){
         return coachTurnRepository.searchCoachTurn(
-                map.get("ticketPriceMin") !=null ? map.get("ticketPriceMin") : "",
-                map.get("driverName") !=null ? map.get("driverName") : "",
-                map.get("coachPlate") !=null ? map.get("coachPlate") : "",
-                map.get("routeId") !=null ? map.get("routeId") : "");
+                map.get("ticketPriceMin") !=null ? map.get("ticketPriceMin") : ""
+                , map.get("driverName") !=null ? map.get("driverName") : ""
+                , map.get("coachPlate") !=null ? map.get("coachPlate") : ""
+                , map.get("routeId") !=null ? map.get("routeId") : ""
+                );
     }
 
 }
