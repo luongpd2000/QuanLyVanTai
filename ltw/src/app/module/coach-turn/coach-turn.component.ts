@@ -38,7 +38,6 @@ export class CoachTurnComponent implements OnInit {
     'ticketPrice',
     'startTime',
     'endTime',
-    'gradeSalary',
     'coach',
     'route',
     'driver',
