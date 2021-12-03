@@ -19,8 +19,14 @@ export class CoachTurnService {
 
   private baseUrl = `${environment.baseUrl}/coachTurn`;
 
+  // private httpOptions = {
+  //   header: new HttpHeaders( {'Content-Type' : 'application/json', 'Authorization':this._cookieService.get('Authorization')})
+  // };
   private httpOptions = {
-    header: new HttpHeaders( {'Content-Type' : 'application/json', 'Authorization':this._cookieService.get('Authorization')})
+    headers: new HttpHeaders(
+      { 'Content-Type': 'application/json' ,
+        'Authorization': this._cookieService.get('Authorization')
+      })
   };
 
   getAll(){
@@ -34,7 +40,7 @@ export class CoachTurnService {
 
   createCoachTurn(coachTurn: CoachTurn){
     const coachTurnUrl = `${this.baseUrl}/create`;
-    return this.httpClient.get<CoachTurn>(coachTurnUrl,this.httpOptions));
+    return this.httpClient.get<CoachTurn>(coachTurnUrl,this.httpOptions);
   }
 
   searchCoachTurn(param: any){

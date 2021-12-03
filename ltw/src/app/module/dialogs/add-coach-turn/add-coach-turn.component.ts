@@ -13,7 +13,7 @@ export class AddCoachTurnComponent implements OnInit {
   formControl!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<AddCoachTurnComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CoachTurn
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
@@ -21,15 +21,16 @@ export class AddCoachTurnComponent implements OnInit {
   }
   makeForm():void{
     this.formControl = new FormGroup({
+      "id":  new FormControl('',Validators.required),
       "passengerAmount": new FormControl('', Validators.required),
       "ticketPrice": new FormControl('', Validators.required),
       "startTime": new FormControl('', Validators.required),
       "endTime": new FormControl('', Validators.required),
       "gradeSalary": new FormControl('', Validators.required),
-      "coachId": new FormControl('', Validators.required),
-      "routeId": new FormControl('', Validators.required),
-      "driverId": new FormControl('', Validators.required),
-      "driverAsistantId": new FormControl('', Validators.required),
+      "coach": new FormControl('', Validators.required),
+      "route": new FormControl('', Validators.required),
+      "driver": new FormControl('', Validators.required),
+      "driverAsistant": new FormControl('', Validators.required),
     })
   }
   save(): void {

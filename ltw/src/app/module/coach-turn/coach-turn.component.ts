@@ -10,6 +10,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfirmDialogComponent, ConfirmDialogModel} from "../dialogs/confirm-dialog/confirm-dialog.component";
 import {AddCoachTurnComponent} from "../dialogs/add-coach-turn/add-coach-turn.component";
 import {EditCoachTurnComponent} from "../dialogs/edit-coach-turn/edit-coach-turn.component";
+import {Coach} from "../../data/coach";
+import {RouteService} from "../../service/route.service";
+import {CoachService} from "../../service/coach.service";
+import {DriverService} from "../../service/driver.service";
 
 @Component({
   selector: 'app-coach-turn',
@@ -22,6 +26,11 @@ export class CoachTurnComponent implements OnInit {
 
   coachTurnList: CoachTurn[] = [];
 
+  coachList: Coach[]=[];
+  routeList: Route[] =[];
+  //driverList: Driver[] = [];
+
+
   displayedColumns: string[] = [
     'no',
     'id',
@@ -30,6 +39,10 @@ export class CoachTurnComponent implements OnInit {
     'startTime',
     'endTime',
     'gradeSalary',
+    'coach',
+    'route',
+    'driver',
+    'driverAsistant',
     'action',
   ];
   dataSource = new MatTableDataSource<CoachTurn>();
@@ -42,6 +55,9 @@ export class CoachTurnComponent implements OnInit {
 
   constructor(
     private coachTurnService: CoachTurnService,
+    private routeService: RouteService,
+    private coachService: CoachService,
+    private driverService: DriverService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private formBuider: FormBuilder
@@ -50,8 +66,20 @@ export class CoachTurnComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
     this.makeSearchForm();
+    this.getDataToAddOrEdit();
   }
 
+  getDataToAddOrEdit(): void{
+    this.routeService.getAll().subscribe((data)=>{
+      this.routeList = data;
+    })
+    this.coachService.getAll().subscribe((data)=>{
+      this.coachList = data;
+    })
+    // this.driverService.getAll().subscribe((data)=>{
+    //   this.driverList = data;
+    // })
+  }
   getAll(): void{
     this.coachTurnService.getAll().subscribe((data)=>{
       console.log(data);
@@ -78,7 +106,7 @@ export class CoachTurnComponent implements OnInit {
 
   onSearch() {
     var param = {
-      id: this.formSearch.value.id,
+      //id: this.formSearch.value.id,
       ticketPrice:this.formSearch.value.ticketPrice,
       driverName:this.formSearch.value.driverName,
       coachPlate:this.formSearch.value.coachPlate,
@@ -91,7 +119,7 @@ export class CoachTurnComponent implements OnInit {
       console.log(data);
       this.coachTurnList = data;
       console.log(this.coachTurnList);
-      this.dataSource = new MatTableDataSource<Route>(this.coachTurnList);
+      this.dataSource = new MatTableDataSource<CoachTurn>(this.coachTurnList);
       this.openSnackBar('Tìm kiếm thành công');
     });
 
@@ -105,7 +133,7 @@ export class CoachTurnComponent implements OnInit {
   }
 
   //confirm delete
-  confirmDialog(route: Route): void {
+  confirmDialog(coachTurn: CoachTurn): void {
     const message = `Are you sure you want to do this?`;
 
     const dialogData = new ConfirmDialogModel('Confirm Action', message);
@@ -118,7 +146,7 @@ export class CoachTurnComponent implements OnInit {
     dialogRef.afterClosed().subscribe((dialogResult) => {
       if (dialogResult == true) {
         console.log('delete');
-        this.coachTurnService.deleteCoachTurn(route.id).subscribe(
+        this.coachTurnService.deleteCoachTurn(coachTurn.id).subscribe(
           (data) => {
             this.openSnackBar('Xóa thành công');
             this.getAll();
@@ -132,7 +160,14 @@ export class CoachTurnComponent implements OnInit {
   }
   //create
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddCoachTurnComponent, {});
+    this.getDataToAddOrEdit();
+    const dialogRef = this.dialog.open(AddCoachTurnComponent, {
+      data:{
+        routeData: this.routeList,
+        coachData: this.coachList,
+        // driverData: this.driverList,
+      }
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -151,10 +186,17 @@ export class CoachTurnComponent implements OnInit {
     });
   }
   //edit
-  openEditDialog(data?: Route) {
+  openEditDialog(data?: CoachTurn) {
+    this.getDataToAddOrEdit();
+    console.log(this.coachList);
     // console.log(data)
     const dialogRef = this.dialog.open(EditCoachTurnComponent, {
-      data: data,
+      data: {
+        coachTurn: data,
+        routeData: this.routeList,
+        coachData: this.coachList,
+        // driverData: this.driverList,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
