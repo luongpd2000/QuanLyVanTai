@@ -60,9 +60,7 @@ import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-co
   entryComponents: [
     ConfirmDialogComponent,
     AddRouteComponent,
-    EditRouteComponent,
-    AddDriverComponent,
-    EditDriverComponent
+    EditRouteComponent
   ],
   bootstrap: [AppComponent]
 })
