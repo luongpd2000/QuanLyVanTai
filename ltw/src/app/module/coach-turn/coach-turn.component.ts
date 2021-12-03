@@ -14,6 +14,7 @@ import {Coach} from "../../data/coach";
 import {RouteService} from "../../service/route.service";
 import {CoachService} from "../../service/coach.service";
 import {DriverService} from "../../service/driver.service";
+import {Driver} from "../../data/driver";
 
 @Component({
   selector: 'app-coach-turn',
@@ -28,8 +29,7 @@ export class CoachTurnComponent implements OnInit {
 
   coachList: Coach[]=[];
   routeList: Route[] =[];
-  //driverList: Driver[] = [];
-
+  driverList: Driver[] = [];
 
   displayedColumns: string[] = [
     'no',
@@ -76,10 +76,11 @@ export class CoachTurnComponent implements OnInit {
     this.coachService.getAll().subscribe((data)=>{
       this.coachList = data;
     })
-    // this.driverService.getAll().subscribe((data)=>{
-    //   this.driverList = data;
-    // })
+    this.driverService.getAll().subscribe((data)=>{
+      this.driverList = data;
+    })
   }
+
   getAll(): void{
     this.coachTurnService.getAll().subscribe((data)=>{
       console.log(data);
@@ -89,9 +90,10 @@ export class CoachTurnComponent implements OnInit {
       this.dataSource.paginator = this.paginator
     })
   }
+
   makeSearchForm(): void{
     this.formSearch = new FormGroup({
-      id: new FormControl(''),
+      // id: new FormControl(''),
       ticketPrice:new FormControl(''),
       driverName:new FormControl(''),
       coachPlate:new FormControl(''),
@@ -165,7 +167,7 @@ export class CoachTurnComponent implements OnInit {
       data:{
         routeData: this.routeList,
         coachData: this.coachList,
-        // driverData: this.driverList,
+        driverData: this.driverList,
       }
     });
 
@@ -188,14 +190,14 @@ export class CoachTurnComponent implements OnInit {
   //edit
   openEditDialog(data?: CoachTurn) {
     this.getDataToAddOrEdit();
-    console.log(this.coachList);
+    // console.log(this.List);
     // console.log(data)
     const dialogRef = this.dialog.open(EditCoachTurnComponent, {
       data: {
         coachTurn: data,
         routeData: this.routeList,
         coachData: this.coachList,
-        // driverData: this.driverList,
+        driverData: this.driverList,
       },
     });
 

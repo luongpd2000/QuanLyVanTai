@@ -8,24 +8,24 @@
         <div class="search-input">
           <div class="row">
             <div class="col-12 search-group">
-              <form>
+              <form [formGroup]="formSearch">
                 <mat-form-field appearance="fill">
                   <mat-label>Giá vé</mat-label>
-                  <input type="number" matInput >
+                  <input type="number" matInput formControlName='ticketPrice' />
                   <!-- <mat-error *ngIf="
                   formSearch.controls['length']?.errors">Độ dài là kiểu số</mat-error> -->
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Tên tài xế</mat-label>
-                  <input matInput >
+                  <input matInput formControlName='driverName'/>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Biển xe khách</mat-label>
-                  <input matInput >
+                  <input matInput formControlName='coachPlate'/>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Id tuyến xe</mat-label>
-                  <input type="number" matInput>
+                  <input type="number" matInput/>
                   <!-- <mat-error *ngIf="
                   formSearch.controls['length']?.errors">Độ dài là kiểu số</mat-error> -->
                 </mat-form-field>

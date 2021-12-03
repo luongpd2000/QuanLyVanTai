@@ -1,5 +1,6 @@
 import {Coach} from "./coach";
 import {Route} from "./route";
+import {Driver} from "./driver";
 
 export class CoachTurn{
   id!: number;
@@ -10,6 +11,6 @@ export class CoachTurn{
   gradeSalary!: number;
   coach!: Coach;
   route!: Route;
-  driver!: number; //Driver;
-  driverAsistant!: number; //Driver;
+  driver!: Driver;
+  driverAsistant!: Driver;
 }
