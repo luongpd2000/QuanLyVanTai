@@ -56,10 +56,12 @@ export class CoachComponent implements OnInit {
   makeSearchForm() {
     this.formSearch = new FormGroup({
       id: new FormControl(''),
-      pointOfDeparture: new FormControl(''),
-      destination: new FormControl(''),
-      length: new FormControl(''),
-      complexity: new FormControl(''),
+      plate: new FormControl(''),
+      model: new FormControl(''),
+      manufacturer: new FormControl(''),
+      capacity: new FormControl(''),
+      yearsOfUse: new FormControl(''),
+      lastMaintenanceDay: new FormControl(''),
     });
     }
     getAll(): void {
@@ -84,7 +86,7 @@ export class CoachComponent implements OnInit {
         capacity: this.formSearch.value.capacity,
         yearsOfUse: this.formSearch.value.yearsOfUse,
         lastMaintenanceDay: this.formSearch.value.lastMaintenanceDay,
-        
+
       };
       console.log(param);
 
@@ -160,7 +162,7 @@ export class CoachComponent implements OnInit {
         );
       }
     });
-  }  
+  }
   openSnackBar(content: any) {
     this._snackBar.open(content, 'OK', {
       horizontalPosition: 'right',

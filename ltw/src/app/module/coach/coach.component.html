@@ -8,22 +8,22 @@
         <div class="search-input">
           <div class="row">
             <div class="col-12 search-group">
-              <form>
+              <form [formGroup]="formSearch">
                 <mat-form-field appearance="fill">
                   <mat-label>ID</mat-label>
-                  <input type="number" matInput >
+                  <input type="number" matInput formControlName='id'>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Biển số</mat-label>
-                  <input matInput >
+                  <input type="text" matInput formControlName='plate'>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Mẫu xe</mat-label>
-                  <input matInput >
+                  <input type="text" matInput formControlName='model'>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Hãng sản xuất</mat-label>
-                  <input matInput >
+                  <input type="text" matInput formControlName='manufacturer'>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Số ghế</mat-label>
@@ -39,7 +39,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Ngày bảo dưỡng gần nhất</mat-label>
-                  <input type="date" matInput>
+                  <input type="date" matInput formControlName='lastMaintenanceDay'>
                 </mat-form-field>
                 <button class="btn btn-primary b-search ml-3" (click)="onSearch()">Search</button>
               </form>
