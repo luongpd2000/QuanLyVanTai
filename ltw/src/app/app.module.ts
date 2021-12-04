@@ -45,7 +45,7 @@ import { RevenueStatsCoachComponent } from './module/revenue-stats-coach/revenue
     AddCoachTurnComponent,
     EditCoachTurnComponent,
     SalaryComponent,
-    RevenueStatsCoachComponent,
+    RevenueStatsCoachComponent
     // AddRouteComponent
   ],
   imports: [
