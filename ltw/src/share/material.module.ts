@@ -35,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 @NgModule( {
   imports: [
@@ -71,7 +72,10 @@ import { ReactiveFormsModule } from '@angular/forms';
       MatSnackBarModule,
       MatTableModule,
       MatSortModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      NgxMatDatetimePickerModule,
+      NgxMatTimepickerModule,
+      NgxMatNativeDateModule
   ],
   exports: [
       MatButtonModule,
@@ -91,7 +95,10 @@ import { ReactiveFormsModule } from '@angular/forms';
       MatTableModule,
       MatPaginatorModule,
       MatDialogModule,
-      MatCardModule
+      MatCardModule,
+      NgxMatDatetimePickerModule,
+      NgxMatTimepickerModule,
+      NgxMatNativeDateModule
   ],
   providers: [
       MatDatepickerModule,

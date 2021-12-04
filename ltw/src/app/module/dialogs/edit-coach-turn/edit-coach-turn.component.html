@@ -41,13 +41,23 @@
       </div>
 
       <div class="mt-2 form">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <!-- <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Thời gian kết thúc *</mat-label>
           <input matInput type="text" formControlName="endTime" [(ngModel)]="data.coachTurn.endTime"/>
           <mat-error *ngIf="
           formControl.controls['endTime']?.errors?.required">field required
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
+
+        <mat-form-field class="fullWidth" appearance="outline">
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time" [(ngModel)]="data.coachTurn.endTime" formControlName="endTime">
+
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+
+          <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          <mat-error *ngIf="
+          formControl.controls['endTime']?.errors?.required">field required</mat-error>
+      </mat-form-field>
       </div>
 
       <div class="mt-2 form">
