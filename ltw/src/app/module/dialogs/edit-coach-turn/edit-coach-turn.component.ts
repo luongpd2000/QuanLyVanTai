@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, NgModule, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoachTurn } from '../../../data/coach-turn';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from "@angular/material-moment-adapter";
 
 @Component({
   selector: 'app-edit-coach-turn',
@@ -9,7 +11,6 @@ import { CoachTurn } from '../../../data/coach-turn';
   styleUrls: ['./edit-coach-turn.component.scss'],
 })
 export class EditCoachTurnComponent implements OnInit {
-
   @ViewChild('picker') picker: any;
 
   formControl!: FormGroup;
@@ -28,7 +29,7 @@ export class EditCoachTurnComponent implements OnInit {
       ticketPrice: new FormControl('', Validators.required),
       startTime: new FormControl('', Validators.required),
       endTime: new FormControl('', Validators.required),
-      gradeSalary: new FormControl('', Validators.required),
+      // gradeSalary: new FormControl('', Validators.required),
       coach: new FormControl('', Validators.required),
       route: new FormControl('', Validators.required),
       driver: new FormControl('', Validators.required),

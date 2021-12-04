@@ -26,7 +26,7 @@ export class AddCoachTurnComponent implements OnInit {
       "ticketPrice": new FormControl('', Validators.required),
       "startTime": new FormControl('', Validators.required),
       "endTime": new FormControl('', Validators.required),
-      "gradeSalary": new FormControl('', Validators.required),
+      // "gradeSalary": new FormControl('', Validators.required),
       "coach": new FormControl('', Validators.required),
       "route": new FormControl('', Validators.required),
       "driver": new FormControl('', Validators.required),
