@@ -1,9 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoachTurn } from '../../../data/coach-turn';
-import { Route } from '../../../data/route';
-import { Coach } from '../../../data/coach';
 
 @Component({
   selector: 'app-edit-coach-turn',
@@ -11,6 +9,9 @@ import { Coach } from '../../../data/coach';
   styleUrls: ['./edit-coach-turn.component.scss'],
 })
 export class EditCoachTurnComponent implements OnInit {
+
+  @ViewChild('picker') picker: any;
+
   formControl!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<EditCoachTurnComponent>,
