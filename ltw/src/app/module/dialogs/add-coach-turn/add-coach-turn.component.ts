@@ -21,7 +21,7 @@ export class AddCoachTurnComponent implements OnInit {
   }
   makeForm():void{
     this.formControl = new FormGroup({
-      "id":  new FormControl('',Validators.required),
+      // "id":  new FormControl('',Validators.required),
       "passengerAmount": new FormControl('', Validators.required),
       "ticketPrice": new FormControl('', Validators.required),
       "startTime": new FormControl('', Validators.required),
