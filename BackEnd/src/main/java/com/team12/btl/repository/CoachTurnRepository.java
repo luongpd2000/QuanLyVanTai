@@ -19,10 +19,10 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
     int deleteCoachTurn(Integer Id);
 
     @Query(value = "select ct.* from coach_turn ct, driver d, coach c, route r "+
-            "where ct.is_active=true and ct.driver_id=d.id and ct.coach_id=c.id and ct.route_id=r.id" +
-            "and ct.ticket_price >= ?1" +
-            "and upper(d.name) like concat('%',upper(?2),'%')" +
-            "and upper(c.plate) like concat('%',upper(?3),'%')" +
+            "where ct.is_active=true and ct.driver_id=d.id and ct.coach_id=c.id and ct.route_id=r.id " +
+            "and ct.ticket_price >= ?1 " +
+            "and upper(d.name) like concat('%',upper(?2),'%') " +
+            "and upper(c.plate) like concat('%',upper(?3),'%') " +
             "and upper(r.id) like concat('%',upper(?4),'%')",nativeQuery = true)
     List<CoachTurn> searchCoachTurn(String ticketPriceMin, String driverName, String coachPlate, String routeId);
 

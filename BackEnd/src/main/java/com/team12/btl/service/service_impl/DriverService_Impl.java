@@ -20,7 +20,7 @@ public class DriverService_Impl implements GeneralService<Driver> {
 
     @Override
     public List<Driver> findAll() {
-        return driverRepository.findAll();
+        return driverRepository.findByActiveIsTrue();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DriverService_Impl implements GeneralService<Driver> {
                         map.get("address") != null ? map.get("address"):"",
                         map.get("birthday") != null ? map.get("birthday"):"",
                         map.get("experience") != null ? map.get("experience"):"",
-                        map.get("fixed_salary_id") != null ? map.get("fixed_salary_id"):"");
+                        map.get("fixedSalary") != null ? map.get("fixedSalary"):"");
     }
 
 
