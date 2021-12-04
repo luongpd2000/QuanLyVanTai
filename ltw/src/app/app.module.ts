@@ -42,6 +42,7 @@ import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-co
     EditCoachComponent,
     AddCoachTurnComponent,
     EditCoachTurnComponent,
+    
     // AddRouteComponent
   ],
   imports: [
