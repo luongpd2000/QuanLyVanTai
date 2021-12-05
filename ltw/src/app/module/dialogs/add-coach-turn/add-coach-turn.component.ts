@@ -33,8 +33,33 @@ export class AddCoachTurnComponent implements OnInit {
       "driverAsistant": new FormControl('', Validators.required),
     })
   }
+
+  getFormattedDate(date: any) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString();
+    var sDay = day.toString();
+    var sMonth = month.toString();
+    if (day < 10){
+      sDay = '0' +sDay;
+    }
+    if(month <10){
+      sMonth = '0' + sMonth;
+    }
+    var s = year + '-' + sMonth + '-' + sDay + 'T' + date.toLocaleTimeString();
+    s= s.slice(0,-3)
+    return s;
+  }
+
   save(): void {
-    this.dialogRef.close(Object.assign(new CoachTurn(), this.formControl.value));
+    var editData = new CoachTurn();
+    Object.assign(editData, this.formControl.value);
+    editData.startTime = this.getFormattedDate(editData.startTime);
+    editData.endTime = this.getFormattedDate(editData.endTime);
+    this.dialogRef.close(editData);
+
+    // this.dialogRef.close(Object.assign(new CoachTurn(), this.formControl.value));
+
   }
 
 }

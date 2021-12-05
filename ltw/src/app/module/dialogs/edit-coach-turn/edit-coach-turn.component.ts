@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoachTurn } from '../../../data/coach-turn';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from "@angular/material-moment-adapter";
+import {NgxMatDatetimePicker} from "@angular-material-components/datetime-picker";
 
 @Component({
   selector: 'app-edit-coach-turn',
@@ -36,9 +37,32 @@ export class EditCoachTurnComponent implements OnInit {
       driverAsistant: new FormControl('', Validators.required),
     });
   }
+  getFormattedDate(date: any) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString();
+    var sDay = day.toString();
+    var sMonth = month.toString();
+    if (day < 10){
+      sDay = '0' +sDay;
+    }
+    if(month <10){
+      sMonth = '0' + sMonth;
+    }
+    var sTime = date.toLocaleTimeString();
+    if(date.getHours() < 10){
+      sTime ='0'+sTime;
+    }
+    var s = year + '-' + sMonth + '-' + sDay + 'T' + sTime;
+    s= s.slice(0,-3)
+    return s;
+  }
   edit(): void {
     var editData = new CoachTurn();
     Object.assign(editData, this.formControl.value);
+
+    editData.startTime = this.getFormattedDate(editData.startTime);
+    editData.endTime = this.getFormattedDate(editData.endTime);
 
     editData.coach = {
       id: this.formControl.value.coach,
