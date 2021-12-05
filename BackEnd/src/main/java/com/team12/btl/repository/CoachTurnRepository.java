@@ -41,7 +41,7 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
 //    SELECT ct.*
 //    FROM
 //    coach_turn ct
-//    WHERE ct.is_active = 1	AND ct.start_time >= '2021-12-03 16:20:42'
+//    WHERE ct.is_active = 1 AND ct.start_time >= '2021-12-03 16:20:42'
 //    AND ct.end_time <= '2021-12-20 15:20:43'
 
 }
