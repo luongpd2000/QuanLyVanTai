@@ -57,7 +57,7 @@ export class AuthenticationService {
     //     this.flag = false;
     //   }
     // );
-    // console.log(data.status)
+    // console.log(data)
     if (data.status === 'loggedIn') {
       this.flag = true;
       // location.reload();
