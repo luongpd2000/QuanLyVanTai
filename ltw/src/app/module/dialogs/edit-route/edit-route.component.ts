@@ -9,7 +9,7 @@ import { Route } from 'src/app/data/route';
   styleUrls: ['./edit-route.component.scss'],
 })
 export class EditRouteComponent implements OnInit {
-  formControl!: FormGroup ;
+  formControl1!: FormGroup ;
   constructor(
     public dialogRef: MatDialogRef<EditRouteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Route
@@ -22,7 +22,7 @@ export class EditRouteComponent implements OnInit {
   }
 
 makeForm(){
-    this.formControl = new FormGroup({
+    this.formControl1 = new FormGroup({
       "id":  new FormControl('',Validators.required),
       "pointOfDeparture":  new FormControl('',Validators.required),
       "destination": new FormControl('',Validators.required),
@@ -34,6 +34,6 @@ makeForm(){
 
   edit(): void {
     // console.log(this.formControl.value);
-    this.dialogRef.close(Object.assign(new Route(), this.formControl.value));
+    this.dialogRef.close(Object.assign(new Route(), this.formControl1.value));
   }
 }

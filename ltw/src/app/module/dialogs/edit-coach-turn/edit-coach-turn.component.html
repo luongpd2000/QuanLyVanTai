@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Edit Coach Turn </h1>
 
   <div mat-dialog-content>
-    <form [formGroup]="formControl">
+    <form [formGroup]="formControl1">
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>ID</mat-label>
@@ -15,7 +15,7 @@
           <mat-label>Số hành khách *</mat-label>
           <input matInput type="text" formControlName="passengerAmount" [(ngModel)]="data.coachTurn.passengerAmount"/>
           <mat-error *ngIf="
-          formControl.controls['passengerAmount']?.errors?.required">field required
+          formControl1.controls['passengerAmount']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -25,7 +25,7 @@
           <mat-label>Gía vé *</mat-label>
           <input matInput type="text" formControlName="ticketPrice" [(ngModel)]="data.coachTurn.ticketPrice"/>
           <mat-error *ngIf="
-          formControl.controls['ticketPrice']?.errors?.required">field required
+          formControl1.controls['ticketPrice']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -35,7 +35,7 @@
           <mat-label>Thời gian bắt đầu *</mat-label>
           <input matInput type="text" formControlName="startTime" [(ngModel)]="data.coachTurn.startTime"/>
           <mat-error *ngIf="
-          formControl.controls['startTime']?.errors?.required">field required
+          formControl1.controls['startTime']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -45,7 +45,7 @@
           <mat-label>Thời gian kết thúc *</mat-label>
           <input matInput type="text" formControlName="endTime" [(ngModel)]="data.coachTurn.endTime"/>
           <mat-error *ngIf="
-          formControl.controls['endTime']?.errors?.required">field required
+          formControl1.controls['endTime']?.errors?.required">field required
           </mat-error>
         </mat-form-field> -->
 
@@ -56,7 +56,7 @@
 
           <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
           <mat-error *ngIf="
-          formControl.controls['endTime']?.errors?.required">field required</mat-error>
+          formControl1.controls['endTime']?.errors?.required">field required</mat-error>
       </mat-form-field>
       </div>
 
@@ -65,7 +65,7 @@
 <!--          <mat-label>Hệ số lương *</mat-label>-->
 <!--          <input matInput type="text" formControlName="gradeSalary" [(ngModel)]="data.coachTurn.gradeSalary" readonly/>-->
 <!--          <mat-error *ngIf="-->
-<!--          formControl.controls['gradeSalary']?.errors?.required">field required-->
+<!--          formControl1.controls['gradeSalary']?.errors?.required">field required-->
 <!--          </mat-error>-->
 <!--        </mat-form-field>-->
 <!--      </div>-->
@@ -77,7 +77,7 @@
             <mat-option *ngFor="let coach of data.coachData" [value]="coach.id">{{coach.id+" |Biển: "+coach.plate}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['coach']?.errors?.required">field required
+          formControl1.controls['coach']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -89,7 +89,7 @@
             <mat-option *ngFor="let route of data.routeData" [value]="route.id">{{route.id+"|Độ phức tạp : "+route.complexity}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['route']?.errors?.required">field required
+          formControl1.controls['route']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -101,7 +101,7 @@
             <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['driver']?.errors?.required">field required
+          formControl1.controls['driver']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -113,7 +113,7 @@
             <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['driverAsistant']?.errors?.required">field required
+          formControl1.controls['driverAsistant']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -122,10 +122,9 @@
   </div>
 
   <div class="mt-2" mat-dialog-actions>
-    <button mat-raised-button color="primary" [disabled]="!formControl.valid" (click)="edit()"
+    <button mat-raised-button color="primary" [disabled]="!formControl1.valid" (click)="edit()"
             cdkFocusInitial>Yes
     </button>
     <button mat-raised-button mat-dialog-close>No</button>
-
   </div>
 </div>

@@ -187,10 +187,12 @@ export class CoachTurnComponent implements OnInit {
     });
   }
   //edit
-  openEditDialog(data?: CoachTurn) {
+  openEditDialog(data: CoachTurn) {
     this.getDataToAddOrEdit();
     // console.log(this.List);
     // console.log(data)
+    // data.endTime = new Date(data.endTime+'').toString();
+    // console.log(data.endTime)
     const dialogRef = this.dialog.open(EditCoachTurnComponent, {
       data: {
         coachTurn: data,

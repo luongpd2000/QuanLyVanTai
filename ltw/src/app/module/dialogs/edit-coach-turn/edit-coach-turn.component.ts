@@ -1,19 +1,21 @@
-import {Component, Inject, NgModule, OnInit, ViewChild} from '@angular/core';
+import { Component, Inject, NgModule, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoachTurn } from '../../../data/coach-turn';
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from "@angular/material-moment-adapter";
 
 @Component({
   selector: 'app-edit-coach-turn',
   templateUrl: './edit-coach-turn.component.html',
   styleUrls: ['./edit-coach-turn.component.scss'],
+  providers: [
+  ],
 })
 export class EditCoachTurnComponent implements OnInit {
   @ViewChild('picker') picker: any;
 
-  formControl!: FormGroup;
+  // dateEnd : any;
+
+  formControl1!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<EditCoachTurnComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -21,9 +23,10 @@ export class EditCoachTurnComponent implements OnInit {
 
   ngOnInit(): void {
     this.makeForm();
+    // this.dateEnd = new Date(this.data.coachTurn.endTime);
   }
   makeForm(): void {
-    this.formControl = new FormGroup({
+    this.formControl1 = new FormGroup({
       id: new FormControl('', Validators.required),
       passengerAmount: new FormControl('', Validators.required),
       ticketPrice: new FormControl('', Validators.required),
@@ -36,12 +39,26 @@ export class EditCoachTurnComponent implements OnInit {
       driverAsistant: new FormControl('', Validators.required),
     });
   }
+
   edit(): void {
     var editData = new CoachTurn();
-    Object.assign(editData, this.formControl.value);
+    Object.assign(editData, this.formControl1.value);
+
+    editData.endTime = editData.endTime + '';
+    const words = editData.endTime.split(' (');
+    var time = '';
+    var date = new Date(words[0]);
+    var d = words[0].split(' ');
+    time = `${date.getFullYear()}-${
+      date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    }-${date.getDate() < 10 ? `0${date.getDate() + 1}` : date.getDate() + 1}T${
+      d[4]
+    }`;
+    console.log(time);
+    editData.endTime = time;
 
     editData.coach = {
-      id: this.formControl.value.coach,
+      id: this.formControl1.value.coach,
       plate: '',
       model: '',
       manufacturer: '',
@@ -51,7 +68,7 @@ export class EditCoachTurnComponent implements OnInit {
     };
 
     editData.driver = {
-      id: this.formControl.value.driver,
+      id: this.formControl1.value.driver,
       name: '',
       idCard: '',
       drivingLicenseCode: '',
@@ -63,7 +80,7 @@ export class EditCoachTurnComponent implements OnInit {
     };
 
     editData.route = {
-      id: this.formControl.value.route,
+      id: this.formControl1.value.route,
       pointOfDeparture: '',
       destination: '',
       length: 0,
@@ -71,7 +88,7 @@ export class EditCoachTurnComponent implements OnInit {
     };
 
     editData.driverAsistant = {
-      id: this.formControl.value.driverAsistant,
+      id: this.formControl1.value.driverAsistant,
       name: '',
       idCard: '',
       drivingLicenseCode: '',
