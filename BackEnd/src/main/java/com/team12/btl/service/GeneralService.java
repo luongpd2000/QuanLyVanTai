@@ -11,7 +11,7 @@ public interface GeneralService<T>  {
 
     T create(T t);
 
-    T update(T t);
+    T update(T t) throws  Exception;
 
     int delete(Integer id);
 

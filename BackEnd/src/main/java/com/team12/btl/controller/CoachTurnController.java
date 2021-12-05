@@ -39,7 +39,7 @@ public class CoachTurnController {
             return ResponseEntity.ok(coachTurnService.update(coachTurn));
         } else{
             System.out.println("\u001B[31m" + "Driver and Assistant must different && startDate < endDate" +"\u001B[0m");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Driver and Assistant must different && startDate < endDate",HttpStatus.BAD_REQUEST);
         }
     }
 
