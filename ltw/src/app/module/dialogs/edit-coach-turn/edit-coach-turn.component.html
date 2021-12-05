@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 mat-dialog-title>Edit Coach Turn </h1>
+  <h1 mat-dialog-title>Chỉnh sửa chuyến xe</h1>
 
   <div mat-dialog-content>
     <form [formGroup]="formControl1">
@@ -12,7 +12,7 @@
 
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
-          <mat-label>Số hành khách *</mat-label>
+          <mat-label>Số hành khách</mat-label>
           <input matInput type="text" formControlName="passengerAmount" [(ngModel)]="data.coachTurn.passengerAmount"/>
           <mat-error *ngIf="
           formControl1.controls['passengerAmount']?.errors?.required">field required
@@ -22,7 +22,7 @@
 
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
-          <mat-label>Gía vé *</mat-label>
+          <mat-label>Gía vé</mat-label>
           <input matInput type="text" formControlName="ticketPrice" [(ngModel)]="data.coachTurn.ticketPrice"/>
           <mat-error *ngIf="
           formControl1.controls['ticketPrice']?.errors?.required">field required
@@ -31,12 +31,21 @@
       </div>
 
       <div class="mt-2 form">
+<!--        <mat-form-field class="fullWidth" appearance="outline">-->
+<!--          <mat-label>Thời gian bắt đầu *</mat-label>-->
+<!--          <input matInput type="text" formControlName="startTime" [(ngModel)]="data.coachTurn.startTime"/>-->
+<!--          <mat-error *ngIf="-->
+<!--          formControl1.controls['startTime']?.errors?.required">field required-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
         <mat-form-field class="fullWidth" appearance="outline">
-          <mat-label>Thời gian bắt đầu *</mat-label>
-          <input matInput type="text" formControlName="startTime" [(ngModel)]="data.coachTurn.startTime"/>
+          <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date & time" [(ngModel)]="dateStart" formControlName="startTime">
+
+          <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+
+          <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
           <mat-error *ngIf="
-          formControl1.controls['startTime']?.errors?.required">field required
-          </mat-error>
+          formControl1.controls['startTime']?.errors?.required">field required</mat-error>
         </mat-form-field>
       </div>
 
@@ -50,7 +59,7 @@
         </mat-form-field> -->
 
         <mat-form-field class="fullWidth" appearance="outline">
-          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time" [(ngModel)]="data.coachTurn.endTime" formControlName="endTime">
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time" [(ngModel)]="dateEnd" formControlName="endTime">
 
           <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
 
