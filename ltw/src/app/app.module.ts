@@ -25,6 +25,7 @@ import { AddCoachTurnComponent } from './module/dialogs/add-coach-turn/add-coach
 import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-coach-turn.component';
 import { SalaryComponent } from './module/salary/salary.component';
 import { RevenueStatsCoachComponent } from './module/revenue-stats-coach/revenue-stats-coach.component';
+import { ViewStatsComponent } from './module/dialogs/view-stats/view-stats.component';
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -45,7 +46,8 @@ import { RevenueStatsCoachComponent } from './module/revenue-stats-coach/revenue
     AddCoachTurnComponent,
     EditCoachTurnComponent,
     SalaryComponent,
-    RevenueStatsCoachComponent
+    RevenueStatsCoachComponent,
+    ViewStatsComponent
     // AddRouteComponent
   ],
   imports: [
