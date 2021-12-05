@@ -148,7 +148,7 @@ export class RouteComponent implements OnInit {
   openEditDialog(data?: Route) {
     // console.log(data)
     const dialogRef = this.dialog.open(EditRouteComponent, {
-      data: data,
+      data: Object.assign(new Route(),data),
     });
 
     dialogRef.afterClosed().subscribe((result) => {

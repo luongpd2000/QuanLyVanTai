@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Edit Coach Turn </h1>
 
   <div mat-dialog-content>
-    <form [formGroup]="formControl">
+    <form [formGroup]="formControl1">
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>ID</mat-label>
@@ -15,7 +15,7 @@
           <mat-label>Số hành khách *</mat-label>
           <input matInput type="text" formControlName="passengerAmount" [(ngModel)]="data.coachTurn.passengerAmount"/>
           <mat-error *ngIf="
-          formControl.controls['passengerAmount']?.errors?.required">field required
+          formControl1.controls['passengerAmount']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -25,29 +25,17 @@
           <mat-label>Gía vé *</mat-label>
           <input matInput type="text" formControlName="ticketPrice" [(ngModel)]="data.coachTurn.ticketPrice"/>
           <mat-error *ngIf="
-          formControl.controls['ticketPrice']?.errors?.required">field required
+          formControl1.controls['ticketPrice']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="mt-2 form">
-<!--        <mat-form-field class="fullWidth" appearance="outline">-->
-<!--          <mat-label>Thời gian bắt đầu *</mat-label>-->
-<!--          <input matInput type="text" formControlName="startTime" [(ngModel)]="data.coachTurn.startTime"/>-->
-<!--          <mat-error *ngIf="-->
-<!--          formControl.controls['startTime']?.errors?.required">field required-->
-<!--          </mat-error>-->
-<!--        </mat-form-field>-->
-
         <mat-form-field class="fullWidth" appearance="outline">
-          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time"
-                 [(ngModel)]="data.coachTurn.startTime" formControlName="startTime">
-
-          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-
-          <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          <mat-label>Thời gian bắt đầu *</mat-label>
+          <input matInput type="text" formControlName="startTime" [(ngModel)]="data.coachTurn.startTime"/>
           <mat-error *ngIf="
-          formControl.controls['startTime']?.errors?.required">field required
+          formControl1.controls['startTime']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -57,42 +45,39 @@
           <mat-label>Thời gian kết thúc *</mat-label>
           <input matInput type="text" formControlName="endTime" [(ngModel)]="data.coachTurn.endTime"/>
           <mat-error *ngIf="
-          formControl.controls['endTime']?.errors?.required">field required
+          formControl1.controls['endTime']?.errors?.required">field required
           </mat-error>
         </mat-form-field> -->
 
         <mat-form-field class="fullWidth" appearance="outline">
-          <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date & time"
-                 [(ngModel)]="data.coachTurn.endTime" formControlName="endTime">
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time" [(ngModel)]="data.coachTurn.endTime" formControlName="endTime">
 
-          <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
 
-          <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+          <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
           <mat-error *ngIf="
-          formControl.controls['endTime']?.errors?.required">field required
-          </mat-error>
-        </mat-form-field>
+          formControl1.controls['endTime']?.errors?.required">field required</mat-error>
+      </mat-form-field>
       </div>
 
-      <!--      <div class="mt-2 form">-->
-      <!--        <mat-form-field class="fullWidth" appearance="outline">-->
-      <!--          <mat-label>Hệ số lương *</mat-label>-->
-      <!--          <input matInput type="text" formControlName="gradeSalary" [(ngModel)]="data.coachTurn.gradeSalary" readonly/>-->
-      <!--          <mat-error *ngIf="-->
-      <!--          formControl.controls['gradeSalary']?.errors?.required">field required-->
-      <!--          </mat-error>-->
-      <!--        </mat-form-field>-->
-      <!--      </div>-->
+<!--      <div class="mt-2 form">-->
+<!--        <mat-form-field class="fullWidth" appearance="outline">-->
+<!--          <mat-label>Hệ số lương *</mat-label>-->
+<!--          <input matInput type="text" formControlName="gradeSalary" [(ngModel)]="data.coachTurn.gradeSalary" readonly/>-->
+<!--          <mat-error *ngIf="-->
+<!--          formControl1.controls['gradeSalary']?.errors?.required">field required-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
 
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Xe khách</mat-label>
           <mat-select formControlName='coach' [(ngModel)]="data.coachTurn.coach.id">
-            <mat-option *ngFor="let coach of data.coachData"
-                        [value]="coach.id">{{coach.id + " |Biển: " + coach.plate}}</mat-option>
+            <mat-option *ngFor="let coach of data.coachData" [value]="coach.id">{{coach.id+" |Biển: "+coach.plate}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['coach']?.errors?.required">field required
+          formControl1.controls['coach']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -101,11 +86,10 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Tuyến xe</mat-label>
           <mat-select formControlName='route' [(ngModel)]="data.coachTurn.route.id">
-            <mat-option *ngFor="let route of data.routeData"
-                        [value]="route.id">{{route.id + "|Độ phức tạp : " + route.complexity}}</mat-option>
+            <mat-option *ngFor="let route of data.routeData" [value]="route.id">{{route.id+"|Độ phức tạp : "+route.complexity}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['route']?.errors?.required">field required
+          formControl1.controls['route']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -114,11 +98,10 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Lái xe</mat-label>
           <mat-select formControlName='driver' [(ngModel)]="data.coachTurn.driver.id">
-            <mat-option *ngFor="let driver of data.driverData"
-                        [value]="driver.id">{{driver.id + "|Tên: " + driver.name + "|Thâm niên: " + driver.experience}}</mat-option>
+            <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['driver']?.errors?.required">field required
+          formControl1.controls['driver']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -127,11 +110,10 @@
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Phụ xe</mat-label>
           <mat-select formControlName='driverAsistant' [(ngModel)]="data.coachTurn.driverAsistant.id">
-            <mat-option *ngFor="let driver of data.driverData"
-                        [value]="driver.id">{{driver.id + "|Tên: " + driver.name + "|Thâm niên: " + driver.experience}}</mat-option>
+            <mat-option *ngFor="let driver of data.driverData" [value]="driver.id">{{driver.id+"|Tên: "+driver.name+"|Thâm niên: "+driver.experience}}</mat-option>
           </mat-select>
           <mat-error *ngIf="
-          formControl.controls['driverAsistant']?.errors?.required">field required
+          formControl1.controls['driverAsistant']?.errors?.required">field required
           </mat-error>
         </mat-form-field>
       </div>
@@ -140,10 +122,9 @@
   </div>
 
   <div class="mt-2" mat-dialog-actions>
-    <button mat-raised-button color="primary" [disabled]="!formControl.valid" (click)="edit()"
+    <button mat-raised-button color="primary" [disabled]="!formControl1.valid" (click)="edit()"
             cdkFocusInitial>Yes
     </button>
     <button mat-raised-button mat-dialog-close>No</button>
-
   </div>
 </div>

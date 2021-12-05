@@ -26,4 +26,22 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
             "and upper(r.id) like concat('%',upper(?4),'%')",nativeQuery = true)
     List<CoachTurn> searchCoachTurn(String ticketPriceMin, String driverName, String coachPlate, String routeId);
 
+//    SELECT
+//    c.*,
+//    SUM( ct.passenger_amount * ct.ticket_price ) revenue
+//    FROM
+//    coach c,
+//    coach_turn ct
+//    WHERE
+//    c.id = ct.coach_id AND c.is_active = 1 AND ct.is_active = 1
+//    GROUP BY
+//    c.id
+//
+//
+//    SELECT ct.*
+//    FROM
+//    coach_turn ct
+//    WHERE ct.is_active = 1	AND ct.start_time >= '2021-12-03 16:20:42'
+//    AND ct.end_time <= '2021-12-20 15:20:43'
+
 }
