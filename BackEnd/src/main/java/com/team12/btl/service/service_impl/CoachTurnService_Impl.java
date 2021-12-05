@@ -7,6 +7,7 @@ import com.team12.btl.repository.CoachTurnRepository;
 import com.team12.btl.repository.ComplexityRepository;
 import com.team12.btl.repository.RouteRepository;
 import com.team12.btl.service.GeneralService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,13 +44,21 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
         return coachTurnRepository.save(coachTurn);
     }
 
+
     @Override
     public CoachTurn update(CoachTurn coachTurn) {
-        Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
-        Complexity complexity = complexityRepository.getById(route.getComplexity());
-        coachTurn.setGradeSalary(complexity.getGradeSalary());
-        coachTurn.setActive(true);
-        return coachTurnRepository.save(coachTurn);
+        if(coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
+        coachTurn.getStartTime().isBefore(coachTurn.getEndTime())){
+            Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
+            Complexity complexity = complexityRepository.getById(route.getComplexity());
+            coachTurn.setGradeSalary(complexity.getGradeSalary());
+            coachTurn.setActive(true);
+            return coachTurnRepository.save(coachTurn);
+        }else{
+            //thong bao j do
+            return  null;
+        }
+
     }
 
     @Override
