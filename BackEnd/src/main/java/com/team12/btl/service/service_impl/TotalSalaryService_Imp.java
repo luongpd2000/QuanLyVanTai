@@ -23,4 +23,8 @@ public class TotalSalaryService_Imp {
     public List<TotalSalary> findTotalSalaryByMonthAndYear(Integer month, Integer year){
        return totalSalaryRepository.findTotalSalaryByMonthAndYear(month,year);
     }
+
+    public List<TotalSalary> getCurrentMonthSalary(Integer month, Integer year){
+        return totalSalaryRepository.getCurrentMonthSalary(month, year);
+    }
 }
