@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -24,7 +25,7 @@ public class TotalSalaryService_Imp {
        return totalSalaryRepository.findTotalSalaryByMonthAndYear(month,year);
     }
 
-    public List<TotalSalary> getCurrentMonthSalary(Integer month, Integer year){
+    public List<Map> getCurrentMonthSalary(Integer month, Integer year){
         return totalSalaryRepository.getCurrentMonthSalary(month, year);
     }
 }

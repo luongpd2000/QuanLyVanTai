@@ -32,7 +32,7 @@ export class SalaryService {
 
   getCurrentMonthSalary(month:number, year:number){
     const totalSalaryUrl = `${this.baseUrl}/currentMonthSalary/${month}/${year}`;
-    return this.httpClient.get<TotalSalary[]>(totalSalaryUrl,this.httpOptions);
+    return this.httpClient.get<any[]>(totalSalaryUrl,this.httpOptions);
   }
 
 
