@@ -27,8 +27,8 @@ public class TotalSalaryController {
         return ResponseEntity.ok(totalSalaryService.getCurrentMonthSalary(month, year));
 
     }
-    @PostMapping("/create")
+    @PostMapping("/saveToDB")
     public ResponseEntity<?> createMonthTotalSalary(@RequestBody List<TotalSalary> totalSalary) {
-        return ResponseEntity.ok(totalSalaryService.create(totalSalary));
+        return ResponseEntity.ok(totalSalaryService.saveToDB(totalSalary));
     }
 }

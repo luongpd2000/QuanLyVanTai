@@ -18,7 +18,7 @@ public class TotalSalaryService_Imp {
     TotalSalaryRepository totalSalaryRepository;
 
 
-    public List<TotalSalary> create(List<TotalSalary> totalSalary) {
+    public List<TotalSalary> saveToDB(List<TotalSalary> totalSalary) {
         return totalSalaryRepository.saveAll(totalSalary);
     }
     public List<TotalSalary> findTotalSalaryByMonthAndYear(Integer month, Integer year){
