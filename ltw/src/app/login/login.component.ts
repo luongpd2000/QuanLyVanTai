@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.authService.getJwtToken(account).subscribe(
       data =>{
       console.log(data);
-      this._cookieService.set("Authorization",data.token)
+      this._cookieService.set("Authorization",data.token,1);
       // this.router.navigate(["/route"]);
       location.replace("/home");
     }, error =>{
