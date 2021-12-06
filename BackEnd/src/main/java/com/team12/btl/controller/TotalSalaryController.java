@@ -12,7 +12,6 @@ public class TotalSalaryController {
     TotalSalaryService_Imp totalSalaryService;
 
     @GetMapping("/search/{month}/{year}")
-    @ResponseBody
     public ResponseEntity<?> findTotalSalaryByMonthAndYear(@PathVariable Integer month, @PathVariable Integer year){
 //        String[] s = date.split("/");
         return ResponseEntity.ok(totalSalaryService.findTotalSalaryByMonthAndYear(month, year));
