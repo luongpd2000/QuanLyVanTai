@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Route } from 'src/app/data/route';
+import { CoachTurnService } from 'src/app/service/coach-turn.service';
 import { RouteService } from 'src/app/service/route.service';
 import { ViewStatsComponent } from '../dialogs/view-stats/view-stats.component';
 
@@ -17,50 +18,44 @@ export class RevenueStatsCoachComponent implements OnInit {
 
   formSearch!: FormGroup;
 
-  routeList: Route[] = [];
+  dataList: any[] = [];
 
+  dataSearch: any;
 
   displayedColumns: string[] = [
     'no',
     'id',
-    'pointOfDeparture',
-    'destination',
-    'length',
-    'complexityId',
+    'plate',
+    'model',
+    'manufacturer',
+    'capacity',
+    'years_of_use',
+    'last_maintenance_day',
+    'revenue',
     'action',
   ];
-  dataSource = new MatTableDataSource<Route>();
+  dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  constructor(private routeService: RouteService,
+  constructor(private coachTurnService: CoachTurnService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAll();
     this.makeSearchForm();
   }
 
   makeSearchForm() {
     this.formSearch = new FormGroup({
-      startTime: new FormControl(''),
-      endTime: new FormControl('')
+      startTime: new FormControl('',Validators.required),
+      endTime: new FormControl('',Validators.required)
     });
   }
 
-  getAll(): void {
-    this.routeService.getAll().subscribe((data) => {
-      console.log(data);
-      this.routeList = data;
-      console.log(this.routeList);
-      this.dataSource = new MatTableDataSource<Route>(this.routeList);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
 
   onSearch(){
     var st = this.formSearch.controls['startTime'].value;
@@ -72,10 +67,27 @@ export class RevenueStatsCoachComponent implements OnInit {
     st = this.formatTime(st);
     et = this.formatTime(et);
 
-    if(dateSt<=dateEt){
-      this.openSnackBar(`Check thời gian đúng ${st} và ${et}`);
+    this.dataSearch = {
+      startTime: st,
+      endTime: et
+    }
+
+    if(dateSt<dateEt){
+      // this.openSnackBar(`Check thời gian đúng ${st} và ${et}`);
+      this.coachTurnService.getRevenueCoachByTime(this.dataSearch).subscribe(
+        data =>{
+          console.log(data);
+          this.dataList = data;
+          console.log(this.dataList);
+          this.dataSource = new MatTableDataSource<any>(this.dataList);
+          this.dataSource.paginator = this.paginator;
+        },
+        error=>{
+          this.openSnackBar('Thống kê thất bại');
+        }
+      )
     }else{
-      this.openSnackBar(`False ${st} và ${et}`);
+      this.openSnackBar(`Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc`);
     }
   }
 
@@ -87,7 +99,7 @@ export class RevenueStatsCoachComponent implements OnInit {
     var d = words[0].split(' ');
     time = `${date.getFullYear()}-${
       date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-    }-${date.getDate() < 10 ? `0${date.getDate() + 1}` : date.getDate() + 1} ${
+    }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()} ${
       d[4]
     }`;
     return time;
@@ -101,7 +113,21 @@ export class RevenueStatsCoachComponent implements OnInit {
   }
 
   openView(id: any){
-    const dialogRef = this.dialog.open(ViewStatsComponent, {});
+    var viewSearch={
+      id: id,
+      startTime: this.dataSearch.startTime,
+      endTime: this.dataSearch.endTime
+    }
+    this.coachTurnService.getListCoachTurnByIdCoachAndTime(viewSearch).subscribe(
+      data =>{
+        const dialogRef = this.dialog.open(ViewStatsComponent, {
+          data: data
+        });
+      },
+      error=>{
+
+      }
+    )
   }
 
 }

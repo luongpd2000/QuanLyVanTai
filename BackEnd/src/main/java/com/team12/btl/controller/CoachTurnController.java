@@ -52,12 +52,14 @@ public class CoachTurnController {
     public ResponseEntity<?> search(@RequestParam Map<String,String> param){
         return ResponseEntity.ok(coachTurnService.searchCoachTurn(param));
     }
-    @GetMapping("/getListCoachTurnByIdCoach")
-    public ResponseEntity<?> getListCoachTurnByIdCoach(@RequestParam Map<String,String> param){
-        return ResponseEntity.ok(coachTurnService.getListCoachTurnByIdCoach(param));
+
+    @GetMapping("/getListCoachTurnByIdCoachAndTime")
+    public ResponseEntity<?> getListCoachTurnByIdCoachAndTime(@RequestParam Map<String,String> param){
+        return ResponseEntity.ok(coachTurnService.getListCoachTurnByIdCoachAndTime(param));
     }
-    @GetMapping("/getRevenueGroupByCoachID")
-    public ResponseEntity<?> getRevenueGroupByCoachID(@RequestParam Map<String,String> param){
-        return ResponseEntity.ok(coachTurnService.getRevenueGroupByCoachID(param));
+
+    @GetMapping("/getRevenueCoachByTime")
+    public ResponseEntity<?> getRevenueCoachByTime(@RequestParam Map<String,String> param){
+        return ResponseEntity.ok(coachTurnService.getRevenueCoachByTime(param));
     }
 }

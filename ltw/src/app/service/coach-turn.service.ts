@@ -59,4 +59,17 @@ export class CoachTurnService {
     const coachTurnUrl = `${this.baseUrl}/update`;
     return this.httpClient.put<CoachTurn>(coachTurnUrl,coachTurn,this.httpOptions);
   }
+
+  getRevenueCoachByTime(param: any){
+    const params: RequestParam[] = ParamUtil.toRequestParams(param);
+    const coachTurnUrl = ApiUrlUtil.buildQueryString(this.baseUrl+ '/getRevenueCoachByTime', params);
+    return this.httpClient.get<any[]>(coachTurnUrl,this.httpOptions);
+  }
+
+  getListCoachTurnByIdCoachAndTime(param: any){
+    const params: RequestParam[] = ParamUtil.toRequestParams(param);
+    const coachTurnUrl = ApiUrlUtil.buildQueryString(this.baseUrl+ '/getListCoachTurnByIdCoachAndTime', params);
+    return this.httpClient.get<CoachTurn[]>(coachTurnUrl,this.httpOptions);
+  }
+
 }
