@@ -90,6 +90,7 @@ export class DriverComponent implements OnInit {
       }
     )
   }
+
   all() {
     this.getAll();
     this.makeSearchForm();
@@ -171,7 +172,7 @@ export class DriverComponent implements OnInit {
     // console.log(data)
     const dialogRef = this.dialog.open(EditDriverComponent, {
       data: {
-        driver: data,
+        driver: Object.assign(new Driver(),data),
         fixedSalaryList : this.fixedSalaryList
       }
     });

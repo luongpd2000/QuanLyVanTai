@@ -20,7 +20,7 @@ export class SalaryService {
     headers: new HttpHeaders(
       {
         'Content-Type': 'application/json',
-        'Authotization': this._cookieService.get('Authorization')
+        'Authorization': this._cookieService.get('Authorization')
       }
     )
   };
