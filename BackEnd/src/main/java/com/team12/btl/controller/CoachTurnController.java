@@ -52,4 +52,12 @@ public class CoachTurnController {
     public ResponseEntity<?> search(@RequestParam Map<String,String> param){
         return ResponseEntity.ok(coachTurnService.searchCoachTurn(param));
     }
+    @GetMapping("/getListCoachTurnByIdCoach")
+    public ResponseEntity<?> getListCoachTurnByIdCoach(@RequestParam Map<String,String> param){
+        return ResponseEntity.ok(coachTurnService.getListCoachTurnByIdCoach(param));
+    }
+    @GetMapping("/getRevenueGroupByCoachID")
+    public ResponseEntity<?> getRevenueGroupByCoachID(@RequestParam Map<String,String> param){
+        return ResponseEntity.ok(coachTurnService.getRevenueGroupByCoachID(param));
+    }
 }
