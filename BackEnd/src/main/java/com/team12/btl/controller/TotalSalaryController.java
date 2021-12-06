@@ -17,4 +17,10 @@ public class TotalSalaryController {
 //        String[] s = date.split("/");
         return ResponseEntity.ok(totalSalaryService.findTotalSalaryByMonthAndYear(month, year));
     }
+
+    @GetMapping("/currentMonthSalary/{month}/{year}")
+    @ResponseBody
+    public ResponseEntity<?> getCurrentMonthSalary(@PathVariable Integer month, @PathVariable Integer year){
+        return ResponseEntity.ok(totalSalaryService.getCurrentMonthSalary(month, year));
+    }
 }
