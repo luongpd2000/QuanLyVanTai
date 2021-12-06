@@ -14,6 +14,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -47,6 +50,7 @@ public class JwtAuthenticationController {
 
 
     private void authenticate(String username, String password) throws Exception {
+
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
