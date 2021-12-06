@@ -12,7 +12,7 @@ public interface TotalSalaryRepository extends JpaRepository<TotalSalary, Intege
 
     List<TotalSalary> findTotalSalaryByMonthAndYear(Integer month, Integer year);
 
-    @Query(value = "call ltw.currentMonthSalary(?1, ?2);", nativeQuery = true)
+    @Query(value = "call btlltw.currentMonthSalary(?1, ?2);", nativeQuery = true)
     List<TotalSalary> getCurrentMonthSalary(Integer month, Integer year);
 
 }
