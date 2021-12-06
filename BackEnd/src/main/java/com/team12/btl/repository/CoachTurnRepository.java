@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, JpaSpecificationExecutor<CoachTurn> {
     List<CoachTurn> findCoachTurnByActiveIsTrue();
@@ -25,7 +26,17 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
             "and upper(c.plate) like concat('%',upper(?3),'%') " +
             "and upper(r.id) like concat('%',upper(?4),'%')",nativeQuery = true)
     List<CoachTurn> searchCoachTurn(String ticketPriceMin, String driverName, String coachPlate, String routeId);
-
+    @Query(value = " select c.*, SUM( ct.passenger_amount * ct.ticket_price ) as revenue from coach c, coach_turn ct "+
+            "where c.id = ct.coach_id and c.is_active = true and ct.is_active = true "+
+            "and ct.start_time >= ?1 "+
+            "and ct.end_time <= ?2 " + "group by c.id",nativeQuery = true)
+    List<Map> getRevenueGroupByCoachID(String startTime, String endTime);
+    @Query(value = "select ct.* from coach_turn ct, coach c "+
+           "WHERE ct.is_active = 1 "+
+           "and c.id = ?1 "+
+           "and ct.start_time >= ?2 "+
+           "and ct.end_time <= ?3", nativeQuery = true)
+    List<CoachTurn> getListCoachTurnByIdCoach(String Id, String startTime, String endTime);
 //    SELECT
 //    c.*,
 //    SUM( ct.passenger_amount * ct.ticket_price ) revenue

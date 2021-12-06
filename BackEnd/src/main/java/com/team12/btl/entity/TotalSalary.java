@@ -26,7 +26,9 @@ public class TotalSalary implements Serializable {
     @Column(name = "year", nullable = false)
     private Integer year;
 
-    @Column(name = "driver_id")
-    private Integer driverId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "driver_id",referencedColumnName = "id")
+    private Driver driver;
 
 }

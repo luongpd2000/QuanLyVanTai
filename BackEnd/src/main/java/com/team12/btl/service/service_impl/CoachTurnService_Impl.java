@@ -75,4 +75,10 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
                 );
     }
 
+    public List<CoachTurn> getListCoachTurnByIdCoach(Map<String,String> map){
+        return coachTurnRepository.getListCoachTurnByIdCoach(map.get("id"), map.get("startTime"),map.get("endTime"));
+    }
+    public List<Map> getRevenueGroupByCoachID(Map<String, String> map) {
+        return coachTurnRepository.getRevenueGroupByCoachID(map.get("startTime"),map.get("endTime"));
+    }
 }

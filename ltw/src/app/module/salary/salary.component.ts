@@ -7,6 +7,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import * as _moment from 'moment';
 import { Route } from 'src/app/data/route';
+import {TotalSalary} from "../../data/total-salary";
+import {SalaryService} from "../../service/salary.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 // import {default as _rollupMoment} from 'moment';
 // import moment = require('moment');
 type Moment = moment.Moment;
@@ -42,26 +45,31 @@ export const MY_FORMATS = {
 })
 export class SalaryComponent implements OnInit {
 
+  totalSalaryList: TotalSalary[] = [];
+
   yearSearch: number =0;
   monthSearch: number =0;
 
   date = new FormControl(moment());
   displayedColumns: string[] = [
     'no',
-    'id',
-    'pointOfDeparture',
-    'destination',
-    'length',
-    'complexityId'
+    'driverId',
+    'driverName',
+    'month',
+    'year',
+    'total',
   ];
-  dataSource = new MatTableDataSource<Route>();
+  dataSource = new MatTableDataSource<TotalSalary>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  constructor() { }
+  constructor(
+    private salaryService: SalaryService,
+    private _snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -83,10 +91,35 @@ export class SalaryComponent implements OnInit {
 
   onSearch(){
     console.log("search: " + this.monthSearch +" " + this.yearSearch)
+
+    this.salaryService.findTotalSalaryByMonthAndYear(this.monthSearch,this.yearSearch).subscribe((data)=>{
+      console.log(data);
+      this.totalSalaryList = data;
+      console.log("totalSalaryList:"+this.totalSalaryList);
+      this.dataSource = new MatTableDataSource<TotalSalary>(this.totalSalaryList);
+      this.openSnackBar('Tìm kiếm thành công');
+    })
+  }
+  //thong bao tim kiem thanh cong
+  openSnackBar(content: any) {
+    this._snackBar.open(content, 'OK', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 
   viewSalaryCurrent(){
-
+    const date = new Date();
+    var month = date.getMonth()+1;
+    var year = date.getFullYear();
+    console.log("view: " + month +" " + year)
+    this.salaryService.getCurrentMonthSalary(month,year).subscribe((data)=>{
+      console.log(data)
+      this.totalSalaryList = data;
+      console.log("totalSalaryList:"+this.totalSalaryList);
+      this.dataSource = new MatTableDataSource<TotalSalary>(this.totalSalaryList);
+      this.openSnackBar('Xem thành công');
+    })
   }
 
   addDatabase(){}
