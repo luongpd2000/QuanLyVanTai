@@ -109,11 +109,7 @@ export class SalaryComponent implements OnInit {
   }
 
   viewSalaryCurrent(){
-    const date = new Date();
-    var month = date.getMonth()+1;
-    var year = date.getFullYear();
-    console.log("view: " + month +" " + year)
-    this.salaryService.getCurrentMonthSalary(month,year).subscribe((data)=>{
+    this.salaryService.getCurrentMonthSalary().subscribe((data)=>{
       console.log(data)
       this.totalSalaryList = data;
       console.log("totalSalaryList:"+this.totalSalaryList);

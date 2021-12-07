@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,8 @@ public class TotalSalaryService_Imp {
        return totalSalaryRepository.findTotalSalaryByMonthAndYear(month,year);
     }
 
-    public List<Map> getCurrentMonthSalary(Integer month, Integer year){
-        return totalSalaryRepository.getCurrentMonthSalary(month, year);
+    public List<Map> getCurrentMonthSalary(){
+        LocalDate now = LocalDate.now();
+        return totalSalaryRepository.getCurrentMonthSalary(now.getMonthValue(), now.getYear());
     }
 }

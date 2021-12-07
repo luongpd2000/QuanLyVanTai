@@ -20,10 +20,10 @@ public class TotalSalaryController {
         return ResponseEntity.ok(totalSalaryService.findTotalSalaryByMonthAndYear(month, year));
     }
 
-    @GetMapping("/currentMonthSalary/{month}/{year}")
+    @GetMapping("/currentMonthSalary")
     @ResponseBody
-    public ResponseEntity<?> getCurrentMonthSalary(@PathVariable Integer month, @PathVariable Integer year){
-        return ResponseEntity.ok(totalSalaryService.getCurrentMonthSalary(month, year));
+    public ResponseEntity<?> getCurrentMonthSalary(){
+        return ResponseEntity.ok(totalSalaryService.getCurrentMonthSalary());
 
     }
     @PostMapping("/saveToDB")
