@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 mat-dialog-title>Edit Person</h1>
+    <h1 mat-dialog-title>Thêm tài xế</h1>
 
     <div mat-dialog-content>
         <form [formGroup]="formControl">
@@ -74,7 +74,7 @@
                 <mat-form-field class="fullWidth" appearance="outline">
                     <mat-label>Bậc lương</mat-label>
                     <mat-select formControlName='fixedSalary'>
-                      <mat-option *ngFor="let e of data" [value]="e.id">Mã {{e.id}} bậc lương {{e.grade}}</mat-option>
+                        <mat-option *ngFor="let e of data" [value]="e.id">Mã {{e.id}} bậc lương {{e.grade}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="
           formControl.controls['fixedSalary']?.errors?.required">field required</mat-error>
