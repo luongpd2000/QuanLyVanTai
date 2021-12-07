@@ -45,7 +45,7 @@ export const MY_FORMATS = {
 })
 export class SalaryComponent implements OnInit {
 
-  totalSalaryList: TotalSalary[] = [];
+  totalSalaryList: any[] = [];
 
   yearSearch: number =0;
   monthSearch: number =0;
@@ -117,7 +117,7 @@ export class SalaryComponent implements OnInit {
       console.log(data)
       this.totalSalaryList = data;
       console.log("totalSalaryList:"+this.totalSalaryList);
-      this.dataSource = new MatTableDataSource<TotalSalary>(this.totalSalaryList);
+      this.dataSource = new MatTableDataSource<any>(this.totalSalaryList);
       this.openSnackBar('Xem thành công');
     })
   }

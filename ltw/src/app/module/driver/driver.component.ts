@@ -90,6 +90,7 @@ export class DriverComponent implements OnInit {
       }
     )
   }
+
   all() {
     this.getAll();
     this.makeSearchForm();

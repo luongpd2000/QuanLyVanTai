@@ -20,7 +20,7 @@ export class SalaryService {
     headers: new HttpHeaders(
       {
         'Content-Type': 'application/json',
-        'Authotization': this._cookieService.get('Authorization')
+        'Authorization': this._cookieService.get('Authorization')
       }
     )
   };
@@ -32,7 +32,7 @@ export class SalaryService {
 
   getCurrentMonthSalary(month:number, year:number){
     const totalSalaryUrl = `${this.baseUrl}/currentMonthSalary/${month}/${year}`;
-    return this.httpClient.get<TotalSalary[]>(totalSalaryUrl,this.httpOptions);
+    return this.httpClient.get<any[]>(totalSalaryUrl,this.httpOptions);
   }
 
 
