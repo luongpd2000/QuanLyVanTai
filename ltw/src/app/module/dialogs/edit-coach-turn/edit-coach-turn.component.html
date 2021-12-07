@@ -6,14 +6,14 @@
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>ID</mat-label>
-          <input matInput type="text" formControlName="id" [(ngModel)]="data.coachTurn.id" readonly>
+          <input matInput type="number" formControlName="id" [(ngModel)]="data.coachTurn.id" readonly>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Số hành khách</mat-label>
-          <input matInput type="text" formControlName="passengerAmount" [(ngModel)]="data.coachTurn.passengerAmount"/>
+          <input matInput type="number" formControlName="passengerAmount" [(ngModel)]="data.coachTurn.passengerAmount"/>
           <mat-error *ngIf="
           formControl1.controls['passengerAmount']?.errors?.required">field required
           </mat-error>
@@ -23,7 +23,7 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Gía vé</mat-label>
-          <input matInput type="text" formControlName="ticketPrice" [(ngModel)]="data.coachTurn.ticketPrice"/>
+          <input matInput type="number" formControlName="ticketPrice" [(ngModel)]="data.coachTurn.ticketPrice"/>
           <mat-error *ngIf="
           formControl1.controls['ticketPrice']?.errors?.required">field required
           </mat-error>

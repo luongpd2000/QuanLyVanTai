@@ -17,8 +17,7 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
     CoachTurn findCoachTurnByIdAndActiveIsTrue(Integer Id);
 
     @Modifying
-    @Query(value = "UPDATE coach_turn SET is_active = 0 WHERE Id = ?1", nativeQuery = true)
-    int deleteCoachTurn(Integer Id);
+    int deleteCoachTurnById(Integer Id);
 
 
     @Query(value = "select ct.* from coach_turn ct, driver d, coach c, route r " +

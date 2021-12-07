@@ -23,7 +23,6 @@ public class TotalSalaryController {
     @GetMapping("/currentMonthSalary/{month}/{year}")
     @ResponseBody
     public ResponseEntity<?> getCurrentMonthSalary(@PathVariable Integer month, @PathVariable Integer year){
-        System.out.println("sthg");
         return ResponseEntity.ok(totalSalaryService.getCurrentMonthSalary(month, year));
 
     }

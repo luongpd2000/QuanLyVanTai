@@ -153,7 +153,8 @@ export class CoachTurnComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar('Xóa thất bại');
+            //this.openSnackBar('Xóa thất bại');
+            this.openSnackBar(error.error.status);
           }
         );
       }
@@ -179,7 +180,7 @@ export class CoachTurnComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar('Thêm thất bại');
+            this.openSnackBar(error.error.status);
             // this.getAll();
           }
         );
@@ -195,7 +196,7 @@ export class CoachTurnComponent implements OnInit {
     // console.log(data.endTime)
     const dialogRef = this.dialog.open(EditCoachTurnComponent, {
       data: {
-        coachTurn: data,
+        coachTurn: Object.assign(new CoachTurn(),data),
         routeData: this.routeList,
         coachData: this.coachList,
         driverData: this.driverList,
@@ -211,7 +212,9 @@ export class CoachTurnComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar('Cập nhật thất bại');
+            // this.openSnackBar('Cập nhật thất bại');
+            console.log(error);
+            this.openSnackBar(error.error.status);
             this.getAll();
           }
         );

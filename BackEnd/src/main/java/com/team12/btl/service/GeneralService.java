@@ -9,10 +9,10 @@ public interface GeneralService<T>  {
 
     T findById(Integer id);
 
-    T create(T t);
+    T create(T t) throws Exception;
 
     T update(T t) throws  Exception;
 
-    int delete(Integer id);
+    int delete(Integer id) throws Exception;
 
 }

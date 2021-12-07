@@ -13,7 +13,7 @@
       <div class="form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Số hành khách</mat-label>
-          <input matInput type="text" formControlName="passengerAmount"/>
+          <input matInput type="number" formControlName="passengerAmount"/>
           <mat-error *ngIf="
           formControl.controls['passengerAmount']?.errors?.required">field required
           </mat-error>
@@ -23,7 +23,7 @@
       <div class="mt-2 form">
         <mat-form-field class="fullWidth" appearance="outline">
           <mat-label>Gía vé</mat-label>
-          <input matInput type="text" formControlName="ticketPrice"/>
+          <input matInput type="number" formControlName="ticketPrice"/>
           <mat-error *ngIf="
           formControl.controls['ticketPrice']?.errors?.required">field required
           </mat-error>
