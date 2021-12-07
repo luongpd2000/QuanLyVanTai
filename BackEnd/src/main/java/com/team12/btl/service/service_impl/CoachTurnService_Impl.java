@@ -43,83 +43,82 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
     }
 
     @Override
-    public CoachTurn create(CoachTurn coachTurn) throws Exception{
+    public CoachTurn create(CoachTurn coachTurn) throws Exception {
         Coach coach = coachRepository.getById(coachTurn.getCoach().getId());
-        if(coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
+        if (coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
                 coachTurn.getStartTime().isBefore(coachTurn.getEndTime()) &&
-                coachTurn.getPassengerAmount() < coach.getCapacity() - 2 ){
+                coachTurn.getPassengerAmount() < coach.getCapacity() - 2) {
             Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
             Complexity complexity = complexityRepository.getById(route.getComplexity());
             coachTurn.setGradeSalary(complexity.getGradeSalary());
             coachTurn.setActive(true);
             return coachTurnRepository.save(coachTurn);
-        }else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()){
+        } else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()) {
             throw new Exception("Tài xế và phụ xe không thể là cùng 1 người");
-        }else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())){
+        } else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
             throw new Exception("Thời gian bắt đầu phải trước thời gian kết thúc");
-        }else{
+        } else {
             throw new Exception("Số hành khách phải nhỏ hơn số ghế trừ 2");
         }
     }
 
 
     @Override
-    public CoachTurn update(CoachTurn coachTurn) throws Exception{
+    public CoachTurn update(CoachTurn coachTurn) throws Exception {
         LocalDateTime now = LocalDate.now().atStartOfDay();
         LocalDateTime first = now.with(TemporalAdjusters.firstDayOfMonth());
         LocalDateTime last = now.with(TemporalAdjusters.lastDayOfMonth());
-        if(coachTurn.getEndTime().isAfter(first.minusDays(1)) && coachTurn.getEndTime().isBefore(last.plusDays(1))){
+        if (coachTurn.getEndTime().isAfter(first.minusDays(1)) && coachTurn.getEndTime().isBefore(last.plusDays(1))) {
             Coach coach = coachRepository.getById(coachTurn.getCoach().getId());
-            if(coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
+            if (coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
                     coachTurn.getStartTime().isBefore(coachTurn.getEndTime()) &&
-                    coachTurn.getPassengerAmount() < coach.getCapacity() - 2 ){
+                    coachTurn.getPassengerAmount() < coach.getCapacity() - 2) {
                 Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
                 Complexity complexity = complexityRepository.getById(route.getComplexity());
                 coachTurn.setGradeSalary(complexity.getGradeSalary());
                 coachTurn.setActive(true);
                 return coachTurnRepository.save(coachTurn);
-            }else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()){
+            } else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()) {
                 throw new Exception("Tài xế và phụ xe không thể là cùng 1 người");
-            }else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())){
+            } else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
                 throw new Exception("Thời gian bắt đầu phải trước thời gian kết thúc");
-            }else{
+            } else {
                 throw new Exception("Số hành khách phải nhỏ hơn số ghế trừ 2");
             }
-
-        }else{
+        } else {
             throw new Exception("Chỉ được chỉnh sửa chuyến xe trong tháng");
         }
     }
 
     @Override
-    public int delete(Integer id) throws Exception{
+    public int delete(Integer id) throws Exception {
         CoachTurn coachTurn = coachTurnRepository.getById(id);
         LocalDateTime now = LocalDate.now().atStartOfDay();
         LocalDateTime first = now.with(TemporalAdjusters.firstDayOfMonth());
         LocalDateTime last = now.with(TemporalAdjusters.lastDayOfMonth());
-        if(coachTurn.getEndTime().isAfter(first.minusDays(1)) && coachTurn.getEndTime().isBefore(last.plusDays(1))){
+        if (coachTurn.getEndTime().isAfter(first.minusDays(1)) && coachTurn.getEndTime().isBefore(last.plusDays(1))) {
             return coachTurnRepository.deleteCoachTurnById(id);
-        }
-        else{
+        } else {
             throw new Exception("Chỉ được xoá chuyến xe trong tháng");
         }
     }
 
-    public List<CoachTurn> searchCoachTurn(Map<String,String> map){
+    public List<CoachTurn> searchCoachTurn(Map<String, String> map) {
         return coachTurnRepository.searchCoachTurn(
-                map.get("ticketPriceMin") !=null ? map.get("ticketPriceMin") : ""
-                , map.get("driverName") !=null ? map.get("driverName") : ""
-                , map.get("coachPlate") !=null ? map.get("coachPlate") : ""
-                , map.get("routeId") !=null ? map.get("routeId") : ""
-                );
+                map.get("ticketPriceMin") != null ? map.get("ticketPriceMin") : ""
+                , map.get("driverName") != null ? map.get("driverName") : ""
+                , map.get("coachPlate") != null ? map.get("coachPlate") : ""
+                , map.get("routeId") != null ? map.get("routeId") : ""
+        );
     }
 
-    public List<CoachTurn> getListCoachTurnByIdCoachAndTime(Map<String,String> map){
+    public List<CoachTurn> getListCoachTurnByIdCoachAndTime(Map<String, String> map) {
         return coachTurnRepository.getListCoachTurnByIdCoachAndTime(map.get("id"),
-                                                                map.get("startTime"),
-                                                                map.get("endTime"));
+                map.get("startTime"),
+                map.get("endTime"));
     }
+
     public List<Map> getRevenueCoachByTime(Map<String, String> map) {
-        return coachTurnRepository.getRevenueCoachByTime(map.get("startTime"),map.get("endTime"));
+        return coachTurnRepository.getRevenueCoachByTime(map.get("startTime"), map.get("endTime"));
     }
 }
