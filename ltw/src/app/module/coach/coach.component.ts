@@ -145,7 +145,7 @@ export class CoachComponent implements OnInit {
   openEditDialog(data?: Coach) {
     // console.log(data)
     const dialogRef = this.dialog.open(EditCoachComponent, {
-      data: data,
+      data: Object.assign(new Coach(),data),
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
