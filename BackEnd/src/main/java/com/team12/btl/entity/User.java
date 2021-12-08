@@ -1,5 +1,6 @@
 package com.team12.btl.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,10 +21,14 @@ public class User implements Serializable {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @JsonIgnore
+    @Column(name = "password")
+    private String encryptedPassword;
 
     @Column(name = "email")
     private String email;
+
+    @Transient
+    private String password;
 
 }
