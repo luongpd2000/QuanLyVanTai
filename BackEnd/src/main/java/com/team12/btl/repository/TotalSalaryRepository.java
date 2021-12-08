@@ -13,6 +13,10 @@ import java.util.Optional;
 public interface TotalSalaryRepository extends JpaRepository<TotalSalary, Integer>, JpaSpecificationExecutor<TotalSalary> {
 
     List<TotalSalary> findTotalSalaryByMonthAndYear(Integer month, Integer year);
+    Integer countTotalSalaryByMonthAndYear(Integer month, Integer year);
+    @Modifying
+    @Query(value = "DELETE FROM total_salary WHERE (month=?1 and year=?2);",nativeQuery = true)
+    int deleteCurrentMonth(Integer month, Integer year);
 
 //    @Query(value = "call ltw.currentMonthSalary(?1, ?2);", nativeQuery = true)
 
