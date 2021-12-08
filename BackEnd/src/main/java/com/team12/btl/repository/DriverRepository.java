@@ -1,5 +1,6 @@
 package com.team12.btl.repository;
 
+import com.team12.btl.entity.CoachTurn;
 import com.team12.btl.entity.Driver;
 import com.team12.btl.entity.Route;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,9 +15,14 @@ public interface DriverRepository extends JpaRepository<Driver, Integer>, JpaSpe
 
     Driver findByIdAndActiveTrue(Integer id);
 
-    List<Driver> findByActiveIsTrueOrderById();
+    Driver findByIdCardAndActiveTrue(String idCard);
 
     @Modifying
+//    @Query(value = "select d.* from driver d " +
+//            "WHERE d.is_active = 1 " +
+//            "and d.id_card = ?1 " , nativeQuery = true)
+//    List<Driver> checkDriver(String idCard);
+
     @Query(value = "UPDATE driver SET is_active = 0 WHERE Id = ?1", nativeQuery = true)
     int deleteDriver(Integer Id);
 

@@ -160,6 +160,7 @@ export class DriverComponent implements OnInit {
             this.getAll();
           },
           (error) => {
+            this.openSnackBar(error.error.status);
             var mess = '';
 
             var log = error.error.errors;

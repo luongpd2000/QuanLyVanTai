@@ -28,6 +28,10 @@ public class DriverService_Impl implements GeneralService<Driver> {
         return driverRepository.findByIdAndActiveTrue(id);
     }
 
+    public Driver findByIdCardAndActiveTrue(String idCard) {
+        return driverRepository.findByIdCardAndActiveTrue(idCard);
+    }
+
     @Override
     public Driver create(Driver driver) {
         driver.setActive(true);
@@ -45,6 +49,7 @@ public class DriverService_Impl implements GeneralService<Driver> {
     public int delete(Integer id) {
         return driverRepository.deleteDriver(id);
     }
+
     public List<Driver> searchDriver(Map<String, String> map){
 
         return driverRepository.searchDriver
