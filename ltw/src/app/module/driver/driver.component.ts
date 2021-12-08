@@ -160,8 +160,16 @@ export class DriverComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar('Thêm thất bại');
-            // this.getAll();
+            var mess = '';
+
+            var log = error.error.errors;
+            // console.log(log)
+            // console.log(error)
+            for (let index = 0; index < log.length; index++) {
+              console.log(log[index].defaultMessage)
+              mess += log[index].defaultMessage+'\n';
+            }
+            this.openSnackBar('Thêm thất bại: \n'+mess);
           }
         );
       }
@@ -186,8 +194,16 @@ export class DriverComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar('Cập nhật thất bại');
-            this.getAll();
+            var mess = '';
+
+            var log = error.error.errors;
+            // console.log(log)
+            // console.log(error)
+            for (let index = 0; index < log.length; index++) {
+              console.log(log[index].defaultMessage)
+              mess += log[index].defaultMessage+'\n';
+            }
+            this.openSnackBar('Cập nhật thất bại: \n'+mess);
           }
         );
       }
