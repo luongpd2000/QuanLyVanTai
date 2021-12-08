@@ -16,7 +16,7 @@ import { ConfirmDialogComponent } from './module/dialogs/confirm-dialog/confirm-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddRouteComponent } from './module/dialogs/add-route/add-route.component';
 import { EditRouteComponent } from './module/dialogs/edit-route/edit-route.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './authen/login/login.component';
 import { AddDriverComponent } from './module/dialogs/add-driver/add-driver.component';
 import { EditDriverComponent } from './module/dialogs/edit-driver/edit-driver.component';
 import { AddCoachComponent } from './module/dialogs/add-coach/add-coach.component';
@@ -26,6 +26,7 @@ import { EditCoachTurnComponent } from './module/dialogs/edit-coach-turn/edit-co
 import { SalaryComponent } from './module/salary/salary.component';
 import { RevenueStatsCoachComponent } from './module/revenue-stats-coach/revenue-stats-coach.component';
 import { ViewStatsComponent } from './module/dialogs/view-stats/view-stats.component';
+import { AccountComponent } from './authen/account/account.component';
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ViewStatsComponent } from './module/dialogs/view-stats/view-stats.compo
     EditCoachTurnComponent,
     SalaryComponent,
     RevenueStatsCoachComponent,
-    ViewStatsComponent
+    ViewStatsComponent,
+    AccountComponent
     // AddRouteComponent
   ],
   imports: [

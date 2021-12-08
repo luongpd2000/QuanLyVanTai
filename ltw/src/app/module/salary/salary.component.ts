@@ -46,7 +46,7 @@ export const MY_FORMATS = {
 export class SalaryComponent implements OnInit {
 
   totalSalaryList: any[] = [];
-
+  flag: number=0;
   yearSearch: number =0;
   monthSearch: number =0;
 
@@ -91,12 +91,14 @@ export class SalaryComponent implements OnInit {
 
   onSearch(){
     console.log("search: " + this.monthSearch +" " + this.yearSearch)
-
+    this.flag=0;
     this.salaryService.findTotalSalaryByMonthAndYear(this.monthSearch,this.yearSearch).subscribe((data)=>{
+      
       console.log(data);
       this.totalSalaryList = data;
       console.log("totalSalaryList:"+this.totalSalaryList);
       this.dataSource = new MatTableDataSource<TotalSalary>(this.totalSalaryList);
+      this.dataSource.paginator = this.paginator;
       this.openSnackBar('Tìm kiếm thành công');
     })
   }
@@ -110,16 +112,32 @@ export class SalaryComponent implements OnInit {
 
   viewSalaryCurrent(){
     this.salaryService.getCurrentMonthSalary().subscribe((data)=>{
+      this.flag=1;
       console.log(data)
       this.totalSalaryList = data;
       console.log("totalSalaryList:"+this.totalSalaryList);
       this.dataSource = new MatTableDataSource<any>(this.totalSalaryList);
+      this.dataSource.paginator = this.paginator;
       this.openSnackBar('Xem thành công');
     })
   }
 
-  addDatabase(){}
-
-
+  addDatabase(){
+    if(this.flag==0){
+      this.openSnackBar("Lỗi: Chỉ xuất được lương của tháng này")
+    }else{
+      
+      this.salaryService.saveToDB(this.totalSalaryList).subscribe(
+        (data)=>{
+          this.openSnackBar("Thêm lương tháng này công vào CSDL")
+        },
+        (error) => {
+          this.openSnackBar(error.error.status);
+          // this.getAll();
+        }
+      );
+    }
+    
+  }
 
 }

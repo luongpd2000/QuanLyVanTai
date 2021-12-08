@@ -34,6 +34,9 @@ export class SalaryService {
     const totalSalaryUrl = `${this.baseUrl}/currentMonthSalary`;
     return this.httpClient.get<any[]>(totalSalaryUrl,this.httpOptions);
   }
-
+  saveToDB(data: any){
+    const totalSalaryUrl= `${this.baseUrl}/saveToDB`;
+    return this.httpClient.post<TotalSalary[]>(totalSalaryUrl,data,this.httpOptions);
+  }
 
 }
