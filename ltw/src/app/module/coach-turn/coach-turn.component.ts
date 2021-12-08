@@ -180,7 +180,15 @@ export class CoachTurnComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar(error.error.status);
+            var print = '';
+            var log = error.error.errors;
+            if(log !=null)
+              for (let index = 0; index < log.length; index++) {
+                console.log(log[index].defaultMessage)
+                print +=(' '+ log[index].defaultMessage);
+              }
+            else (error.error.status ? print+=error.error.status : "");
+            this.openSnackBar("Thêm thất bại: "+ print);
             // this.getAll();
           }
         );
@@ -208,13 +216,22 @@ export class CoachTurnComponent implements OnInit {
         console.log(result);
         this.coachTurnService.update(result).subscribe(
           (data) => {
-            this.openSnackBar('cập nhật thành công');
+            this.openSnackBar('Cập nhật thành công');
             this.getAll();
           },
           (error) => {
             // this.openSnackBar('Cập nhật thất bại');
-            console.log(error);
-            this.openSnackBar(error.error.status);
+            // console.log(error);
+            // this.openSnackBar(error.error.status);
+            var print = '';
+            var log = error.error.errors;
+            if(log !=null)
+              for (let index = 0; index < log.length; index++) {
+                console.log(log[index].defaultMessage)
+                print +=(' '+ log[index].defaultMessage);
+              }
+            else (error.error.status ? print+=error.error.status : "");
+            this.openSnackBar("Cập nhật thất bại: "+ print);
             this.getAll();
           }
         );
