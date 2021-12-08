@@ -34,28 +34,29 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
 
     @Override
     public List<CoachTurn> findAll() {
-        return coachTurnRepository.findCoachTurnByActiveIsTrue();
+        return coachTurnRepository.findAll();
     }
 
     @Override
     public CoachTurn findById(Integer id) {
-        return coachTurnRepository.findCoachTurnByIdAndActiveIsTrue(id);
+        return coachTurnRepository.findCoachTurnById(id);
     }
 
     @Override
     public CoachTurn create(CoachTurn coachTurn) throws Exception {
         Coach coach = coachRepository.getById(coachTurn.getCoach().getId());
+        System.out.println("coach:"+coach.toString());
+        System.out.println(coachTurn.getPassengerAmount() +"--"+ (coach.getCapacity() - 2));
         if (coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
                 coachTurn.getStartTime().isBefore(coachTurn.getEndTime()) &&
-                coachTurn.getPassengerAmount() < coach.getCapacity() - 2) {
+                coachTurn.getPassengerAmount() <= coach.getCapacity() - 2) {
             Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
             Complexity complexity = complexityRepository.getById(route.getComplexity());
             coachTurn.setGradeSalary(complexity.getGradeSalary());
-            coachTurn.setActive(true);
             return coachTurnRepository.save(coachTurn);
         } else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()) {
             throw new Exception("Tài xế và phụ xe không thể là cùng 1 người");
-        } else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
+        } else if (!coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
             throw new Exception("Thời gian bắt đầu phải trước thời gian kết thúc");
         } else {
             throw new Exception("Số hành khách phải nhỏ hơn số ghế trừ 2");
@@ -72,15 +73,14 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
             Coach coach = coachRepository.getById(coachTurn.getCoach().getId());
             if (coachTurn.getDriver().getId() != coachTurn.getDriverAsistant().getId() &&
                     coachTurn.getStartTime().isBefore(coachTurn.getEndTime()) &&
-                    coachTurn.getPassengerAmount() < coach.getCapacity() - 2) {
+                    coachTurn.getPassengerAmount() <= coach.getCapacity() - 2) {
                 Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
                 Complexity complexity = complexityRepository.getById(route.getComplexity());
                 coachTurn.setGradeSalary(complexity.getGradeSalary());
-                coachTurn.setActive(true);
                 return coachTurnRepository.save(coachTurn);
             } else if (coachTurn.getDriver().getId() == coachTurn.getDriverAsistant().getId()) {
                 throw new Exception("Tài xế và phụ xe không thể là cùng 1 người");
-            } else if (coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
+            } else if (!coachTurn.getStartTime().isBefore(coachTurn.getEndTime())) {
                 throw new Exception("Thời gian bắt đầu phải trước thời gian kết thúc");
             } else {
                 throw new Exception("Số hành khách phải nhỏ hơn số ghế trừ 2");
