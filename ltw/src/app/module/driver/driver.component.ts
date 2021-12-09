@@ -160,17 +160,18 @@ export class DriverComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            this.openSnackBar(error.error.status);
-            var mess = '';
-
-            var log = error.error.errors;
-            // console.log(log)
-            // console.log(error)
-            for (let index = 0; index < log.length; index++) {
-              console.log(log[index].defaultMessage)
-              mess += log[index].defaultMessage+'\n';
-            }
-            this.openSnackBar('Thêm thất bại: \n'+mess);
+            console.log(error)
+        var mess = '';
+        if (error.error.errors) {
+          var log = error.error.errors;
+          // console.log(log)
+          // console.log(error)
+          for (let index = 0; index < log.length; index++) {
+            console.log(log[index].defaultMessage);
+            mess += log[index].defaultMessage + '\n';
+          }
+          this.openSnackBar('Thêm thất bại: \n' + mess);
+        } else this.openSnackBar('Thêm thất bại: '+ error.error.status ? error.error.status:"");
           }
         );
       }
@@ -195,16 +196,18 @@ export class DriverComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            var mess = '';
-
-            var log = error.error.errors;
-            // console.log(log)
-            // console.log(error)
-            for (let index = 0; index < log.length; index++) {
-              console.log(log[index].defaultMessage)
-              mess += log[index].defaultMessage+'\n';
-            }
-            this.openSnackBar('Cập nhật thất bại: \n'+mess);
+            console.log(error)
+        var mess = '';
+        if (error.error.errors) {
+          var log = error.error.errors;
+          // console.log(log)
+          // console.log(error)
+          for (let index = 0; index < log.length; index++) {
+            console.log(log[index].defaultMessage);
+            mess += log[index].defaultMessage + '\n';
+          }
+          this.openSnackBar('Cập nhật thất bại: \n' + mess);
+        } else this.openSnackBar('Cập nhật thất bại: '+ error.error.status ? error.error.status:"");
           }
         );
       }
