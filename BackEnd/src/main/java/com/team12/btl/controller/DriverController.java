@@ -31,9 +31,11 @@ public class DriverController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createDriver(@Valid @RequestBody Driver driver) {
-        Driver d = driverService.findByIdCardAndActiveTrue(driver.getIdCard().trim());
-        if(d == null) return ResponseEntity.ok(driverService.create(driver));
-        return new ResponseEntity<Status>(new Status("Đã tồn tại"), HttpStatus.BAD_REQUEST);
+        try {
+            return ResponseEntity.ok(driverService.create(driver));
+        } catch (Exception e) {
+            return new ResponseEntity<Status>(new Status(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/deleteById/{id}")

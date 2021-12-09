@@ -33,9 +33,15 @@ public class DriverService_Impl implements GeneralService<Driver> {
     }
 
     @Override
-    public Driver create(Driver driver) {
-        driver.setActive(true);
-        return driverRepository.save(driver);
+    public Driver create(Driver driver) throws Exception {
+        Driver d = driverRepository.findByIdCardAndActiveTrue(driver.getIdCard().trim());
+        if(d == null){
+            driver.setActive(true);
+            return driverRepository.save(driver);
+        }
+        else{
+            throw new Exception("Đã tồn tại");
+        }
     }
 
     @Override
