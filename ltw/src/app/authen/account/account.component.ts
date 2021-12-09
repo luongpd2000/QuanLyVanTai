@@ -153,7 +153,7 @@ export class AccountComponent implements OnInit {
             mess += log[index].defaultMessage + '\n';
           }
           this.openSnackBar('Cập nhật thất bại: \n' + mess);
-        } else this.openSnackBar('Cập nhật thất bại: '+error.error.status);
+        } else this.openSnackBar('Cập nhật thất bại: '+ error.error.status ? error.error.status:"");
       }
     );
   }
