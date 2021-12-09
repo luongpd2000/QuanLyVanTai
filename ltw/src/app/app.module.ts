@@ -27,6 +27,7 @@ import { SalaryComponent } from './module/salary/salary.component';
 import { RevenueStatsCoachComponent } from './module/revenue-stats-coach/revenue-stats-coach.component';
 import { ViewStatsComponent } from './module/dialogs/view-stats/view-stats.component';
 import { AccountComponent } from './authen/account/account.component';
+import { ResetPasswordComponent } from './authen/reset-password/reset-password.component';
 // import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AccountComponent } from './authen/account/account.component';
     SalaryComponent,
     RevenueStatsCoachComponent,
     ViewStatsComponent,
-    AccountComponent
+    AccountComponent,
+    ResetPasswordComponent
     // AddRouteComponent
   ],
   imports: [

@@ -39,4 +39,9 @@ export class UserService {
     const userUrl = `${this.baseUrl}/updateUser`;
     return this.httpClient.put<any>(userUrl,data,this.httpOptions);
   }
+
+  resetPassword(username: any){
+    const userUrl = `${this.baseUrl}/resetPassword?username=${username}`;
+    return this.httpClient.get<any>(userUrl);
+  }
 }

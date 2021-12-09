@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-
   user: any;
 
   userId: number = 1;
@@ -26,18 +26,17 @@ export class AccountComponent implements OnInit {
 
   checkPass: boolean = true;
 
-  constructor(private authen: AuthenticationService,
-              private userService: UserService
-    ) {
+  constructor(
+    private authen: AuthenticationService,
+    private _snackBar: MatSnackBar,
+    private userService: UserService
+  ) {
     this.handleGetUser();
-   }
+  }
 
   ngOnInit(): void {
-
     this.acountForm = new FormGroup({
-      username: new FormControl('', [
-        Validators.required
-      ]),
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
@@ -49,12 +48,12 @@ export class AccountComponent implements OnInit {
   }
 
   handleGetUser() {
-    this.userService.getUser(this.userService.getUsername()).subscribe(
-      (data) => {
+    this.userService
+      .getUser(this.userService.getUsername())
+      .subscribe((data) => {
         this.user = data;
         console.log(data);
-      }
-    );
+      });
   }
 
   checkEdit() {
@@ -63,9 +62,9 @@ export class AccountComponent implements OnInit {
       this.acountForm.controls['currentPassword'].setValidators([
         Validators.minLength(8),
         Validators.maxLength(50),
-        Validators.pattern(
-          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-        ),
+        // Validators.pattern(
+        //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+        // ),
       ]);
       this.acountForm.controls['currentPassword'].updateValueAndValidity();
       this.acountForm.controls['newPassword'].setValidators([
@@ -140,13 +139,30 @@ export class AccountComponent implements OnInit {
     this.userService.updateUser(userUpdate).subscribe(
       (data) => {
         // console.log(data);
-        window.alert('Update sucess');
+        this.openSnackBar('Cập nhật thành công');
       },
       (error) => {
-        console.log(error);
-        window.alert('Update failure');
+        console.log(error)
+        var mess = '';
+        if (error.error.errors) {
+          var log = error.error.errors;
+          // console.log(log)
+          // console.log(error)
+          for (let index = 0; index < log.length; index++) {
+            console.log(log[index].defaultMessage);
+            mess += log[index].defaultMessage + '\n';
+          }
+          this.openSnackBar('Cập nhật thất bại: \n' + mess);
+        } else this.openSnackBar('Cập nhật thất bại: '+error.error.status);
       }
     );
+  }
+
+  openSnackBar(content: any) {
+    this._snackBar.open(content, 'OK', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 
   get username() {

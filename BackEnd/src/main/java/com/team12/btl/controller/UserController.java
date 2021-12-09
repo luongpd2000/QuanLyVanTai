@@ -32,5 +32,13 @@ public class UserController {
         }
     }
 
+    @GetMapping("/resetPassword")
+    public ResponseEntity<?> resetPassword(@RequestParam String username){
+        try {
+            return ResponseEntity.ok(userService.resetPassword(username));
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Status(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }
