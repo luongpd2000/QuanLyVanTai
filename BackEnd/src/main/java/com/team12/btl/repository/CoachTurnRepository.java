@@ -33,9 +33,9 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
     List<Map> getRevenueCoachByTime(String startTime, String endTime);
 
 
-    @Query(value = "select ct.* from coach_turn ct, coach c " +
+    @Query(value = "select ct.* from coach_turn ct " +
             "WHERE " +
-            "c.id = ?1 " +
+            "ct.coach_id = ?1 " +
             "and ct.start_time >= ?2 " +
             "and ct.end_time <= ?3", nativeQuery = true)
     List<CoachTurn> getListCoachTurnByIdCoachAndTime(String Id, String startTime, String endTime);
