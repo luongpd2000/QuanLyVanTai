@@ -27,15 +27,15 @@ public interface CoachTurnRepository extends JpaRepository<CoachTurn, Integer>, 
     List<CoachTurn> searchCoachTurn(String ticketPriceMin, String driverName, String coachPlate, String routeId);
 
     @Query(value = " select c.*, SUM( ct.passenger_amount * ct.ticket_price ) as revenue from coach c, coach_turn ct " +
-            "where c.id = ct.coach_id and c.is_active = true and ct.is_active = true " +
+            "where c.id = ct.coach_id " +
             "and ct.start_time >= ?1 " +
             "and ct.end_time <= ?2 group by c.id order by revenue desc", nativeQuery = true)
     List<Map> getRevenueCoachByTime(String startTime, String endTime);
 
 
     @Query(value = "select ct.* from coach_turn ct, coach c " +
-            "WHERE ct.is_active = 1 " +
-            "and c.id = ?1 " +
+            "WHERE " +
+            "c.id = ?1 " +
             "and ct.start_time >= ?2 " +
             "and ct.end_time <= ?3", nativeQuery = true)
     List<CoachTurn> getListCoachTurnByIdCoachAndTime(String Id, String startTime, String endTime);
