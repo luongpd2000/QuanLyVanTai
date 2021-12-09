@@ -28,7 +28,8 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Transient
-    private String password;
+//    @Transient
+//    private String password;
+
 
 }

@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-
   user: any;
 
   userId: number = 1;
-
-  username: String = 'luongpd';
 
   check: boolean = false; // check change pass
 
@@ -26,27 +26,21 @@ export class AccountComponent implements OnInit {
 
   checkPass: boolean = true;
 
-  constructor() { }
+  constructor(
+    private authen: AuthenticationService,
+    private _snackBar: MatSnackBar,
+    private userService: UserService
+  ) {
+    this.handleGetUser();
+  }
 
   ngOnInit(): void {
-    this.handleGetUser();
-
     this.acountForm = new FormGroup({
-      fullName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(50),
-      ]),
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]),
-      phone: new FormControl('', [
-        Validators.pattern('^(84|0[3|5|7|8|9])+([0-9]{8})$'),
-      ]),
-
-      address: new FormControl('', [Validators.maxLength(200)]),
-
       currentPassword: new FormControl(''),
       newPassword: new FormControl(''),
       confirmPassword: new FormControl(''),
@@ -54,12 +48,12 @@ export class AccountComponent implements OnInit {
   }
 
   handleGetUser() {
-    // this.userService.getUser(this.jwt.getUsername()).subscribe(
-    //   (data) => {
-    //     this.user = data;
-    //     // console.log(data);
-    //   }
-    // );
+    this.userService
+      .getUser(this.userService.getUsername())
+      .subscribe((data) => {
+        this.user = data;
+        console.log(data);
+      });
   }
 
   checkEdit() {
@@ -68,9 +62,9 @@ export class AccountComponent implements OnInit {
       this.acountForm.controls['currentPassword'].setValidators([
         Validators.minLength(8),
         Validators.maxLength(50),
-        Validators.pattern(
-          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-        ),
+        // Validators.pattern(
+        //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+        // ),
       ]);
       this.acountForm.controls['currentPassword'].updateValueAndValidity();
       this.acountForm.controls['newPassword'].setValidators([
@@ -119,10 +113,8 @@ export class AccountComponent implements OnInit {
       return;
     }
 
-    userUpdate.fullName = this.acountForm.controls['fullName'].value;
+    userUpdate.username = this.acountForm.controls['username'].value;
     userUpdate.email = this.acountForm.controls['email'].value;
-    userUpdate.phone = this.acountForm.controls['phone'].value;
-    userUpdate.address = this.acountForm.controls['address'].value;
     userUpdate.password = this.acountForm.controls['currentPassword'].value;
     userUpdate.newPassword = this.acountForm.controls['newPassword'].value;
 
@@ -144,29 +136,40 @@ export class AccountComponent implements OnInit {
       return;
     }
 
-    // this.userService.updateUser(userUpdate).subscribe(
-    //   (data) => {
-    //     // console.log(data);
-    //     window.alert('Update sucess');
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //     window.alert('Update failure');
-    //   }
-    // );
+    this.userService.updateUser(userUpdate).subscribe(
+      (data) => {
+        // console.log(data);
+        this.openSnackBar('Cập nhật thành công');
+      },
+      (error) => {
+        console.log(error)
+        var mess = '';
+        if (error.error.errors) {
+          var log = error.error.errors;
+          // console.log(log)
+          // console.log(error)
+          for (let index = 0; index < log.length; index++) {
+            console.log(log[index].defaultMessage);
+            mess += log[index].defaultMessage + '\n';
+          }
+          this.openSnackBar('Cập nhật thất bại: \n' + mess);
+        } else this.openSnackBar('Cập nhật thất bại: '+error.error.status);
+      }
+    );
   }
 
-  get fullName() {
-    return this.acountForm.get('fullName');
+  openSnackBar(content: any) {
+    this._snackBar.open(content, 'OK', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+
+  get username() {
+    return this.acountForm.get('username');
   }
   get email() {
     return this.acountForm.get('email');
-  }
-  get phone() {
-    return this.acountForm.get('phone');
-  }
-  get address() {
-    return this.acountForm.get('address');
   }
   get currentPassword() {
     return this.acountForm.get('currentPassword');

@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().cors().and()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate").permitAll().
+                .authorizeRequests().antMatchers("/authenticate","/api/v1/user/resetPassword").permitAll().
                 // all other requests need to be authenticated
 //                        anyRequest().permitAll().and().
                         anyRequest().authenticated().and().

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from '../../service/authentication.service';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 // import { get } from 'http';
 
 @Component({
@@ -13,8 +15,10 @@ import { AuthenticationService } from '../../service/authentication.service';
 export class LoginComponent implements OnInit {
   logIn!: FormGroup;
 
+
   constructor(private authService: AuthenticationService,
     private router : Router,
+    public dialog: MatDialog,
     private _cookieService: CookieService) {}
 
   ngOnInit(): void {
@@ -57,6 +61,11 @@ export class LoginComponent implements OnInit {
       alert("Login fail: check username and password");
       console.log(error);
   })
+  }
+
+  check(){
+    const dialogRef = this.dialog.open(ResetPasswordComponent, { });
+
   }
 
   get username() {
