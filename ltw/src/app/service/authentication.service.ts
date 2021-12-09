@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,13 @@ export class AuthenticationService {
 
   path: any;
 
+  headers = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this._cookieService.get('Authorization'),
+    }),
+  };
+
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -31,17 +39,12 @@ export class AuthenticationService {
 
   public async checkLogin() {
     // console.log(this._cookieService.get('Authorization'));
-    const headers = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: this._cookieService.get('Authorization'),
-      }),
-    };
+
 
     const checkLoginUrl = `${this.authenUrl}/checkLogin`;
     var data: any;
     try {
-      data = await this.httpClient.get<any>(checkLoginUrl, headers).toPromise();
+      data = await this.httpClient.get<any>(checkLoginUrl, this.headers).toPromise();
     } catch (error) {
       this.flag = false;
       // console.log(this.flag)
@@ -73,4 +76,6 @@ export class AuthenticationService {
     // this.router.navigate(['/login']);
     location.replace('/login');
   }
+
+
 }
