@@ -83,7 +83,7 @@
 
             <ng-container matColumnDef="revenue">
               <th mat-header-cell *matHeaderCellDef> Doanh thu </th>
-              <td mat-cell *matCellDef="let element"> {{element.revenue}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.revenue | currency:'VND'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
