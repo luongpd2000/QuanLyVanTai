@@ -7,6 +7,8 @@ export const environment = {
 
   baseUrl:"http://localhost:8080/api/v1",
   authenUrl:"http://localhost:8080"
+  // baseUrl:"https://backend-backend.azuremicroservices.io/api/v1",
+  // authenUrl:"https://backend-backend.azuremicroservices.io"
 };
 
 /*

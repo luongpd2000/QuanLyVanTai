@@ -73,12 +73,12 @@ public class CoachTurnService_Impl implements GeneralService<CoachTurn> {
         LocalDateTime last = now.with(TemporalAdjusters.lastDayOfMonth());
 
         if (coachTurn.getEndTime().isAfter(first.minusDays(1)) && coachTurn.getEndTime().isBefore(last.plusDays(1))) {
-            Coach coach = coachRepository.getById(coachTurn.getCoach().getId());
+            Coach coach = coachRepository.findById(coachTurn.getCoach().getId()).get();
             if (!coachTurn.getDriver().getId().equals(coachTurn.getDriverAsistant().getId()) &&
                     coachTurn.getStartTime().isBefore(coachTurn.getEndTime()) &&
                     coachTurn.getPassengerAmount() <= coach.getCapacity() - 2) {
                 Route route = routeRepository.findByIdAndActiveTrue(coachTurn.getRoute().getId());
-                Complexity complexity = complexityRepository.getById(route.getComplexity());
+                Complexity complexity = complexityRepository.findById(route.getComplexity()).get();
                 coachTurn.setGradeSalary(complexity.getGradeSalary());
                 return coachTurnRepository.save(coachTurn);
             } else if (coachTurn.getDriver().getId().equals(coachTurn.getDriverAsistant().getId())) {
