@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoachTurn } from '../../../data/coach-turn';
 import * as _moment from 'moment';
+import { FixedSalary } from 'src/app/data/fixed-salary';
 const moment =  _moment;
 @Component({
   selector: 'app-edit-coach-turn',
@@ -124,7 +125,7 @@ export class EditCoachTurnComponent implements OnInit {
       address: '',
       birthday: new Date(),
       experience: 0,
-      fixedSalary: 0,
+      fixedSalary: new FixedSalary(),
     };
 
     editData.route = {
@@ -144,7 +145,7 @@ export class EditCoachTurnComponent implements OnInit {
       address: '',
       birthday: new Date(),
       experience: 0,
-      fixedSalary: 0,
+      fixedSalary: new FixedSalary(),
     };
 
     this.dialogRef.close(editData);

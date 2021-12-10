@@ -32,13 +32,20 @@ makeForm(){
       "address": new FormControl('',Validators.required),
       "birthday": new FormControl('',Validators.required),
       "experience": new FormControl('',Validators.required),
-      "fixedSalary": new FormControl(''),
+      "fixedSalary": new FormControl('',Validators.required),
   });
 }
 
 
   edit(): void {
     // console.log(this.formControl.value);
-    this.dialogRef.close(Object.assign(new Driver(), this.formControl.value));
+    var editData = new Driver();
+    Object.assign(editData, this.formControl.value);
+    editData.fixedSalary = {
+      id: this.formControl.value.fixedSalary,
+      grade: 0,
+      basicSalary: 0,
+    };
+    this.dialogRef.close(editData);
   }
 }

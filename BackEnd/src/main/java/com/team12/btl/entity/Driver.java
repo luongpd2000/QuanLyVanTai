@@ -50,7 +50,8 @@ public class Driver implements Serializable {
     @Column(name = "is_active")
     private Boolean active;
 
-    @Column(name = "fixed_salary_id", nullable = false)
-    private Integer fixedSalary;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fixed_salary_id",referencedColumnName = "id")
+    private FixedSalary fixedSalary;
 
 }

@@ -36,7 +36,8 @@ makeForm(){
 }
 
 save(): void {
-  // console.log(this.formControl.value);
-  this.dialogRef.close(Object.assign(new Driver(), this.formControl.value));
+  var addData = new Driver();
+  Object.assign(addData, this.formControl.value);
+  this.dialogRef.close(addData);
 }
 }

@@ -26,14 +26,14 @@ public interface DriverRepository extends JpaRepository<Driver, Integer>, JpaSpe
     @Query(value = "UPDATE driver SET is_active = 0 WHERE Id = ?1", nativeQuery = true)
     int deleteDriver(Integer Id);
 
-    @Query(value = "SELECT d.* FROM driver d where d.is_active = true AND (CONCAT(d.id, '') LIKE %?1%) AND UPPER(d.name) like CONCAT('%',UPPER(?2),'%') " +
+    @Query(value = "SELECT d.* FROM driver d, fixed_salary f where d.is_active = true AND d.fixed_salary_id=f.id AND (CONCAT(d.id, '') LIKE %?1%) AND UPPER(d.name) like CONCAT('%',UPPER(?2),'%') " +
             "AND UPPER(d.id_card) LIKE CONCAT('%',UPPER(?3),'%') " +
-            "AND (CONCAT(d.driving_license_code, '') LIKE %?4%)" +
-            "AND (CONCAT(d.type_of_license, '') LIKE %?5%)" +
-            "AND (CONCAT(d.address, '') LIKE %?6%)" +
+            "AND UPPER(d.driving_license_code) LIKE CONCAT('%',UPPER(?4),'%') " +
+            "AND UPPER(d.type_of_license) LIKE CONCAT('%',UPPER(?5),'%') " +
+            "AND UPPER(d.address) LIKE CONCAT('%',UPPER(?6),'%') " +
             "AND (CONCAT(d.birthday, '') LIKE %?7%)" +
             "AND (CONCAT(d.experience, '') LIKE %?8%)" +
-            "AND (CONCAT(d.fixed_salary_id, '') LIKE %?9%)"
+            "AND (CONCAT(f.grade, '') LIKE %?9%)"
             , nativeQuery = true)
-    List<Driver> searchDriver(String id, String name, String idCard, String drivingLicenseCode, String typeOfLicense, String address, String birthday, String experience, String fixed_salary_id);
+    List<Driver> searchDriver(String id, String name, String idCard, String drivingLicenseCode, String typeOfLicense, String address, String birthday, String experience, String grade);
 }

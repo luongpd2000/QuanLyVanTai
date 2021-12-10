@@ -67,7 +67,7 @@ public class DriverService_Impl implements GeneralService<Driver> {
                         map.get("address") != null ? map.get("address"):"",
                         map.get("birthday") != null ? map.get("birthday"):"",
                         map.get("experience") != null ? map.get("experience"):"",
-                        map.get("fixedSalary") != null ? map.get("fixedSalary"):"");
+                        map.get("grade") != null ? map.get("grade"):"");
     }
 
 

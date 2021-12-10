@@ -5,7 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Driver } from 'src/app/data/driver';
+import { FixedSalary } from 'src/app/data/fixed-salary';
 import { DriverService } from 'src/app/service/driver.service';
+import { FixedSalaryService } from 'src/app/service/fixed-salary.service';
 import { AddDriverComponent } from '../dialogs/add-driver/add-driver.component';
 import {
   ConfirmDialogComponent,
@@ -23,7 +25,7 @@ export class DriverComponent implements OnInit {
   formSearch!: FormGroup;
 
   driverList: Driver[] = [];
-  fixedSalaryList: any;
+  fixedSalaryList: FixedSalary[] = [];
 
   displayedColumns: string[] = [
     'no',
@@ -35,7 +37,7 @@ export class DriverComponent implements OnInit {
     'address',
     'birthday',
     'experience',
-    'fixedSalaryId',
+    'fixedSalary',
     'action',
   ];
   dataSource = new MatTableDataSource<Driver>();
@@ -48,6 +50,7 @@ export class DriverComponent implements OnInit {
 
   constructor(
     private driverService: DriverService,
+    private fixedSalaryService: FixedSalaryService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder
@@ -55,10 +58,14 @@ export class DriverComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-    this.getAllFixedSalary();
     this.makeSearchForm();
+    this.getDataToAddOrEdit();
   }
-
+  getDataToAddOrEdit(): void{
+    this.fixedSalaryService.getAll().subscribe((data)=>{
+      this.fixedSalaryList = data;
+    })
+  }
   makeSearchForm() {
     this.formSearch = new FormGroup({
       id: new FormControl(''),
@@ -69,7 +76,7 @@ export class DriverComponent implements OnInit {
       address: new FormControl(''),
       birthday: new FormControl(''),
       experience: new FormControl(''),
-      fixedSalary: new FormControl(''),
+      grade: new FormControl(''),
     });
   }
 
@@ -83,13 +90,7 @@ export class DriverComponent implements OnInit {
     });
   }
 
-  getAllFixedSalary(){
-    this.driverService.getAllFixedSalary().subscribe(
-      (data)=>{
-        this.fixedSalaryList = data;
-      }
-    )
-  }
+
 
   all() {
     this.getAll();
@@ -106,7 +107,7 @@ export class DriverComponent implements OnInit {
       address: this.formSearch.value.address,
       birthday: this.formSearch.value.birthday,
       experience: this.formSearch.value.experience,
-      fixedSalary: this.formSearch.value.fixedSalary,
+      grade:this.formSearch.value.grade,
     };
 
     console.log(param);
@@ -149,7 +150,11 @@ export class DriverComponent implements OnInit {
   }
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddDriverComponent, {data: this.fixedSalaryList});
+    this.getDataToAddOrEdit();
+    const dialogRef = this.dialog.open(AddDriverComponent, {
+      data:{
+        fixedSalaryData: this.fixedSalaryList,
+      }});
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -183,7 +188,7 @@ export class DriverComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDriverComponent, {
       data: {
         driver: Object.assign(new Driver(),data),
-        fixedSalaryList : this.fixedSalaryList
+        fixedSalaryData : this.fixedSalaryList
       }
     });
 

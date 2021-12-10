@@ -37,11 +37,11 @@
                             <input matInput formControlName='address'>
                         </mat-form-field>
                         <mat-form-field class="fullWidth" appearance="outline">
-                          <mat-label>Ngày sinh *</mat-label>
-                          <input matInput type="date" formControlName="birthday" />
-                          <mat-error *ngIf="
+                            <mat-label>Ngày sinh *</mat-label>
+                            <input matInput type="date" formControlName="birthday" />
+                            <mat-error *ngIf="
                           formSearch.controls['birthday']?.errors?.required">field required</mat-error>
-                      </mat-form-field>
+                        </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Thâm niên</mat-label>
                             <input type="number" matInput formControlName='experience'>
@@ -50,9 +50,9 @@
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Bậc lương</mat-label>
-                            <mat-select formControlName='fixedSalary'>
+                            <mat-select formControlName='grade'>
                                 <mat-option value="">All</mat-option>
-                                <mat-option *ngFor="let e of fixedSalaryList" [value]="e.id">Mã {{e.id}} bậc lương {{e.grade}}</mat-option>
+                                <mat-option *ngFor="let e of fixedSalaryList" [value]="e.grade">Mã {{e.id}} bậc lương {{e.grade}}</mat-option>
                             </mat-select>
                         </mat-form-field>
 
@@ -121,9 +121,9 @@
                             <td mat-cell *matCellDef="let element"> {{element.experience}} </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="fixedSalaryId">
+                        <ng-container matColumnDef="fixedSalary">
                             <th mat-header-cell *matHeaderCellDef> Bậc lương </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fixedSalary}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.fixedSalary.grade}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="action">
