@@ -32,7 +32,7 @@ public class UserService {
     public User update(Map<String, String> data) throws Exception {
         User user1 = userRepository.findUserByUsername(data.get("username")).get();
         if (data.get("password") != null && !data.get("password").equals("")) {
-            if (!bCryptPasswordEncoder.encode(data.get("password")).equals(user1.getEncryptedPassword())) {
+            if (!bCryptPasswordEncoder.matches(data.get("password"),user1.getEncryptedPassword())) {
                 throw new Exception("Mật khẩu không đúng");
             }
             user1.setEncryptedPassword(bCryptPasswordEncoder.encode(data.get("newPassword")));
