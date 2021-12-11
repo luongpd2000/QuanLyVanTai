@@ -12,7 +12,7 @@ export class EditRouteComponent implements OnInit {
   formControl1!: FormGroup ;
   constructor(
     public dialogRef: MatDialogRef<EditRouteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Route
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {

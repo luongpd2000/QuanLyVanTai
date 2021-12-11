@@ -43,9 +43,7 @@
                 <mat-form-field class="fullWidth" appearance="outline">
                     <mat-label>Độ phức tạp</mat-label>
                     <mat-select formControlName='complexity'>
-                        <mat-option [value]="1">1</mat-option>
-                        <mat-option [value]="2">2</mat-option>
-                        <mat-option [value]="3">3</mat-option>
+                      <mat-option *ngFor="let complexity of data" [value]="complexity.complexity">{{complexity.complexity}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="
           formControl.controls['complexity']?.errors?.required">field required</mat-error>

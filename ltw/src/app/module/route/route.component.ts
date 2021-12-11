@@ -21,7 +21,7 @@ import { EditRouteComponent } from '../dialogs/edit-route/edit-route.component';
 export class RouteComponent implements OnInit {
   resultComfirm: string = '';
   formSearch!: FormGroup;
-
+  complexityList: any;
   routeList: Route[] = [];
 
   displayedColumns: string[] = [
@@ -51,6 +51,7 @@ export class RouteComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
     this.makeSearchForm();
+    this.getDataForDialog();
   }
 
   makeSearchForm() {
@@ -75,6 +76,7 @@ export class RouteComponent implements OnInit {
   all() {
     this.getAll();
     this.makeSearchForm();
+
   }
 
   onSearch() {
@@ -126,7 +128,9 @@ export class RouteComponent implements OnInit {
   }
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddRouteComponent, {});
+    const dialogRef = this.dialog.open(AddRouteComponent, {
+      data: this.complexityList
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -156,7 +160,10 @@ export class RouteComponent implements OnInit {
   openEditDialog(data?: Route) {
     // console.log(data)
     const dialogRef = this.dialog.open(EditRouteComponent, {
-      data: Object.assign(new Route(),data),
+      data: {
+        route: Object.assign(new Route(),data),
+        complexity: this.complexityList
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -182,6 +189,15 @@ export class RouteComponent implements OnInit {
         );
       }
     });
+  }
+
+  getDataForDialog(){
+    this.routeService.findAllComplexity().subscribe(
+      (data) =>{
+        this.complexityList = data;
+        console.log(this.complexityList)
+      }
+    )
   }
 
   openSnackBar(content: any) {

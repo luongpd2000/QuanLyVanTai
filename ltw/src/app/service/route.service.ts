@@ -57,5 +57,9 @@ export class RouteService {
     return this.httpClient.put<any>(routeUrl,route,this.httpOptions);
   }
 
+  findAllComplexity(){
+    const complexityUrl = `${environment.baseUrl}/complexity/findAll`;
+    return this.httpClient.get<any>(complexityUrl,this.httpOptions);
+  }
 
 }

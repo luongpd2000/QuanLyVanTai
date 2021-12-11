@@ -12,11 +12,11 @@ import java.util.List;
 public class ComplexityService_Impl implements GeneralService<Complexity>{
 
     @Autowired
-    ComplexityRepository ComplexityRepository;
+    ComplexityRepository complexityRepository;
 
     @Override
     public List<Complexity> findAll() {
-        return ComplexityRepository.findAll();
+        return complexityRepository.findAll();
     }
 
     @Override
