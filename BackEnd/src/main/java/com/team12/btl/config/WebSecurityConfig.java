@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
+                .allowedOrigins("http://localhost:4200","https://frontendltw.web.app","https://frontendltw-91fc3.web.app/")
                 .allowedMethods("GET", "POST","PUT","DELETE")
                 .allowCredentials(false).maxAge(3600);
     }
