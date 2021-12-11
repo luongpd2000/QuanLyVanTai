@@ -7,7 +7,7 @@
 
             <div class="form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Biển số *</mat-label>
+                    <mat-label>Biển số </mat-label>
                     <input matInput type="text" formControlName="plate" />
                     <mat-error *ngIf="
           formControl.controls['plate']?.errors?.required">field required</mat-error>
@@ -16,7 +16,7 @@
 
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Mẫu xe *</mat-label>
+                    <mat-label>Mẫu xe </mat-label>
                     <input matInput type="text" formControlName="model" />
                     <mat-error *ngIf="
           formControl.controls['model']?.errors?.required">field required</mat-error>
@@ -24,7 +24,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Hãng sản xuất *</mat-label>
+                    <mat-label>Hãng sản xuất </mat-label>
                     <input matInput type="text" formControlName="manufacturer" />
                     <mat-error *ngIf="
           formControl.controls['manufacturer']?.errors?.required">field required</mat-error>
@@ -33,7 +33,7 @@
 
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Số ghế *</mat-label>
+                    <mat-label>Số ghế </mat-label>
                     <input matInput type="number" formControlName="capacity" />
                     <mat-error *ngIf="
           formControl.controls['capacity']?.errors">Số ghế là kiểu số</mat-error>
@@ -43,7 +43,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Số năm sử dụng *</mat-label>
+                    <mat-label>Số năm sử dụng </mat-label>
                     <input matInput type="number" formControlName="yearsOfUse" />
                     <mat-error *ngIf="
           formControl.controls['yearsOfUse']?.errors">Số năm sử dụng là kiểu số</mat-error>
@@ -53,7 +53,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Ngày bảo dưỡng cuối cùng *</mat-label>
+                    <mat-label>Ngày bảo dưỡng cuối cùng </mat-label>
                     <input matInput type="date" formControlName="lastMaintenanceDay" />
                     <mat-error *ngIf="
           formControl.controls['lastMaintenanceDay']?.errors">Định dạng ngày yyyy-mm-dd</mat-error>
