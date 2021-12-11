@@ -121,6 +121,7 @@ export class CoachTurnComponent implements OnInit {
       this.coachTurnList = data;
       console.log(this.coachTurnList);
       this.dataSource = new MatTableDataSource<CoachTurn>(this.coachTurnList);
+      this.dataSource.paginator = this.paginator;
       this.openSnackBar('Tìm kiếm thành công');
     });
 
