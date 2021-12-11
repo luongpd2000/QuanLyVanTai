@@ -12,7 +12,7 @@
 
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Họ tên *</mat-label>
+                    <mat-label>Họ tên </mat-label>
                     <input matInput type="text" formControlName="name" [(ngModel)]="data.driver.name" />
                     <mat-error *ngIf="
           formControl.controls['name']?.errors?.required">field required</mat-error>
@@ -21,7 +21,7 @@
 
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Số thẻ căn cước *</mat-label>
+                    <mat-label>Số thẻ căn cước </mat-label>
                     <input matInput type="text" formControlName="idCard" [(ngModel)]="data.driver.idCard" />
                     <mat-error *ngIf="
           formControl.controls['idCard']?.errors?.required">field required</mat-error>
@@ -29,7 +29,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Mã số bằng lái *</mat-label>
+                    <mat-label>Mã số bằng lái </mat-label>
                     <input matInput type="text" formControlName="drivingLicenseCode" [(ngModel)]="data.driver.drivingLicenseCode" />
                     <mat-error *ngIf="
           formControl.controls['drivingLicenseCode']?.errors?.required">field required</mat-error>
@@ -37,7 +37,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Loại bằng lái *</mat-label>
+                    <mat-label>Loại bằng lái </mat-label>
                     <input matInput type="text" formControlName="typeOfLicense" [(ngModel)]="data.driver.typeOfLicense" />
                     <mat-error *ngIf="
           formControl.controls['typeOfLicense']?.errors?.required">field required</mat-error>
@@ -45,7 +45,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Địa chỉ *</mat-label>
+                    <mat-label>Địa chỉ </mat-label>
                     <input matInput type="text" formControlName="address" [(ngModel)]="data.driver.address" />
                     <mat-error *ngIf="
           formControl.controls['address']?.errors?.required">field required</mat-error>
@@ -53,7 +53,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Ngày sinh *</mat-label>
+                    <mat-label>Ngày sinh </mat-label>
                     <input matInput type="date" formControlName="birthday" [(ngModel)]="data.driver.birthday" />
                     <mat-error *ngIf="
           formControl.controls['birthday']?.errors">Định dạng ngày sinh yyyy-mm-dd</mat-error>
@@ -63,7 +63,7 @@
             </div>
             <div class="mt-2 form">
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Thâm niên *</mat-label>
+                    <mat-label>Thâm niên </mat-label>
                     <input matInput type="number" formControlName="experience" [(ngModel)]="data.driver.experience" />
                     <mat-error *ngIf="
           formControl.controls['experience']?.errors">Thâm niên là kiểu số</mat-error>

@@ -38,8 +38,8 @@ public class TotalSalaryService_Imp {
         if(dem>0){
             throw new Exception("Lỗi: Đã lưu bảng lương của tháng này");
         }
-        else if(1==2) {
-         // else if(now.getHour()<23 ||now.getDayOfMonth()<c.getActualMaximum(Calendar.DAY_OF_MONTH) ) {
+      //  else if(1==2) {
+         else if(now.getHour()<23 ||now.getDayOfMonth()<c.getActualMaximum(Calendar.DAY_OF_MONTH) ) {
               throw new Exception("Lỗi: Chỉ được lưu vào CSDL sau 23h ngày cuối cùng của tháng");
           }else{
             List<TotalSalary> totalSalary=new ArrayList<>();
