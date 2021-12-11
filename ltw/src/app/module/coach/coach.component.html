@@ -26,13 +26,13 @@
                   <input type="text" matInput formControlName='manufacturer'>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>Số ghế</mat-label>
+                  <mat-label>Số ghế tối thiểu</mat-label>
                   <input type="number" matInput formControlName='capacity'>
                   <mat-error *ngIf="
                   formSearch.controls['capacity']?.errors">Số ghế là kiểu số</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>Số năm sử dụng</mat-label>
+                  <mat-label>Số năm sử dụng tối đa</mat-label>
                   <input type="number" matInput formControlName='yearsOfUse'>
                   <mat-error *ngIf="
                   formSearch.controls['yearsOfUse']?.errors">Số năm sử dụng là kiểu số</mat-error>
